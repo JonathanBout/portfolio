@@ -8,8 +8,8 @@
     </ul>
     <h2>Sites I've made or I'm working on</h2>
     <ul class="no-bullets">
-        <li><a href="https://buurtpunt.fambout.nl">buurtpunt.fambout.nl</a></li>
-        <li><a href="https://jongerenkoorhananja.nl">jongerenkoorhananja.nl</a></li>
+        <li><a href="https://buurtpunt.fambout.nl">buurtpunt.fambout.nl</a>(Dutch)</li>
+        <li><a href="https://jongerenkoorhananja.nl">jongerenkoorhananja.nl</a>(Dutch)</li>
         <li><a href="https://jonathanbout.nl">jonathanbout.nl</a></li>
     </ul>
   </main>
