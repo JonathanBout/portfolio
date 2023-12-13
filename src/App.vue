@@ -1,28 +1,71 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { RouterView } from 'vue-router'
+</script>
 
 <template>
-  <main>
-    <h1 class="title">Hello there!</h1>
-    <ul class="no-bullets">
-      <li><a href="https://github.com/jonathanbout">My GitHub</a></li>
-    </ul>
-    <h2>Sites I've made or I'm working on</h2>
-    <ul class="no-bullets">
-        <li><a href="https://buurtpunt.fambout.nl">buurtpunt.fambout.nl</a> (Dutch)</li>
-        <li><a href="https://jongerenkoorhananja.nl">jongerenkoorhananja.nl</a> (Dutch)</li>
-        <li><a href="https://jonathanbout.nl">jonathanbout.nl</a></li>
-    </ul>
-  </main>
+  <RouterView />
 </template>
 
-<style scoped lang="less">
-main {
-  text-align: center;
-  position: absolute;
-  inset: 0;
+<style scoped>
+header {
+  line-height: 1.5;
+  max-height: 100vh;
 }
-.no-bullets {
-  margin: auto;
-  padding: 0;
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+}
+
+nav {
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+nav a.router-link-exact-active {
+  color: var(--color-text);
+}
+
+nav a.router-link-exact-active:hover {
+  background-color: transparent;
+}
+
+nav a {
+  display: inline-block;
+  padding: 0 1rem;
+  border-left: 1px solid var(--color-border);
+}
+
+nav a:first-of-type {
+  border: 0;
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  nav {
+    text-align: left;
+    margin-left: -1rem;
+    font-size: 1rem;
+
+    padding: 1rem 0;
+    margin-top: 1rem;
+  }
 }
 </style>

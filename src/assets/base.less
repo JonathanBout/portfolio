@@ -1,0 +1,35 @@
+/* color palette from <https://github.com/vuejs/theme> */
+:root {
+  --background-light: white;
+  --background-dark: #353535;
+
+  --text-light: black;
+  --text-dark: white;
+
+  --link-light: blue;
+  --link-dark: lightblue;
+}
+
+:root {
+  --color-background: var(--background-dark);
+  --color-text: var(--text-dark);
+  --color-link: var(--link-dark);
+  --section-gap: 160px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-background: var(--background-light);
+    --color-text: var(--text-light);
+    --color-link: var(--link-light);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
