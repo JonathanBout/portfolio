@@ -9,12 +9,12 @@ const router = createRouter({
       name: 'home',
       component: HomeView
     },
-	{
-		// fallback to 404 page
-		path: '/:pathMatch(.*)*',
-		name: 'not-found',
-		component: () => import('../views/NotFoundView.vue')
-	}
+    {
+      // fallback to 404 page
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import('../views/NotFoundView.vue')
+    }
   ]
 })
 
