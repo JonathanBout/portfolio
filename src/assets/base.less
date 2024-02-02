@@ -33,3 +33,22 @@
   position: relative;
   font-weight: normal;
 }
+
+.link,
+a {
+  &:not(.no-color) {
+    color: var(--color-link);
+  }
+  &.no-color {
+    color: inherit;
+  }
+  border: none;
+  background-color: inherit;
+  margin: none;
+  padding: none;
+  font: inherit;
+  display: inline;
+  padding: unset;
+  cursor: pointer;
+  text-decoration: underline;
+}
