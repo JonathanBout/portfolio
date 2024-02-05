@@ -7,8 +7,7 @@
 }
 
 body,
-#app,
-main {
+#app {
   min-height: 100dvh;
   width: 100dvw;
   margin: 0;
@@ -24,6 +23,39 @@ main {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  font-size: 1.5rem;
+  flex: 0 1 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  text-transform: capitalize;
+  font-family: "Cascadia Code", "Cascadia Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Consolas",
+    monospace;
+  a {
+    text-decoration: none;
+    color: white;
+    transform-origin: top center;
+    display: inline-block;
+    transition: font-size 0.3s;
+    font-size: 1em;
+
+    &:not(:only-child):hover {
+      font-size: 1.5em;
+    }
+  }
+}
+
+main {
+  flex: 1 0 auto;
+  width: 100dvw;
   display: flex;
   flex-direction: column;
   justify-content: center;
