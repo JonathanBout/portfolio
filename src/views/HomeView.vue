@@ -1,8 +1,8 @@
 <template>
   <main>
     <div class="icons">
-      <a href="https://github.com/jonathanbout" class="bi bi-github"> </a>
-      <a href="https://linkedin.com/in/jonathanbout" class="bi bi-linkedin"> </a>
+      <a href="https://github.com/jonathanbout" class="bi bi-github"> My GitHub </a>
+      <a href="https://linkedin.com/in/jonathanbout" class="bi bi-linkedin"> My LinkedIn </a>
     </div>
   </main>
 </template>
