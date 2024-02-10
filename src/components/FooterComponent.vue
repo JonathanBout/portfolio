@@ -1,5 +1,8 @@
 <script setup lang="ts">
-const creditsYear = new Date().getFullYear()
+  import { inject } from 'vue'
+  const creditsYear = new Date().getFullYear()
+
+  const locale = inject('locale')
 </script>
 
 <template>
