@@ -14,7 +14,9 @@ function changeLanguage(newLanguage: "nl" | "en") {
       newHost = newHost.replace(/\.nl/, ".com")
     }
 
-    window.location.href = newHost + newRelativePathQuery
+    if (window.location.origin !== newHost) {
+      window.location.href = newHost + newRelativePathQuery
+    }
   }
 }
 
