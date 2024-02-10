@@ -1,14 +1,14 @@
 {
-  "errorPage": {
-    "back": "Terug",
-    "home": "Home",
-    "pageNotFound": "Pagina '{path}' niet gevonden"
-  },
-  "homePage": {
-    "linkedin": "Mijn LinkedIn",
-    "github": "Mijn GitHub"
-  },
-  "language": {
-    "name": "Nederlands"
-  }
+    "errorPage": {
+        "back": "Terug",
+        "home": "Home",
+        "pageNotFound": "Pagina '{path}' niet gevonden"
+    },
+    "homePage": {
+        "linkedin": "Mijn LinkedIn",
+        "github": "Mijn GitHub"
+    },
+    "language": {
+        "name": "Nederlands"
+    }
 }

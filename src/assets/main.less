@@ -2,104 +2,104 @@
 
 html,
 body {
-  display: contents;
-  position: fixed;
-  inset: 0;
+    display: contents;
+    position: fixed;
+    inset: 0;
 }
 
 #app {
-  margin: 0 auto;
-  padding: 2rem;
-  min-height: 100dvh;
-  width: 100dvw;
-  margin: 0;
-  padding: 0;
-  color: var(--color-text);
-  background: var(--color-background);
-  transition: color 0.5s, background-color 0.5s;
-  line-height: 1.6;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
-    Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  font-size: 15px;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100dvh;
+    width: 100dvw;
+    margin: 0;
+    padding: 0;
+    color: var(--color-text);
+    background: var(--color-background);
+    transition: color 0.5s, background-color 0.5s;
+    line-height: 1.6;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-size: 15px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 header {
-  font-size: 1.5rem;
-  flex: 0 1 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2em;
-  text-transform: capitalize;
-  font-family: "Cascadia Code", "Cascadia Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Consolas",
-    monospace;
-  a {
-    text-decoration: none;
-    color: white;
-    transform-origin: top center;
-    display: inline-block;
-    transition: font-size 0.3s;
-    font-size: 1em;
+    font-size: 1.5rem;
+    flex: 0 1 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    text-transform: capitalize;
+    font-family: "Cascadia Code", "Cascadia Mono", "Fira Code", "Fira Mono", "Roboto Mono",
+        "Consolas", monospace;
+    a {
+        text-decoration: none;
+        color: white;
+        transform-origin: top center;
+        display: inline-block;
+        transition: font-size 0.3s;
+        font-size: 1em;
 
-    &:not(:only-child):hover {
-      font-size: 1.5em;
+        &:not(:only-child):hover {
+            font-size: 1.5em;
+        }
     }
-  }
 }
 
 main {
-  flex: 1 0 auto;
-  width: 100dvw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    flex: 1 0 auto;
+    width: 100dvw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 :focus-visible {
-  outline: 1px solid black;
+    outline: 1px solid black;
 }
 
 @keyframes rainbow-hover {
-  0% {
-    color: #ff0000;
-  }
-  10% {
-    color: #ff8000;
-  }
-  20% {
-    color: #ffff00;
-  }
-  30% {
-    color: #80ff00;
-  }
-  40% {
-    color: #00ff00;
-  }
-  50% {
-    color: #00ff80;
-  }
-  60% {
-    color: #00ffff;
-  }
-  70% {
-    color: #0080ff;
-  }
-  80% {
-    color: #0000ff;
-  }
-  90% {
-    color: #8000ff;
-  }
-  100% {
-    color: #ff0000;
-  }
+    0% {
+        color: #ff0000;
+    }
+    10% {
+        color: #ff8000;
+    }
+    20% {
+        color: #ffff00;
+    }
+    30% {
+        color: #80ff00;
+    }
+    40% {
+        color: #00ff00;
+    }
+    50% {
+        color: #00ff80;
+    }
+    60% {
+        color: #00ffff;
+    }
+    70% {
+        color: #0080ff;
+    }
+    80% {
+        color: #0000ff;
+    }
+    90% {
+        color: #8000ff;
+    }
+    100% {
+        color: #ff0000;
+    }
 }

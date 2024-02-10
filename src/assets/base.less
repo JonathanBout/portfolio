@@ -1,57 +1,57 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
-  --background-light: white;
-  --background-dark: #353535;
+    --background-light: white;
+    --background-dark: #353535;
 
-  --text-light: black;
-  --text-dark: white;
+    --text-light: black;
+    --text-dark: white;
 
-  --link-light: blue;
-  --link-dark: lightblue;
+    --link-light: blue;
+    --link-dark: lightblue;
 }
 
 :root {
-  --color-background: var(--background-dark);
-  --color-text: var(--text-dark);
-  --color-link: var(--link-dark);
-  --section-gap: 160px;
+    --color-background: var(--background-dark);
+    --color-text: var(--text-dark);
+    --color-link: var(--link-dark);
+    --section-gap: 160px;
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
-    --color-background: var(--background-light);
-    --color-text: var(--text-light);
-    --color-link: var(--link-light);
-  }
+    :root {
+        --color-background: var(--background-light);
+        --color-text: var(--text-light);
+        --color-link: var(--link-light);
+    }
 }
 
 * {
-  color: var(--color-text);
-  &,
-  ::before,
-  ::after {
-    box-sizing: border-box;
-    margin: 0;
-    position: relative;
-    font-weight: normal;
-  }
+    color: var(--color-text);
+    &,
+    ::before,
+    ::after {
+        box-sizing: border-box;
+        margin: 0;
+        position: relative;
+        font-weight: normal;
+    }
 }
 
 .link,
 a {
-  &:where(:not(.no-color)) {
-    color: var(--color-link);
-  }
-  &.no-color {
-    color: inherit;
-  }
-  border: none;
-  background-color: inherit;
-  margin: none;
-  padding: none;
-  font: inherit;
-  display: inline;
-  padding: unset;
-  cursor: pointer;
-  text-decoration: underline;
+    &:where(:not(.no-color)) {
+        color: var(--color-link);
+    }
+    &.no-color {
+        color: inherit;
+    }
+    border: none;
+    background-color: inherit;
+    margin: none;
+    padding: none;
+    font: inherit;
+    display: inline;
+    padding: unset;
+    cursor: pointer;
+    text-decoration: underline;
 }
