@@ -6,5 +6,7 @@ function changeLanguage(newLanguage: "nl" | "en") {
 export default {
   install: (app: any) => {
     app.config.globalProperties.$updateLocale = changeLanguage
-  }
+  },
+
+  updateLocale: changeLanguage
 }

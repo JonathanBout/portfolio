@@ -15,36 +15,28 @@ const app = createApp(App)
 app.use(localizer)
 app.use(router)
 
-let locale = window.location.host.match(/\.nl$/) ? "nl" : "en"
+let locale: "nl" | "en" = window.location.host.match(/\.nl$/) ? "nl" : "en"
 
 const preferredLocale = window.localStorage.getItem("locale")
 
 if (!preferredLocale) {
-  switch (window.navigator.language) {
-    case null:
-    case undefined:
-      break
-    case "nl":
-      locale = "nl"
-      break
-    case "en":
-      locale = "en"
-      break
-  }
+	switch (window.navigator.language) {
+		case null:
+		case undefined:
+			break
+		case "nl":
+			locale = "nl"
+			break
+		case "en":
+			locale = "en"
+			break
+	}
 } else {
-  locale = preferredLocale
+	locale = preferredLocale as "nl" | "en";
 }
 
 if (!window.location.host.match("localhost")) {
-  if (locale === "nl") {
-    if (!window.location.host.match(/\.nl$/)) {
-      window.location.host = window.location.host.replace(/\.com$/, ".nl")
-    }
-  } else {
-    if (!window.location.host.match(/\.com$/)) {
-      window.location.host = window.location.host.replace(/\.nl$/, ".com")
-    }
-  }
+  localizer.updateLocale(locale)
 }
 
 const i18n = createI18n({
