@@ -7,7 +7,7 @@ function changeLanguage(newLanguage: "nl" | "en") {
     searchParams.set("changeLocale", "")
     const newRelativePathQuery = window.location.pathname + "?" + searchParams.toString()
 
-    const newHost = window.location.origin
+    let newHost = window.location.origin
     if (newLanguage === "nl") {
       newHost = newHost.replace(/\.com/, ".nl")
     } else {
