@@ -20,6 +20,7 @@ let locale: "nl" | "en" = window.location.host.match(/\.nl$/) ? "nl" : "en"
 const query = new URLSearchParams(window.location.search)
 
 if (query.get("changeLocale")) {
+  console.log("changeLocale")
   window.localStorage.setItem("locale", locale)
   query.delete("changeLocale")
 
