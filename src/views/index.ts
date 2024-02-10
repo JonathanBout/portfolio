@@ -1,5 +1,4 @@
-import HomeViewVue from "./HomeView.vue"
-import NotFoundViewVue from "./NotFoundView.vue"
+import HomeView from "./HomeView.vue"
+import NotFoundView from "./NotFoundView.vue"
 
-export const HomeView = HomeViewVue
-export const NotFoundView = NotFoundViewVue
+export { HomeView, NotFoundView }

@@ -1,8 +1,8 @@
-import * as nl from "../locales/nl.json"
-import * as en from "../locales/en.json"
-import * as common from "../locales/common.json"
+import { nl, en, common } from "./locales"
 
 import { createI18n } from "vue-i18n"
+
+type Localizer = { locale: "nl" | "en"; install: (app: any) => void }
 
 function changeLanguage(newLanguage: "nl" | "en") {
   window.localStorage.setItem("locale", newLanguage)
@@ -30,7 +30,7 @@ function changeLanguage(newLanguage: "nl" | "en") {
  * Create a Vue plugin that enables localization and provides a method to change the locale from within the app.
  * @returns a Vue localizer plugin
  */
-export function createLocalizer() {
+export function createLocalizer(): Localizer {
   let locale: "nl" | "en" = window.location.host.match(/\.nl$/) ? "nl" : "en"
 
   const query = new URLSearchParams(window.location.search)
@@ -74,6 +74,7 @@ export function createLocalizer() {
       const i18n = createI18n({
         locale: locale,
         fallbackLocale: "common",
+        fallbackWarn: false,
         messages: {
           nl: nl,
           en: en

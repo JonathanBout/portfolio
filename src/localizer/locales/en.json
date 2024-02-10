@@ -1,7 +1,8 @@
 {
   "errorPage": {
     "back": "Back",
-    "home": "Home"
+    "home": "Home",
+    "pageNotFound": "Page '{path}' not found"
   },
   "homePage": {
     "linkedin": "My LinkedIn",

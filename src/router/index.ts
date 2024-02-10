@@ -12,7 +12,7 @@ const router = createRouter({
       children: []
     },
     {
-      path: "/(.*)",
+      path: "/:fullPath(.*)",
       name: "not-found",
       component: NotFoundView
     }
