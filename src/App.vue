@@ -10,8 +10,6 @@ const locale = inject("locale")
 <template>
   <header>
     <a href="/"> Jonathan Bout </a>
-    <a href="/test"> Jonathan Bout </a>
-    <a href="/"> Jonathan Bout </a>
   </header>
   <RouterView />
   <footer>
