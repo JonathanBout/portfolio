@@ -43,8 +43,8 @@ export function createLocalizer(): Localizer {
   } else {
     const preferredLocale = window.localStorage.getItem("locale")
 
-    if (!preferredLocale) {
-      switch (window.navigator.language) {
+    if (!preferredLocale && window.navigator.language) {
+      switch (window.navigator.language.split("-")[0]) {
         case null:
         case undefined:
           break
