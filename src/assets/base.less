@@ -25,14 +25,16 @@
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  position: relative;
-  font-weight: normal;
+* {
   color: var(--color-text);
+  &,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+    margin: 0;
+    position: relative;
+    font-weight: normal;
+  }
 }
 
 .link,

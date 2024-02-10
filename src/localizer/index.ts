@@ -61,6 +61,8 @@ export function createLocalizer(): Localizer {
     if (!window.location.host.match("localhost")) {
       changeLanguage(locale)
     }
+    // @ts-ignore
+    window.htmlRootElement.setAttribute("lang", locale)
   }
 
   // return a Vue-plugin compatible object, with the locale and the install method.

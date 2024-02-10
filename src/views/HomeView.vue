@@ -22,7 +22,7 @@
   font-size: 3rem;
   line-height: 3rem;
   display: block;
-  transition: all 1s ease-in-out;
+  transition: all 500ms ease-in-out;
   color: white;
 }
 
@@ -36,6 +36,11 @@
 
 .bi-linkedin:hover {
   color: #0077b5;
+  &:after {
+    position: absolute;
+    inset: 10px;
+    background-color: white;
+  }
 }
 
 .icons {
