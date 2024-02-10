@@ -1,19 +1,20 @@
 import { createRouter, createWebHistory } from "vue-router"
-import HomeView from "../views/HomeView.vue"
+import { HomeView, NotFoundView } from "../views"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  // create some routes with RegEx
   routes: [
     {
       path: "/",
       name: "home",
-      component: HomeView
+      component: HomeView,
+      children: []
     },
     {
-      // fallback to 404 page
-      path: "/:pathMatch(.*)*",
+      path: "/(.*)",
       name: "not-found",
-      component: () => import("../views/NotFoundView.vue")
+      component: NotFoundView
     }
   ]
 })

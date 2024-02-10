@@ -1,0 +1,13 @@
+{
+  "errorPage": {
+    "back": "Terug",
+    "home": "Home"
+  },
+  "homePage": {
+    "linkedin": "Mijn LinkedIn",
+    "github": "Mijn GitHub"
+  },
+  "language": {
+    "name": "Nederlands"
+  }
+}

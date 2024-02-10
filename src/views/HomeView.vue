@@ -1,8 +1,18 @@
 <template>
   <main>
     <div class="icons">
-      <a href="https://github.com/jonathanbout" class="bi bi-github" aria-label="My Git Hub"> </a>
-      <a href="https://linkedin.com/in/jonathanbout" class="bi bi-linkedin" aria-label="My Linked In"> </a>
+      <a
+        href="https://github.com/jonathanbout"
+        class="bi bi-github"
+        :aria-label="$t('homePage.github')"
+      >
+      </a>
+      <a
+        href="https://linkedin.com/in/jonathanbout"
+        class="bi bi-linkedin"
+        :aria-label="$t('homePage.linkedin')"
+      >
+      </a>
     </div>
   </main>
 </template>
