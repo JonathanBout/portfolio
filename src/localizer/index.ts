@@ -4,7 +4,7 @@ function changeLanguage(newLanguage: "nl" | "en") {
     location.reload()
   } else {
     const searchParams = new URLSearchParams(window.location.search)
-    searchParams.set("changeLocale", "")
+    searchParams.set("changeLocale", "true")
     const newRelativePathQuery = window.location.pathname + "?" + searchParams.toString()
 
     let newHost = window.location.origin
