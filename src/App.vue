@@ -15,9 +15,11 @@ const locale = inject("locale")
   <footer>
     <p class="credits">&copy; {{ creditsYear }} Jonathan Bout</p>
     <p class="language-display">
+      <!-- @vue-expect-error property does not exist on type ... -->
       <button :class="locale === 'en' ? 'current' : ''" @click="$updateLocale('en')">
         {{ $t("language.en") }}
       </button>
+      <!-- @vue-expect-error -->
       <button :class="locale === 'nl' ? 'current' : ''" @click="$updateLocale('nl')">
         {{ $t("language.nl") }}
       </button>
