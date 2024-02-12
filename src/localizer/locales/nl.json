@@ -10,5 +10,9 @@
     },
     "language": {
         "name": "Nederlands"
-    }
+    },
+    "header": {
+        "projects": "Projecten"
+    },
+    "underConstruction": "Hier wordt nog aan gewerkt!"
 }

@@ -10,5 +10,9 @@
     },
     "language": {
         "name": "English"
-    }
+    },
+    "header": {
+        "projects": "Projects"
+    },
+    "underConstruction": "This page is under construction!"
 }

@@ -39,14 +39,12 @@ header {
     align-items: center;
     gap: 2em;
     text-transform: capitalize;
-    font-family: "Cascadia Code", "Cascadia Mono", "Fira Code", "Fira Mono", "Roboto Mono",
-        "Consolas", monospace;
     a {
         text-decoration: none;
         color: white;
         transform-origin: top center;
         display: inline-block;
-        transition: font-size 0.3s;
+        transition: font-size 0.3s linear;
         font-size: 1em;
 
         &:not(:only-child):hover {
@@ -66,6 +64,10 @@ main {
 
 :focus-visible {
     outline: 1px solid black;
+}
+
+.monospace {
+    font-family: "Cascadia Code", "Cascadia Mono", "Courier New", monospace;
 }
 
 @keyframes rainbow-hover {

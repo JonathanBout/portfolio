@@ -1,5 +1,4 @@
 <template>
-    <main>
         <div class="icons">
             <a
                 href="https://github.com/jonathanbout"
@@ -14,7 +13,6 @@
             >
             </a>
         </div>
-    </main>
 </template>
 
 <style scoped lang="less">

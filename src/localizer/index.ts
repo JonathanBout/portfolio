@@ -53,7 +53,11 @@ export function createLocalizer(): Localizer {
 
         window.location.search = query.toString()
     } else {
-        const preferredLocale = window.localStorage.getItem("locale")
+        let preferredLocale = window.localStorage.getItem("locale")
+
+        if (!LOCALES.includes(preferredLocale as Locale)) {
+            preferredLocale = null
+        }
 
         if (!preferredLocale && window.navigator.language) {
             switch (window.navigator.language.split("-")[0] as Locale) {

@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router"
 import Footer from "./components/FooterComponent.vue"
+import Header from "./components/HeaderComponent.vue"
 </script>
 
 <template>
-    <header>
-        <a href="/"> Jonathan Bout </a>
+    <header class="monospace">
+        <Header />
     </header>
-    <RouterView />
-    <Footer />
+    <main>
+        <RouterView />
+    </main>
+    <footer class="monospace">
+        <Footer />
+    </footer>
 </template>
