@@ -14,5 +14,11 @@
     "header": {
         "projects": "Projecten"
     },
-    "underConstruction": "Hier wordt nog aan gewerkt!"
+    "footer": {
+        "projectGitHub": "Bekijk dit project op GitHub"
+    },
+    "underConstruction": "Hier wordt nog aan gewerkt!",
+    "privacy": {
+        "message": "Goed nieuws: de wijzerplaat verzamelt geen gegevens!"
+    }
 }

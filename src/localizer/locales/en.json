@@ -14,5 +14,11 @@
     "header": {
         "projects": "Projects"
     },
-    "underConstruction": "This page is under construction!"
+    "footer": {
+        "projectGitHub": "View this project on GitHub"
+    },
+    "underConstruction": "This page is under construction!",
+    "privacy": {
+        "message": "Good news: The watchface doesn't collect any data!"
+    }
 }

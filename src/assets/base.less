@@ -46,12 +46,7 @@
 
 .link,
 a {
-    &:where(:not(.no-color)) {
-        color: var(--color-link);
-    }
-    &.no-color {
-        color: inherit;
-    }
+    color: inherit;
     border: none;
     background-color: inherit;
     margin: none;
@@ -60,5 +55,9 @@ a {
     display: inline;
     padding: unset;
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+        color: var(--color-link);
+    }
 }

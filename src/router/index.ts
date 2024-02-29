@@ -17,6 +17,11 @@ const router = createRouter({
             component: () => import("../views/ProjectsView.vue")
         },
         {
+            path: "/privacy/programmer-watchface",
+            name: "privacy",
+            component: () => import("../views/WatchfacePrivacyPolicy.vue")
+        },
+        {
             path: "/:fullPath(.*)",
             name: "not-found",
             component: () => import("../views/NotFoundView.vue")

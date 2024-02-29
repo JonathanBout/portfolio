@@ -5,13 +5,9 @@ import Header from "./components/HeaderComponent.vue"
 </script>
 
 <template>
-    <header class="monospace">
-        <Header />
-    </header>
+    <Header />
     <main>
         <RouterView />
     </main>
-    <footer class="monospace">
-        <Footer />
-    </footer>
+    <Footer />
 </template>

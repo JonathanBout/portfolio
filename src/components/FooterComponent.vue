@@ -6,22 +6,39 @@ const locale = inject("locale")
 </script>
 
 <template>
-    <p class="credits">&copy; {{ creditsYear }} Jonathan Bout</p>
-    <p class="language-display">
-        <!-- @vue-expect-error property does not exist on type ... -->
-        <button :class="locale === 'en' ? 'current' : ''" @click="$updateLocale('en')">
-            {{ $t("language.en") }}
-        </button>
-        <!-- @vue-expect-error -->
-        <button :class="locale === 'nl' ? 'current' : ''" @click="$updateLocale('nl')">
-            {{ $t("language.nl") }}
-        </button>
-    </p>
+    <footer class="monospace">
+        <p class="credits">&copy; {{ creditsYear }} Jonathan Bout</p>
+        <p class="language-display">
+            <!-- @vue-expect-error property does not exist on type ... -->
+            <button
+                :class="'link' + (locale === 'en' ? ' current' : '')"
+                @click="$updateLocale('en')"
+            >
+                {{ $t("language.en") }}
+            </button>
+            <!-- @vue-expect-error -->
+            <button
+                :class="'link' + (locale === 'nl' ? ' current' : '')"
+                @click="$updateLocale('nl')"
+            >
+                {{ $t("language.nl") }}
+            </button>
+        </p>
+        <p>
+            <a
+                class="github-repo-link"
+                :aria-label="$t('footer.projectGitHub')"
+                href="https://github.com/jonathanbout/portfolio"
+                >GitHub</a
+            >
+        </p>
+    </footer>
 </template>
 
 <style scoped lang="less">
 .credits,
-.language-display {
+.language-display,
+.github-repo-link {
     text-align: center;
     font-size: 1em;
 }
@@ -33,13 +50,11 @@ const locale = inject("locale")
         border: none;
         background: none;
         cursor: pointer;
+        font-size: 1.5em;
+        margin-inline: 5px;
 
         &.current {
-            font-weight: bold;
-        }
-
-        &:hover {
-            text-decoration: underline;
+            color: #888888;
         }
     }
 }
