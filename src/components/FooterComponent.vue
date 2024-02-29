@@ -10,17 +10,11 @@ const locale = inject("locale")
         <p class="credits">&copy; {{ creditsYear }} Jonathan Bout</p>
         <p class="language-display">
             <!-- @vue-expect-error property does not exist on type ... -->
-            <button
-                :class="'link' + (locale === 'en' ? ' current' : '')"
-                @click="$updateLocale('en')"
-            >
+            <button :class="'link' + (locale === 'en' ? ' current' : '')" @click="$updateLocale('en')">
                 {{ $t("language.en") }}
             </button>
             <!-- @vue-expect-error -->
-            <button
-                :class="'link' + (locale === 'nl' ? ' current' : '')"
-                @click="$updateLocale('nl')"
-            >
+            <button :class="'link' + (locale === 'nl' ? ' current' : '')" @click="$updateLocale('nl')">
                 {{ $t("language.nl") }}
             </button>
         </p>
