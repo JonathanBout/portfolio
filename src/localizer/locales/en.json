@@ -15,7 +15,8 @@
         "projects": "Projects"
     },
     "footer": {
-        "projectGitHub": "View this project on GitHub"
+        "view-on-gh": "View on GitHub",
+        "apod-wrapper": "My NASA APOD wrapper"
     },
     "underConstruction": "This page is under construction!",
     "privacy": {
