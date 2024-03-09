@@ -75,6 +75,10 @@ footer {
     font-family: Code;
 }
 
+.separated > * + *::before {
+    content: " | ";
+}
+
 @keyframes rainbow-hover {
     0% {
         color: #ff0000;

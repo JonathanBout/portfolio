@@ -15,7 +15,8 @@
         "projects": "Projecten"
     },
     "footer": {
-        "projectGitHub": "Bekijk dit project op GitHub"
+        "view-on-gh": "Open op GitHub",
+        "apod-wrapper": "Mijn NASA APOD wrapper"
     },
     "underConstruction": "Hier wordt nog aan gewerkt!",
     "privacy": {

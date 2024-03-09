@@ -18,13 +18,15 @@ const locale = inject("locale")
                 {{ $t("language.nl") }}
             </button>
         </p>
-        <p>
-            <a
-                class="github-repo-link"
-                :aria-label="$t('footer.projectGitHub')"
-                href="https://github.com/jonathanbout/portfolio"
-                >GitHub</a
-            >
+        <p class="links separated">
+            <span>
+                <a :aria-label="$t('footer.projectGitHub')" href="https://github.com/jonathanbout/portfolio">{{
+                    $t("footer.view-on-gh")
+                }}</a>
+            </span>
+            <span>
+                <a href="https://apod.jonathanbout.com">{{ $t("footer.apod-wrapper") }}</a>
+            </span>
         </p>
     </footer>
 </template>
@@ -32,9 +34,16 @@ const locale = inject("locale")
 <style scoped lang="less">
 .credits,
 .language-display,
-.github-repo-link {
+.links {
     text-align: center;
     font-size: 1em;
+}
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 }
 
 .language-display {
@@ -48,7 +57,7 @@ const locale = inject("locale")
         margin-inline: 5px;
 
         &.current {
-            color: #888888;
+            display: none;
         }
     }
 }
