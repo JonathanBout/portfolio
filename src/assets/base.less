@@ -1,27 +1,48 @@
+@header-breakpoint: 700px;
+
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
     --background-light: white;
+    --secondary-background-light: #f0f0f0;
     --background-dark: #353535;
+    --secondary-background-dark: #2a2a2a;
 
     --text-light: black;
+    --secondary-text-light: #333;
     --text-dark: white;
+    --secondary-text-dark: #ccc;
 
     --link-light: blue;
     --link-dark: lightblue;
+
+    --border-radius: 20px;
+
+    --header-breakpoint: @header-breakpoint;
 }
 
 :root {
     --color-background: var(--background-dark);
+    --color-secondary-background: var(--secondary-background-dark);
     --color-text: var(--text-dark);
+    --color-secondary-text: var(--secondary-text-dark);
     --color-link: var(--link-dark);
-    --section-gap: 160px;
+    color-scheme: dark;
 }
 
 @media (prefers-color-scheme: light) {
     :root {
         --color-background: var(--background-light);
+        --color-secondary-background: var(--secondary-background-light);
         --color-text: var(--text-light);
+        --color-secondary-text: var(--secondary-text-light);
         --color-link: var(--link-light);
+        color-scheme: light;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
     }
 }
 
@@ -32,6 +53,7 @@
 }
 
 * {
+    text-wrap: pretty;
     color: var(--color-text);
     &,
     ::before,
@@ -45,6 +67,7 @@
     &:focus-visible {
         outline: 2px dashed var(--color-link);
         outline-offset: 2px;
+        z-index: 100;
     }
 }
 
@@ -64,4 +87,19 @@ a {
         text-decoration: underline;
         color: var(--color-link);
     }
+}
+
+h1 {
+    text-align: center;
+}
+
+.page-root {
+    margin: 10px;
+    margin-top: 50px;
+
+    @media (max-width: @header-breakpoint) {
+        margin-top: 90px;
+    }
+
+    max-width: 1000px;
 }

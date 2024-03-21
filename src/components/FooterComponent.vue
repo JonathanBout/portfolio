@@ -7,7 +7,6 @@ const locale = inject("locale")
 
 <template>
     <footer class="monospace">
-        <p class="credits">&copy; {{ creditsYear }} Jonathan Bout</p>
         <p class="language-display">
             <!-- @vue-expect-error property does not exist on type ... -->
             <button :class="'link' + (locale === 'en' ? ' current' : '')" @click="$updateLocale('en')">
@@ -19,13 +18,11 @@ const locale = inject("locale")
             </button>
         </p>
         <p class="links separated">
+            <span>&copy; {{ creditsYear }} Jonathan Bout</span>
             <span>
-                <a :aria-label="$t('footer.projectGitHub')" href="https://github.com/jonathanbout/portfolio">{{
-                    $t("footer.view-on-gh")
-                }}</a>
-            </span>
-            <span>
-                <a href="https://apod.jonathanbout.com">{{ $t("footer.apod-wrapper") }}</a>
+                <a :aria-label="$t('footer.projectGitHub')" href="https://github.com/jonathanbout/portfolio">
+                    {{ $t("footer.view-on-gh") }}
+                </a>
             </span>
         </p>
     </footer>
@@ -36,14 +33,13 @@ const locale = inject("locale")
 .language-display,
 .links {
     text-align: center;
-    font-size: 1em;
+    font-size: 0.9em;
 }
 
 .links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
 }
 
 .language-display {

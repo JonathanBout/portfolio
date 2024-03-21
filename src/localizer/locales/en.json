@@ -12,14 +12,20 @@
         "name": "English"
     },
     "header": {
-        "projects": "Projects"
+        "projects": "Projects",
+        "about": "About"
     },
     "footer": {
         "view-on-gh": "View on GitHub",
-        "apod-wrapper": "My NASA APOD wrapper"
+        "apod-wrapper": "NASA APOD wrapper"
     },
     "underConstruction": "This page is under construction!",
     "privacy": {
         "message": "Good news: The watchface doesn't collect any data!"
+    },
+    "projects": {
+        "title": "Projects",
+        "intro": "Below are some of the projects I've worked on with relevant links and tags. Feel free to check them out and let me know what you think!",
+        "see-more": "See more on my GitHub!"
     }
 }
