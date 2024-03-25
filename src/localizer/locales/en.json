@@ -26,6 +26,7 @@
     "projects": {
         "title": "Projects",
         "intro": "Below are some of the projects I've worked on with relevant links and tags. Feel free to check them out and let me know what you think!",
-        "see-more": "See more on my GitHub!"
+        "see-more": "See more on my GitHub!",
+        "open-preview": "preview"
     }
 }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Project } from "@/assets/projects"
-import { defineProps, inject, ref } from "vue"
+import { inject, ref } from "vue"
 import TagComponent from "@/components/TagComponent.vue"
 
 const props = defineProps<{
@@ -14,14 +14,17 @@ const showPreview = ref(false)
 
 <template>
     <div class="project">
-        <div class="preview" v-if="showPreview && project.demo">
+        <div class="preview" v-if="showPreview && project.demo && project.allowPreview">
             <div class="preview-backdrop"></div>
             <button @click="showPreview = !showPreview" class="bi bi-x"></button>
             <iframe :src="project.demo" frameborder="0"></iframe>
         </div>
 
-        <div class="name">{{ props.project.name }}</div>
-        <div class="description">{{ (project.description as any)[locale] }}</div>
+        <div class="name" v-if="typeof project.name == 'string'">{{ project.name }}</div>
+        <div class="name" v-else>{{ (project.name as any)[locale] }}</div>
+        <div class="description" v-if="project.description">
+            {{ (project.description as any)[locale] }}
+        </div>
         <div class="links">
             <span v-if="project.github">
                 <a :href="project.github" target="_blank" class="bi bi-github"></a>
@@ -30,7 +33,9 @@ const showPreview = ref(false)
                 <a :href="project.demo" target="_blank" class="bi bi-box-arrow-up-right"></a>
             </span>
             <span v-if="project.demo">
-                <button class="link" @click="showPreview = !showPreview">Open preview</button>
+                <button class="link" v-if="project.allowPreview" @click="showPreview = !showPreview">
+                    {{ $t("projects.open-preview") }}
+                </button>
             </span>
         </div>
         <div class="tags">
