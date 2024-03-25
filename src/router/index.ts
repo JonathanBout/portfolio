@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from "vue-router"
+import { createRouter as createRouterInternal, createWebHistory } from "vue-router"
 import { HomeView } from "../views"
 
-const router = createRouter({
+const router = createRouterInternal({
     history: createWebHistory(import.meta.env.BASE_URL),
     // create some routes with RegEx
     routes: [
@@ -17,9 +17,17 @@ const router = createRouter({
             component: () => import("../views/ProjectsView.vue")
         },
         {
-            path: "/privacy/programmer-watchface",
-            name: "privacy",
-            component: () => import("../views/WatchfacePrivacyPolicy.vue")
+            path: "/privacy",
+            children: [
+                {
+                    path: "programmer-watchface",
+                    meta: {
+                        title: "Programmer Watchface Privacy Policy"
+                    },
+                    name: "watchface-privacy",
+                    component: () => import("../views/WatchfacePrivacyPolicy.vue")
+                }
+            ]
         },
         {
             path: "/:fullPath(.*)",
@@ -29,4 +37,13 @@ const router = createRouter({
     ]
 })
 
-export default router
+const setDocumentTitle = (to: { meta: any }) => {
+    document.title = (to.meta.title as string) || "Jonathan Bout"
+}
+router.beforeEach((to, from, next) => {
+    setDocumentTitle(to)
+    next()
+})
+router.afterEach(setDocumentTitle)
+
+export const createRouter = () => router

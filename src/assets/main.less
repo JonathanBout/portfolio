@@ -8,15 +8,11 @@ body {
 }
 
 #app {
-    margin: 0 auto;
-    padding: 2rem;
     min-height: 100dvh;
-    width: 100dvw;
+    height: 100dvh;
     margin: 0;
     padding: 0;
     color: var(--color-text);
-    background: var(--color-background);
-    transition: color 0.5s, background-color 0.5s;
     line-height: 1.6;
     font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans",
         "Droid Sans", "Helvetica Neue", sans-serif;
@@ -27,35 +23,22 @@ body {
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    justify-content: safe center;
+    align-items: safe center;
 
-header {
-    font-size: 1.5rem;
-    flex: 0 1 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2em;
-    text-transform: capitalize;
-    a {
-        text-decoration: none;
-        color: var(--color-text);
-        transform-origin: top center;
-        display: inline-block;
-        transition: font-size 0.3s linear;
-        font-size: 1em;
+    --outer-color: color-mix(in srgb, var(--color-background) 100%, black 60%);
 
-        &:not(:only-child):hover {
-            font-size: 1.5em;
-        }
-    }
+    background-color: var(--color-background);
+    /* background is a radial gradient of --color-background in the center and slightly darker on the border, using color-mix */
+    // background: radial-gradient(var(--color-background) 10%, var(--outer-color) 100%);
+    z-index: 1;
+    overflow: auto;
+    scrollbar-gutter: stable;
 }
 
 main {
     flex: 1 0 auto;
-    width: 100dvw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -71,46 +54,28 @@ footer {
     text-align: center;
 }
 
+button:not(.link) {
+    font-family: inherit;
+    font-size: 1em;
+    padding: 0.1em 1em;
+    border: 1px solid var(--color-primary-button-text);
+    border-radius: 0.5em;
+    background-color: var(--color-primary-button);
+    color: var(--color-primary-button-text);
+    cursor: pointer;
+    transition: border 0.2s, color 0.2s;
+    font-size: 1.2em;
+
+    &:hover {
+        outline: 2px solid var(--color-primary-button-text);
+    }
+}
+
 .monospace {
     font-family: Code;
 }
 
 .separated > * + *::before {
-    content: " | ";
-}
-
-@keyframes rainbow-hover {
-    0% {
-        color: #ff0000;
-    }
-    10% {
-        color: #ff8000;
-    }
-    20% {
-        color: #ffff00;
-    }
-    30% {
-        color: #80ff00;
-    }
-    40% {
-        color: #00ff00;
-    }
-    50% {
-        color: #00ff80;
-    }
-    60% {
-        color: #00ffff;
-    }
-    70% {
-        color: #0080ff;
-    }
-    80% {
-        color: #0000ff;
-    }
-    90% {
-        color: #8000ff;
-    }
-    100% {
-        color: #ff0000;
-    }
+    // non-breaking space
+    content: "\00a0┃\00a0";
 }
