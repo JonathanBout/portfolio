@@ -2,11 +2,15 @@
 import { inject } from "vue"
 const creditsYear = new Date().getFullYear()
 
+defineProps<{
+	inert: boolean
+}>()
+
 const locale = inject("locale")
 </script>
 
 <template>
-    <footer class="monospace">
+    <footer class="monospace" :inert="inert">
         <p class="language-display">
             <!-- @vue-expect-error property does not exist on type ... -->
             <button :class="'link' + (locale === 'en' ? ' current' : '')" @click="$updateLocale('en')">
