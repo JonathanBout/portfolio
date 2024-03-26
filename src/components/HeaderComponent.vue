@@ -11,7 +11,7 @@ let headerOpen = ref(false)
 
 const router = useRouter()
 
-const animationDuration = ".4s"
+const animationDuration = ".2s"
 
 watch(router.currentRoute, () => {
     close_menu()
