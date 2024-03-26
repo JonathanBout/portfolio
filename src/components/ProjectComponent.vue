@@ -27,21 +27,21 @@ const showPreview = ref(false)
         </div>
         <div class="links">
             <span v-if="project.github">
-                <a :href="project.github" target="_blank" class="bi bi-github"></a>
+                <a :href="project.github" target="_blank" class="bi bi-github big"></a>
             </span>
             <span v-if="project.demo">
-                <a :href="project.demo" target="_blank" class="bi bi-box-arrow-up-right"></a>
+                <a :href="project.demo" target="_blank" class="bi bi-box-arrow-up-right big"></a>
             </span>
             <span v-if="project.demo">
                 <button class="link" v-if="project.allowPreview" @click="showPreview = !showPreview">
                     {{ $t("projects.open-preview") }}
                 </button>
             </span>
-        </div>
-        <div class="tags">
-            <template v-for="tag in project.tags" v-bind:key="tag">
-                <TagComponent :tag="tag" />
-            </template>
+            <ul class="tags">
+                <li v-for="tag in project.tags" v-bind:key="tag">
+                    <TagComponent :tag="tag" />
+                </li>
+            </ul>
         </div>
     </div>
 </template>
@@ -71,13 +71,27 @@ const showPreview = ref(false)
     display: flex;
     flex-direction: row;
     gap: 10px;
+    .big {
+        font-size: 1.5em;
+    }
+    align-items: center;
 }
 
 .tags {
-    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
+    list-style-type: none;
+    padding: 0;
+    display: inline-flex;
+    justify-content: end;
+    height: fit-content;
+    align-items: center;
+    flex: 1 0 auto;
+
+    * {
+        display: block;
+    }
 }
 
 .preview {

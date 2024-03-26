@@ -57,6 +57,7 @@ function toggle_menu() {
         position: sticky;
         top: 0;
         z-index: 100;
+        height: fit-content;
     }
 }
 
@@ -151,6 +152,10 @@ header {
                 box-shadow: 0 var(--border-radius) 0 0 var(--color-background);
             }
         }
+
+        &:hover:not(.active) {
+            filter: brightness(1.1);
+        }
     }
 
     header {
@@ -159,6 +164,7 @@ header {
         width: 100%;
         box-shadow: 100px 0 0 0 var(--color-secondary-background);
         padding-top: 5px;
+        gap: 10px;
     }
 }
 @media (width <= 700px) {
