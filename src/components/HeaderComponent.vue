@@ -3,6 +3,10 @@ import { ref, watch } from "vue"
 import { RouterLink, useRouter } from "vue-router"
 import BurgerMenuIconComponent from "./BurgerMenuIconComponent.vue"
 
+const emit = defineEmits<{
+    (e: "menuOpenChanged", value: boolean): void
+}>()
+
 let headerOpen = ref(false)
 
 const router = useRouter()
@@ -10,15 +14,17 @@ const router = useRouter()
 const animationDuration = ".4s"
 
 watch(router.currentRoute, () => {
-    headerOpen.value = false
+    close_menu()
 })
 
 function close_menu() {
     headerOpen.value = false
+    emit("menuOpenChanged", headerOpen.value)
 }
 
 function toggle_menu() {
     headerOpen.value = !headerOpen.value
+    emit("menuOpenChanged", headerOpen.value)
 }
 </script>
 
@@ -44,6 +50,14 @@ function toggle_menu() {
 <style lang="less" scoped>
 .menu-wrapper {
     display: contents;
+
+    @media (width <= 700px) {
+        display: block;
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
 }
 
 .site-title {
@@ -151,7 +165,6 @@ header {
     .header-toggle {
         display: block;
         position: fixed;
-        left: 0;
         top: 20px;
         width: 60px;
         aspect-ratio: 1;
@@ -163,27 +176,24 @@ header {
     header {
         transition: transform var(--animation-duration) ease-out;
         position: fixed;
-        top: 0;
-        right: 0;
         flex-direction: column;
         align-items: center;
         justify-content: start;
         padding: 20px;
         z-index: 2;
-        min-height: 100%;
         transform-origin: right;
-        box-shadow: 0 0 0 0 var(--color-secondary-background);
+        box-shadow: 0 2px 10px 0 black;
 
-        @media (width <= 400px) {
-            top: 90px;
-            left: 10px;
-            right: 10px;
-            min-height: 50%;
-            border-radius: calc(var(--border-radius) - 10px);
-        }
+        top: 90px;
+        left: 10px;
+        right: 10px;
+        margin: auto;
+        max-width: 400px;
+        min-height: 50%;
+        border-radius: calc(var(--border-radius) - 10px);
 
         &.closed {
-            transform: translateX(110%);
+            transform: translateX(100dvw);
         }
     }
 

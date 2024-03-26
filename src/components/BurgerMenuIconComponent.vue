@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
     open: boolean
     animationDuration: string
 }>()
@@ -7,8 +7,8 @@ const props = defineProps<{
 
 <template>
     <div
-        :style="'--animation-duration: ' + (props.animationDuration ?? '.3s')"
-        :class="'toggle-root' + (props.open ? ' open' : '')"
+        :style="'--animation-duration: ' + (animationDuration ?? '.3s')"
+        :class="'toggle-root' + (open ? ' open' : '')"
     >
         <div class="bar a"></div>
         <div class="bar b"></div>

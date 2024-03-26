@@ -3,7 +3,7 @@ import type { Project } from "@/assets/projects"
 import { inject, ref } from "vue"
 import TagComponent from "@/components/TagComponent.vue"
 
-const props = defineProps<{
+defineProps<{
     project: Project
 }>()
 
