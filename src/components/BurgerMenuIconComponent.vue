@@ -25,7 +25,7 @@ defineProps<{
     gap: 8px;
 
     .bar {
-        transition: all var(--animation-duration) linear;
+        transition: all var(--animation-duration) ease-in-out;
         transform-origin: left;
         width: 100%;
         background-color: var(--color-text);
