@@ -150,6 +150,6 @@ const projects: Project[] = [
 ]
 
 export default {
-    projects: projects,
-    tags: tags
+    projects,
+    tags
 }
