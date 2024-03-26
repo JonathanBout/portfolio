@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import tagsData from "@/assets/projects"
+import tagsData, { Tag } from "@/assets/projects"
 
 const props = defineProps({
     tag: String
 })
 
-const foundTag = tagsData.tags.find((t) => t.name === props.tag)
+const foundTag = (tagsData.tags as any)[props.tag || ""] as Tag
 
 let style: string | undefined = undefined
 
 if (foundTag) {
-    style = `background-color: ${foundTag.color}; color: ${foundTag.textColor}`
+    style = `background-color: ${foundTag.color ?? "white"}; color: ${foundTag.textColor ?? "black"}`
 }
 </script>
 

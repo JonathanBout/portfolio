@@ -3,7 +3,7 @@ import { inject } from "vue"
 const creditsYear = new Date().getFullYear()
 
 defineProps<{
-	inert: boolean
+    inert: boolean
 }>()
 
 const locale = inject("locale")
@@ -33,6 +33,10 @@ const locale = inject("locale")
 </template>
 
 <style scoped lang="less">
+footer {
+    background: linear-gradient(180deg, transparent, #0005);
+}
+
 .credits,
 .language-display,
 .links {

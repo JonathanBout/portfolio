@@ -5,7 +5,7 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
 <template>
     <div class="page-root">
         <h1>{{ $t("projects.title") }}</h1>
-        <div class="intro">{{ $t("projects.intro") }}</div>
+        <p class="intro">{{ $t("projects.intro") }}</p>
         <ProjectComponent :project="project" v-for="project in projectsData.projects" :key="project.id" />
         <div class="see-more">
             <a href="https://github.com/jonathanbout">{{ $t("projects.see-more") }}</a>
@@ -15,6 +15,7 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
 <style lang="less" scoped>
 .intro {
     text-align: center;
+    font-size: 1.1em;
 }
 .see-more {
     display: flex;
