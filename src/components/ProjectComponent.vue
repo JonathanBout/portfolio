@@ -25,24 +25,22 @@ const showPreview = ref(false)
         <div class="description" v-if="project.description">
             {{ (project.description as any)[locale] }}
         </div>
-        <div class="links">
-            <span v-if="project.github">
+        <ul class="links">
+            <li v-if="project.github">
                 <a :href="project.github" target="_blank" class="bi bi-github big"></a>
-            </span>
-            <span v-if="project.demo">
+            </li>
+            <li v-if="project.demo">
                 <a :href="project.demo" target="_blank" class="bi bi-box-arrow-up-right big"></a>
-            </span>
-            <span v-if="project.demo">
+            </li>
+            <li v-if="project.demo">
                 <button class="link" v-if="project.allowPreview" @click="showPreview = !showPreview">
                     {{ $t("projects.open-preview") }}
                 </button>
-            </span>
-            <ul class="tags">
-                <li v-for="tag in project.tags" v-bind:key="tag">
-                    <TagComponent :tag="tag" />
-                </li>
-            </ul>
-        </div>
+            </li>
+            <li v-for="tag in project.tags" class="tag" v-bind:key="tag">
+                <TagComponent :tag="tag" />
+            </li>
+        </ul>
     </div>
 </template>
 <style lang="less" scoped>
@@ -75,22 +73,14 @@ const showPreview = ref(false)
         font-size: 1.5em;
     }
     align-items: center;
-}
-
-.tags {
-    flex-direction: row;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 10px;
     list-style-type: none;
     padding: 0;
-    display: inline-flex;
-    justify-content: end;
-    height: fit-content;
-    align-items: center;
-    flex: 1 0 auto;
+    margin: 0;
 
-    * {
-        display: block;
+    .tag {
+        display: contents;
     }
 }
 
