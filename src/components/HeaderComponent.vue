@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue"
+import { inject, ref, watch } from "vue"
 import { RouterLink, useRouter } from "vue-router"
 import BurgerMenuIconComponent from "./BurgerMenuIconComponent.vue"
 
@@ -12,6 +12,8 @@ let headerOpen = ref(false)
 const router = useRouter()
 
 const animationDuration = ".2s"
+
+const versionHash = inject("versionHash") as string
 
 watch(router.currentRoute, () => {
     close_menu()
@@ -41,10 +43,24 @@ function toggle_menu() {
             <router-link active-class="active" to="/projects">
                 <span>{{ $t("header.projects") }}</span>
             </router-link>
+            <div class="flex-filler"></div>
+            <div class="version">version {{ versionHash }}</div>
         </header>
     </div>
 </template>
 <style lang="less" scoped>
+.version {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 0.6rem;
+    padding-right: 5px;
+    padding-top: 5px;
+    margin: 0;
+    line-height: 1;
+    text-transform: lowercase;
+}
+
 .menu-wrapper {
     display: contents;
 
@@ -60,6 +76,10 @@ function toggle_menu() {
 
 .site-title {
     font-size: 1.4em;
+}
+
+.flex-filler {
+    display: none;
 }
 
 header {
@@ -174,6 +194,16 @@ header {
         z-index: 3;
         border: none;
         border-radius: 0 10px 10px 0;
+    }
+
+    .flex-filler {
+        display: block;
+        flex-grow: 1;
+        flex-basis: 0px;
+    }
+
+    .version {
+        position: static;
     }
 
     header {

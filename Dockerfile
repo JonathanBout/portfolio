@@ -4,12 +4,20 @@ FROM node:lts-alpine as build-stage
 WORKDIR /app
 # Copy the working directory in the container
 COPY package*.json ./
+
 # Install the project dependencies
 RUN npm install
 # Copy the rest of the project files to the container
 COPY . .
+
+# put the git hash in a file and remove the now redundant .git folder
+RUN cat .git/ORIG_HEAD > ./public/version-hash.txt
+RUN rm -rf .git
+
 # Build the Vue.js application to the production mode to dist folder
 RUN npm run build
+
+
 # Use the lightweight Nginx image from the previous stage for the nginx container
 FROM nginx:stable-alpine as production-stage
 WORKDIR /app

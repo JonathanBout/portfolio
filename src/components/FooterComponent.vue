@@ -36,10 +36,6 @@ const locale = inject("locale")
 </template>
 
 <style scoped lang="less">
-footer {
-    background: linear-gradient(180deg, transparent, #0005);
-}
-
 .credits,
 .language-display,
 .links {
@@ -67,5 +63,15 @@ footer {
             display: none;
         }
     }
+}
+.version {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: fit-content;
+    margin: 0;
+    padding: 0;
+    font-size: 0.6em;
+    text-align: end;
 }
 </style>
