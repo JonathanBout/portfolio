@@ -45,6 +45,19 @@ export function createLocalizer(): Localizer {
      */
     let locale: Locale = window.location.host.match(/\.nl$/) ? "nl" : "en"
 
+    const i18n = createI18n({
+        locale: locale,
+        fallbackLocale: "common",
+        fallbackWarn: false,
+        messages: {
+            nl: nl,
+            en: en
+        },
+        sharedMessages: {
+            common
+        }
+    })
+
     const query = new URLSearchParams(window.location.search)
 
     if (query.get("changeLocale")) {
@@ -76,9 +89,16 @@ export function createLocalizer(): Localizer {
             // otherwise we end up in an infinite loop of redirects
             changeLanguage(locale)
         }
-        // @ts-ignore
+
+        const html = document.querySelector("html")!
+        const contentLanguageMeta = document.querySelector("meta[http-equiv='Content-Language']")!
+        const descriptionMeta = document.querySelector("meta[name='description']")!
+
         // set the lang attribute on the html element to the current locale for SEO purposes
-        window.htmlRootElement.setAttribute("lang", locale)
+        html.setAttribute("lang", locale)
+        html.setAttribute("xml:lang", locale)
+        contentLanguageMeta.setAttribute("content", locale)
+        descriptionMeta.setAttribute("content", i18n.global.getLocaleMessage(locale).meta.description)
     }
 
     /**
@@ -91,18 +111,6 @@ export function createLocalizer(): Localizer {
         install: (app: any) => {
             app.config.globalProperties.$updateLocale = changeLanguage
             app.provide("locale", locale)
-            const i18n = createI18n({
-                locale: locale,
-                fallbackLocale: "common",
-                fallbackWarn: false,
-                messages: {
-                    nl: nl,
-                    en: en
-                },
-                sharedMessages: {
-                    common
-                }
-            })
             app.use(i18n)
         }
     } as Localizer
