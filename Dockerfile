@@ -11,7 +11,7 @@ RUN npm install
 COPY . .
 
 # put the git hash in a file and remove the now redundant .git folder
-RUN cat .git/ORIG_HEAD > ./public/version-hash.txt
+RUN cat ./.git/ORIG_HEAD > ./public/version-hash.txt
 RUN rm -rf .git
 
 # Build the Vue.js application to the production mode to dist folder
