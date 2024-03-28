@@ -44,7 +44,7 @@ function toggle_menu() {
                 <span>{{ $t("header.projects") }}</span>
             </router-link>
             <div class="flex-filler"></div>
-            <div class="version">version {{ versionHash }}</div>
+            <div class="version"> {{ $t("version") + " " + versionHash }}</div>
         </header>
     </div>
 </template>
