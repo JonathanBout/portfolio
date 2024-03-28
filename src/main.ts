@@ -12,7 +12,11 @@ const app = createApp(App)
 const router = createRouter()
 
 app.use(router)
-app.provide("versionHash", versionHash === "untracked" ? "untracked" : versionHash.slice(0, 8))
+
+app.provide(
+    "versionHash",
+    versionHash.slice(0, "untracked".length) === "untracked" ? "untracked" : versionHash.slice(0, 8)
+)
 
 const localizer = createLocalizer()
 
