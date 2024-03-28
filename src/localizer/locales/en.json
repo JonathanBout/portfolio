@@ -1,4 +1,7 @@
 {
+    "meta": {
+        "description": "Dutch software developer & student"
+    },
     "errorPage": {
         "back": "Back",
         "home": "Home",
