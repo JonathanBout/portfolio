@@ -9,6 +9,7 @@ COPY package*.json ./
 RUN npm install
 # Copy the rest of the project files to the container
 COPY . .
+COPY .git ./.git
 
 # put the git hash in a file and remove the now redundant .git folder
 RUN cat ./.git/ORIG_HEAD > ./public/version-hash.txt
