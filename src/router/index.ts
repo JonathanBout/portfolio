@@ -1,5 +1,5 @@
 import { createRouter as createRouterInternal, createWebHistory } from "vue-router"
-import { HomeView } from "../views"
+import HomeView from "../views/HomeView.vue"
 
 const router = createRouterInternal({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,7 +14,7 @@ const router = createRouterInternal({
         {
             path: "/projects",
             name: "projects",
-            component: () => import("../views/ProjectsView.vue")
+            component: () => import("../views/projects/ProjectsView.vue")
         },
         {
             path: "/privacy",

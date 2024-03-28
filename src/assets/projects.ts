@@ -19,6 +19,7 @@ export class Tag {
     url?: string = undefined
     color: string = ""
     textColor: string = ""
+    iconUrl?: string = undefined
 
     constructor(args?: Tag) {
         Object.assign(this, args)
@@ -28,21 +29,24 @@ export class Tag {
 const tags = {
     vue: new Tag({
         name: "Vue",
-        color: "#41b883",
-        textColor: "#213547",
-        url: "https://vuejs.org"
+        color: "#1a1a1a",
+        textColor: "white",
+        url: "https://vuejs.org",
+        iconUrl: "https://vuejs.org/logo.svg"
     }),
     nasaApi: new Tag({
         name: "NASA API",
-        color: "#0032a0",
-        textColor: "#fff",
-        url: "https://api.nasa.gov"
+        color: "white",
+        textColor: "black",
+        url: "https://api.nasa.gov",
+        iconUrl: "https://api.nasa.gov/assets/img/favicons/favicon.ico"
     }),
     docker: new Tag({
         name: "Docker",
-        color: "#1D63ED",
-        textColor: "#fff",
-        url: "https://www.docker.com"
+        color: "#1d63ed",
+        textColor: "white",
+        url: "https://www.docker.com",
+        iconUrl: "/public/docker-mark-white.svg"
     }),
     apache: new Tag({
         name: "Apache",
@@ -54,7 +58,8 @@ const tags = {
         name: "Ubuntu",
         color: "#E95420",
         textColor: "#fff",
-        url: "https://ubuntu.com"
+        url: "https://ubuntu.com",
+        iconUrl: "https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png"
     }),
     linux: new Tag({
         name: "Linux",
@@ -81,9 +86,10 @@ const tags = {
     }),
     wearOS: new Tag({
         name: "WearOS",
-        color: "#4285F4",
-        textColor: "#fff",
-        url: "https://wearos.google.com"
+        color: "white",
+        textColor: "black",
+        url: "https://wearos.google.com",
+        iconUrl: "https://wearos.google.com/static/img/favicon-32x32.png?cache=31a8ea0"
     }),
     portfolio: new Tag({
         name: "portfolio",
@@ -94,6 +100,13 @@ const tags = {
         name: "localization",
         color: "#f0db4f",
         textColor: "#000"
+    }),
+    nginx: new Tag({
+        name: "Nginx",
+        color: "white",
+        textColor: "black",
+        url: "https://www.nginx.com",
+        iconUrl: "https://www.nginx.com/wp-content/uploads/2019/10/favicon-64x46.ico"
     })
 }
 
@@ -118,10 +131,10 @@ const projects: Project[] = [
         name: "Webserver",
         id: "webserver",
         demo: "https://server.jonathanbout.com",
-        tags: ["docker", "apache", "ubuntu", "linux", "mySQL"],
+        tags: ["docker", "apache", "nginx", "ubuntu", "linux", "mySQL"],
         description: {
-            en: "My own webserver, running Ubuntu on an Odroid N2+. Most of my web based projects are hosted on this server using Docker and Apache.",
-            nl: "Mijn eigen webserver, Ubuntu op een Odroid N2+. De meeste van mijn webprojecten worden gehost op deze server met behulp van Docker en Apache."
+            en: "My own webserver, running Ubuntu on an Odroid N2+. Most of my web based projects are hosted on this server using Docker and Apache, and inside the containers I use Nginx when a proxy is needed.",
+            nl: "Mijn eigen webserver, Ubuntu op een Odroid N2+. De meeste van mijn webprojecten worden gehost op deze server met behulp van Docker en Apache, en binnen de containers gebruik ik Nginx wanneer een proxy nodig is."
         }
     }),
     new Project({

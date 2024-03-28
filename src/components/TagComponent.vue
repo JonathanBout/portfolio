@@ -15,8 +15,10 @@ if (foundTag) {
 </script>
 
 <template>
-    <span v-if="!foundTag?.url" :style="style">{{ foundTag?.name ?? tag }}</span>
-    <a v-else :href="foundTag.url" :style="style">{{ foundTag.name ?? tag }}</a>
+    <component :is="foundTag.url ? 'a' : 'span'" :href="foundTag.url" :style="style">
+        <img v-if="foundTag.iconUrl" :src="foundTag.iconUrl" alt="icon" />
+        {{ foundTag?.name ?? tag }}
+    </component>
 </template>
 
 <style lang="less" scoped>
@@ -27,5 +29,11 @@ a {
     border-radius: 100px;
     background-color: var(--color-text);
     color: var(--color-secondary-background);
+    img {
+        height: 1em;
+        aspect-ratio: 1;
+        margin-right: 5px;
+        transform: translateY(0.11em);
+    }
 }
 </style>
