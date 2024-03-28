@@ -28,6 +28,9 @@ const locale = inject("locale")
                     {{ $t("footer.view-on-gh") }}
                 </a>
             </span>
+            <span>
+                <a href="/disclaimer.html">{{ $t("footer.disclaimer") }}</a>
+            </span>
         </p>
     </footer>
 </template>

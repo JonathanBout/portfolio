@@ -17,7 +17,8 @@
     },
     "footer": {
         "view-on-gh": "View on GitHub",
-        "apod-wrapper": "NASA APOD wrapper"
+        "apod-wrapper": "NASA APOD wrapper",
+        "disclaimer": "disclaimer"
     },
     "underConstruction": "This page is under construction!",
     "privacy": {
