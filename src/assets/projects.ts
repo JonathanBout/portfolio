@@ -32,21 +32,21 @@ const tags = {
         color: "#1a1a1a",
         textColor: "white",
         url: "https://vuejs.org",
-        iconUrl: "https://vuejs.org/logo.svg"
+        iconUrl: "/images/logo-vue.svg"
     }),
     nasaApi: new Tag({
         name: "NASA API",
         color: "white",
         textColor: "black",
         url: "https://api.nasa.gov",
-        iconUrl: "https://api.nasa.gov/assets/img/favicons/favicon.ico"
+        iconUrl: "/images/logo-nasa.svg"
     }),
     docker: new Tag({
         name: "Docker",
         color: "#1d63ed",
         textColor: "white",
         url: "https://www.docker.com",
-        iconUrl: "/public/docker-mark-white.svg"
+        iconUrl: "/images/logo-docker.svg"
     }),
     apache: new Tag({
         name: "Apache",
@@ -59,7 +59,7 @@ const tags = {
         color: "#E95420",
         textColor: "#fff",
         url: "https://ubuntu.com",
-        iconUrl: "https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png"
+        iconUrl: "/images/logo-ubuntu.png"
     }),
     linux: new Tag({
         name: "Linux",
@@ -89,7 +89,7 @@ const tags = {
         color: "white",
         textColor: "black",
         url: "https://wearos.google.com",
-        iconUrl: "https://wearos.google.com/static/img/favicon-32x32.png?cache=31a8ea0"
+        iconUrl: "/images/logo-wearos.png"
     }),
     portfolio: new Tag({
         name: "portfolio",
@@ -106,7 +106,7 @@ const tags = {
         color: "white",
         textColor: "black",
         url: "https://www.nginx.com",
-        iconUrl: "https://www.nginx.com/wp-content/uploads/2019/10/favicon-64x46.ico"
+        iconUrl: "/images/logo-nginx.svg"
     })
 }
 
