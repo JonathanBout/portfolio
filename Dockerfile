@@ -11,6 +11,7 @@ RUN npm install
 COPY . .
 COPY .git ./.git
 
+RUN echo $(ls)
 # put the git hash in a file and remove the now redundant .git folder
 RUN cat ./.git/ORIG_HEAD > ./public/version-hash.txt
 RUN rm -rf .git
