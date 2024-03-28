@@ -41,9 +41,6 @@ function toggle_menu() {
             <router-link active-class="active" to="/projects">
                 <span>{{ $t("header.projects") }}</span>
             </router-link>
-            <!-- <router-link active-class="active" to="/about">
-                <span>{{ $t("header.about") }}</span>
-            </router-link> -->
         </header>
     </div>
 </template>
@@ -57,7 +54,7 @@ function toggle_menu() {
         position: sticky;
         top: 0;
         z-index: 100;
-        height: fit-content;
+        height: 400px;
     }
 }
 
@@ -170,8 +167,8 @@ header {
 @media (width <= 700px) {
     .header-toggle {
         display: block;
-        position: fixed;
-        top: 20px;
+        position: relative;
+        top: 10px;
         width: 60px;
         aspect-ratio: 1;
         z-index: 3;
