@@ -54,7 +54,7 @@ function toggle_menu() {
         position: sticky;
         top: 0;
         z-index: 100;
-        height: 400px;
+        height: 50px;
     }
 }
 
