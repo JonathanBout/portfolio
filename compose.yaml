@@ -5,4 +5,5 @@ services:
         environment:
             NODE_ENV: production
         ports:
-            - 50000:80
+            - 50000:80 # .com
+            - 50001:81 # .nl

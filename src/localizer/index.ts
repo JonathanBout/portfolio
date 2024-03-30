@@ -89,16 +89,6 @@ export function createLocalizer(): Localizer {
             // otherwise we end up in an infinite loop of redirects
             changeLanguage(locale)
         }
-
-        const html = document.querySelector("html")!
-        const contentLanguageMeta = document.querySelector("meta[http-equiv='Content-Language']")!
-        const descriptionMeta = document.querySelector("meta[name='description']")!
-
-        // set the lang attribute on the html element to the current locale for SEO purposes
-        html.setAttribute("lang", locale)
-        html.setAttribute("xml:lang", locale)
-        contentLanguageMeta.setAttribute("content", locale)
-        descriptionMeta.setAttribute("content", i18n.global.getLocaleMessage(locale).meta.description)
     }
 
     /**
