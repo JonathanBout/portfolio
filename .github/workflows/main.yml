@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - release
-      - seo-optimized-localization
-
+      
 jobs:
   Publish:
     runs-on: buildjet-4vcpu-ubuntu-2204-arm
