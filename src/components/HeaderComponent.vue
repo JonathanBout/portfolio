@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { inject, ref, watch } from "vue"
-import { RouterLink, useRouter } from "vue-router"
+import { RouterLink, useRoute, useRouter } from "vue-router"
 import BurgerMenuIconComponent from "./BurgerMenuIconComponent.vue"
+import { useI18n } from "vue-i18n"
 
 const emit = defineEmits<{
     (e: "menuOpenChanged", value: boolean): void
@@ -10,7 +11,8 @@ const emit = defineEmits<{
 let headerOpen = ref(false)
 
 const router = useRouter()
-
+const route = useRoute()
+const { t: translate, te: translationExists } = inject("i18n") as ReturnType<typeof useI18n>
 const animationDuration = ".2s"
 
 const versionHash = inject("versionHash") as string
@@ -28,6 +30,22 @@ function toggle_menu() {
     headerOpen.value = !headerOpen.value
     emit("menuOpenChanged", headerOpen.value)
 }
+
+const fullPath = () => route.fullPath
+const fullPathParts = () => route.fullPath.split("/").filter((x) => !!x)
+const basePath = (index: number) =>
+    "/" +
+    fullPathParts()
+        .slice(0, index + 1)
+        .join("/")
+
+function translatePathName(index: number, part: string) {
+    const key = `pathName.${basePath(index).replace(/(^\/)|(\/$)/, "")}`
+    if (translationExists(key)) {
+        return translate(key)
+    }
+    return key
+}
 </script>
 
 <template>
@@ -35,7 +53,13 @@ function toggle_menu() {
         <div :class="'header-backdrop' + (headerOpen ? '' : ' closed')" @click="close_menu"></div>
         <button class="header-toggle" @click="toggle_menu">
             <BurgerMenuIconComponent :animation-duration="animationDuration" :open="headerOpen" />
+            <div class="header-toggle-backdrop"></div>
         </button>
+        <div class="location-marker" v-if="fullPath() != '/'">
+            <a v-for="(part, index) in fullPathParts()" :href="basePath(index)" v-bind:key="part">{{
+                translatePathName(index, part)
+            }}</a>
+        </div>
         <header :class="'monospace' + (headerOpen ? '' : ' closed')">
             <router-link to="/" active-class="active" class="site-title">
                 <span>Jonathan Bout</span>
@@ -44,7 +68,7 @@ function toggle_menu() {
                 <span>{{ $t("header.projects") }}</span>
             </router-link>
             <div class="flex-filler"></div>
-            <div class="version"> {{ $t("version") + " " + versionHash }}</div>
+            <div class="version">{{ $t("version") + " " + versionHash }}</div>
         </header>
     </div>
 </template>
@@ -78,7 +102,8 @@ function toggle_menu() {
     font-size: 1.4em;
 }
 
-.flex-filler {
+.flex-filler,
+.location-marker {
     display: none;
 }
 
@@ -170,8 +195,10 @@ header {
             }
         }
 
-        &:hover:not(.active) {
-            filter: brightness(1.1);
+        @media (hover: hover) {
+            &:hover:not(.active) {
+                filter: brightness(1.1);
+            }
         }
     }
 
@@ -194,6 +221,8 @@ header {
         z-index: 3;
         border: none;
         border-radius: 0 10px 10px 0;
+        background-color: var(--color-secondary-background);
+        box-shadow: 5px 0 5px -5px var(--color-background);
     }
 
     .flex-filler {
@@ -204,6 +233,48 @@ header {
 
     .version {
         position: static;
+    }
+
+    .location-marker {
+        position: absolute;
+        left: 60px;
+        height: 60px;
+        font-size: 1rem;
+        top: 10px;
+
+        padding-inline: 5px;
+        display: flex;
+        align-items: center;
+        max-width: calc(100% - 60px);
+        flex-wrap: nowrap;
+
+        overflow: auto;
+
+        a {
+            background-color: var(--color-secondary-background);
+            padding: 5px 15px;
+            text-wrap: nowrap;
+
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0% 100%);
+            &:not(:first-child) {
+                margin-left: -5px;
+            }
+
+            &:first-child {
+                clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0% 100%);
+                padding-left: 10px;
+            }
+
+            &:last-child {
+                clip-path: polygon(10px 0px, 100% 0, 100% 100%, 0% 100%);
+                border-radius: 0 10px 10px 0;
+                padding-right: 15px;
+            }
+
+            &:only-child {
+                clip-path: none;
+            }
+        }
     }
 
     header {
@@ -240,7 +311,10 @@ header {
         z-index: 1;
 
         &.closed {
-            opacity: 0;
+            z-index: -10;
+            opacity: 0.8;
+            background: linear-gradient(to bottom, var(--color-background) 60px, transparent 100px);
+            scrollbar-gutter: stable;
             pointer-events: none;
         }
     }

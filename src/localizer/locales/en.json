@@ -33,5 +33,10 @@
         "see-more": "See more on my GitHub!",
         "open-preview": "preview (beta)"
     },
-	"version": "version"
+    "version": "version",
+    "pathName": {
+        "projects": "projects",
+        "privacy": "privacy",
+        "privacy/programmer-watchface": "programmer watchface"
+    }
 }

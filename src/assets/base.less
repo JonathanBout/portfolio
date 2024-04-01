@@ -92,9 +92,11 @@ a {
     padding: unset;
     cursor: pointer;
     text-decoration: none;
-    &:hover {
-        text-decoration: underline;
-        color: var(--color-link);
+    @media (hover: hover) {
+        &:hover {
+            text-decoration: underline;
+            color: var(--color-link);
+        }
     }
 }
 

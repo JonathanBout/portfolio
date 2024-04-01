@@ -66,8 +66,10 @@ button:not(.link) {
     transition: border 0.2s, color 0.2s;
     font-size: 1.2em;
 
-    &:hover {
-        outline: 2px solid var(--color-primary-button-text);
+    @media (hover: hover) {
+        &:hover {
+            outline: 2px solid var(--color-primary-button-text);
+        }
     }
 }
 

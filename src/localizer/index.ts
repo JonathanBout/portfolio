@@ -46,19 +46,6 @@ export function createLocalizer(): Localizer {
 
     let locale: Locale = window.location.host.match(/\.nl$/) ? "nl" : "en"
 
-    const i18n = createI18n({
-        locale: locale,
-        fallbackLocale: "common",
-        fallbackWarn: false,
-        messages: {
-            nl: nl,
-            en: en
-        },
-        sharedMessages: {
-            common
-        }
-    })
-
     const query = new URLSearchParams(window.location.search)
 
     if (query.get("changeLocale")) {
@@ -92,6 +79,19 @@ export function createLocalizer(): Localizer {
         }
     }
 
+    const i18n = createI18n({
+        locale: locale,
+        fallbackLocale: "common",
+        fallbackWarn: false,
+        messages: {
+            nl: nl,
+            en: en
+        },
+        sharedMessages: {
+            common
+        }
+    })
+
     /**
      * return a Vue-plugin compatible object, with the locale and the install method.
      * The install method will be called by Vue when the plugin is used and will add the $updateLocale method to the globalProperties,
@@ -103,6 +103,7 @@ export function createLocalizer(): Localizer {
             app.config.globalProperties.$updateLocale = changeLanguage
             app.provide("locale", locale)
             app.use(i18n)
+            app.provide("i18n", i18n.global)
         }
     } as Localizer
 }
