@@ -44,7 +44,7 @@ function translatePathName(index: number, part: string) {
     if (translationExists(key)) {
         return translate(key)
     }
-    return key
+    return part
 }
 </script>
 
