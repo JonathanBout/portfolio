@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - release
-
+      
 jobs:
   Publish:
     runs-on: buildjet-4vcpu-ubuntu-2204-arm
