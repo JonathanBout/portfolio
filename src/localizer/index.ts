@@ -35,7 +35,7 @@ function changeLanguage(newLanguage: Locale) {
  * @returns a Vue localizer plugin
  */
 export function createLocalizer(): Localizer {
-    /**
+    /*
      * Determine the locale to use. In order of priority:
      * 1. If the query parameter changeLocale is set, change the locale to the locale for the current domain
      * 2. If the locale is set in local storage, use that
@@ -43,6 +43,7 @@ export function createLocalizer(): Localizer {
      * 4. If the browser language is set to English, use the English locale
      * 5. If none of the above, use the locale for the current domain (.com is English, .nl is Dutch)
      */
+
     let locale: Locale = window.location.host.match(/\.nl$/) ? "nl" : "en"
 
     const i18n = createI18n({
@@ -89,16 +90,6 @@ export function createLocalizer(): Localizer {
             // otherwise we end up in an infinite loop of redirects
             changeLanguage(locale)
         }
-
-        const html = document.querySelector("html")!
-        const contentLanguageMeta = document.querySelector("meta[http-equiv='Content-Language']")!
-        const descriptionMeta = document.querySelector("meta[name='description']")!
-
-        // set the lang attribute on the html element to the current locale for SEO purposes
-        html.setAttribute("lang", locale)
-        html.setAttribute("xml:lang", locale)
-        contentLanguageMeta.setAttribute("content", locale)
-        descriptionMeta.setAttribute("content", i18n.global.getLocaleMessage(locale).meta.description)
     }
 
     /**
