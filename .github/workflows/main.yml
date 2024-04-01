@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - release
+      - seo-optimized-localization
 
 jobs:
   Publish:
