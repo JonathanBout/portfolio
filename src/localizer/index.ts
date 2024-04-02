@@ -44,7 +44,32 @@ export function createLocalizer(): Localizer {
      * 5. If none of the above, use the locale for the current domain (.com is English, .nl is Dutch)
      */
 
+    // if crawler is visiting the site, we don't want to change the locale or do any redirects
     let locale: Locale = window.location.host.match(/\.nl$/) ? "nl" : "en"
+
+    const i18n = createI18n({
+        locale: locale,
+        fallbackLocale: "common",
+        messages: {
+            nl,
+            en,
+            common
+        },
+        legacy: false
+    })
+
+    if (navigator.userAgent.match(/bot|googlebot|crawler|spider|robot|crawling/i)) {
+        return {
+            locale,
+            install: (app: any) => {
+                app.config.globalProperties.$updateLocale = (...params: any[]) => {
+                    params.length
+                }
+                app.provide("locale", locale)
+                app.use(i18n)
+            }
+        }
+    }
 
     const query = new URLSearchParams(window.location.search)
 
@@ -61,13 +86,9 @@ export function createLocalizer(): Localizer {
         }
 
         if (!preferredLocale && window.navigator.language) {
-            switch (window.navigator.language.split("-")[0] as Locale) {
-                case "nl":
-                    locale = "nl"
-                    break
-                case "en":
-                    locale = "en"
-                    break
+            const navigatorLocale = window.navigator.language.split("-")[0] as Locale
+            if (LOCALES.includes(navigatorLocale)) {
+                locale = navigatorLocale
             }
         } else {
             locale = preferredLocale as Locale
@@ -79,16 +100,7 @@ export function createLocalizer(): Localizer {
         }
     }
 
-    const i18n = createI18n({
-        locale: locale,
-        fallbackLocale: "common",
-        messages: {
-            nl,
-            en,
-            common
-        },
-        legacy: false
-    })
+    i18n.global.locale.value = locale
 
     /**
      * return a Vue-plugin compatible object, with the locale and the install method.
