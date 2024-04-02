@@ -82,14 +82,12 @@ export function createLocalizer(): Localizer {
     const i18n = createI18n({
         locale: locale,
         fallbackLocale: "common",
-        fallbackWarn: false,
         messages: {
-            nl: nl,
-            en: en
-        },
-        sharedMessages: {
+            nl,
+            en,
             common
-        }
+        },
+        legacy: false
     })
 
     /**
@@ -103,7 +101,6 @@ export function createLocalizer(): Localizer {
             app.config.globalProperties.$updateLocale = changeLanguage
             app.provide("locale", locale)
             app.use(i18n)
-            app.provide("i18n", i18n.global)
         }
     } as Localizer
 }

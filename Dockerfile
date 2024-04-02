@@ -10,11 +10,8 @@ RUN npm install
 # Copy the rest of the project files to the container
 COPY . .
 
-# put the git hash in a file and remove the now redundant .git folder
-RUN cat ./.git/FETCH_HEAD > ./public/version-hash.txt
-RUN rm -rf .git
-
-# Build the Vue.js application to the production mode to dist folder
+# Build the Vue.js application to dist folder
+ENV IN_CONTAIER=true
 RUN npm run build
 
 
@@ -25,7 +22,7 @@ WORKDIR /app
 COPY --from=build-stage /app/dist ./
 # Copy the nginx configuration file
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-# Expose the port 80
+# Expose the ports 80 and 81 to the host machine
 EXPOSE 80
 EXPOSE 81
 # Start Nginx to serve the application

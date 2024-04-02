@@ -1,11 +1,11 @@
 import "./assets/main.less"
 import "bootstrap-icons/font/bootstrap-icons.css"
-import versionHash from "/version-hash.txt?raw"
 
 import { createApp } from "vue"
 import App from "./App.vue"
 import { createRouter } from "./router"
 import { createLocalizer } from "./localizer"
+import { rev } from "virtual:gitrev"
 
 const app = createApp(App)
 
@@ -13,10 +13,7 @@ const router = createRouter()
 
 app.use(router)
 
-app.provide(
-    "versionHash",
-    versionHash.slice(0, "untracked".length) === "untracked" ? "untracked" : versionHash.slice(0, 8)
-)
+app.provide("gitRev", rev === "untracked" ? "untracked" : rev.slice(0, 7))
 
 const localizer = createLocalizer()
 

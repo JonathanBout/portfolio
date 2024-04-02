@@ -25,7 +25,7 @@ const router = createRouterInternal({
                         title: "Programmer Watchface Privacy Policy"
                     },
                     name: "watchface-privacy",
-                    component: () => import("../views/WatchfacePrivacyPolicy.vue")
+                    component: () => import("../views/privacy/WatchfacePrivacyPolicy.vue")
                 }
             ]
         },
