@@ -200,6 +200,17 @@ header {
                 clip-path: none;
             }
         }
+
+        &::after {
+            content: "";
+            position: fixed;
+            left: 100%;
+            box-shadow: -5px 0 5px var(--color-background);
+            right: -100px;
+            height: 60px;
+            pointer-events: none;
+            background-color: red;
+        }
     }
 
     header {
