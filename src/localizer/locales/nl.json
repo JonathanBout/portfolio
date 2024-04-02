@@ -33,5 +33,10 @@
         "see-more": "Bekijk meer van mijn projecten op GitHub!",
         "open-preview": "Voorbeeld (béta)"
     },
-	"version": "versie"
+    "version": "versie",
+    "pathName": {
+        "projects": "projecten",
+        "privacy": "privacy",
+        "privacy/programmer-watchface": "developer-wijzerplaat"
+    }
 }
