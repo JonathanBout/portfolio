@@ -12,10 +12,10 @@ let headerOpen = ref(false)
 
 const router = useRouter()
 const route = useRoute()
-const { t: translate, te: translationExists } = inject("i18n") as ReturnType<typeof useI18n>
+const { t: translate, te: translationExists } = useI18n()
 const animationDuration = ".2s"
 
-const versionHash = inject("versionHash") as string
+const versionHash = inject<string>("gitRev")!
 
 watch(router.currentRoute, () => {
     close_menu()
