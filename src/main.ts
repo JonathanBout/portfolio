@@ -13,7 +13,7 @@ const router = createRouter()
 
 app.use(router)
 
-app.provide("gitRev", rev === "untracked" ? "untracked" : rev.slice(0, 7))
+app.provide("gitRev", rev === "untracked" ? rev : rev.slice(0, 7))
 
 const localizer = createLocalizer()
 

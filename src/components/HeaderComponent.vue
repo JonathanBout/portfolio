@@ -36,7 +36,10 @@ function fullPath() {
 }
 
 function fullPathParts() {
-    return route.fullPath.split("/").filter((x) => !!x)
+    return route.fullPath
+        .split("?")[0]
+        .split("/")
+        .filter((x) => !!x)
 }
 
 function basePath(index: number) {
