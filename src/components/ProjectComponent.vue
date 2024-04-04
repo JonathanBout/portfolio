@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Project } from "@/assets/projects"
+import type { Project } from "@/projects/projects"
 import { inject, ref } from "vue"
 import TagComponent from "@/components/TagComponent.vue"
 
