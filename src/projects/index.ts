@@ -1,4 +1,5 @@
 import type { Locale } from "@/localizer"
+import { CSSColor, contrastingColor } from "@/util/color"
 
 export class Project {
     name: string | { [K in Locale]: string } = ""
@@ -17,11 +18,18 @@ export class Project {
 export class Tag {
     name: string = ""
     url?: string = undefined
-    color: string = ""
-    textColor: string = ""
+    color: string = "black"
+
+    get parsedColor() {
+        return CSSColor.fromString(this.color)
+    }
+
+    get textColor() {
+        return contrastingColor(this.parsedColor)
+    }
     iconUrl?: string = undefined
 
-    constructor(args?: Tag) {
+    constructor(args?: { name: string; url?: string; color: string; iconUrl?: string }) {
         Object.assign(this, args)
     }
 }
@@ -30,81 +38,68 @@ const tags = {
     vue: new Tag({
         name: "Vue",
         color: "#1a1a1a",
-        textColor: "white",
         url: "https://vuejs.org",
         iconUrl: "/images/logos/vue.svg"
     }),
     nasaApi: new Tag({
         name: "NASA API",
         color: "white",
-        textColor: "black",
         url: "https://api.nasa.gov",
         iconUrl: "/images/logos/nasa.svg"
     }),
     docker: new Tag({
         name: "Docker",
         color: "#1d63ed",
-        textColor: "white",
         url: "https://www.docker.com",
         iconUrl: "/images/logos/docker.svg"
     }),
     apache: new Tag({
         name: "Apache",
         color: "#282661",
-        textColor: "#fff",
         url: "https://httpd.apache.org"
     }),
     ubuntu: new Tag({
         name: "Ubuntu",
         color: "#E95420",
-        textColor: "#fff",
         url: "https://ubuntu.com",
         iconUrl: "/images/logos/ubuntu.png"
     }),
     linux: new Tag({
         name: "Linux",
         color: "#000",
-        textColor: "#fff",
         url: "https://www.linux.org"
     }),
     mySQL: new Tag({
         name: "MySQL",
         color: "#00758F",
-        textColor: "#fff",
         url: "https://www.mysql.com"
     }),
     watchface: new Tag({
         name: "watchface",
-        color: "purple",
-        textColor: "#fff"
+        color: "purple"
     }),
     wfs: new Tag({
         name: "WatchFaceStudio",
         color: "pink",
-        textColor: "black",
         url: "https://developer.samsung.com/watch-face-studio/overview.html"
     }),
     wearOS: new Tag({
         name: "WearOS",
         color: "white",
-        textColor: "black",
         url: "https://wearos.google.com",
         iconUrl: "/images/logos/wearos.png"
     }),
     portfolio: new Tag({
         name: "portfolio",
-        color: "white",
-        textColor: "black"
+        color: "white"
     }),
     localization: new Tag({
         name: "localization",
-        color: "#f0db4f",
-        textColor: "#000"
+        color: "#f0db4f"
     }),
     nginx: new Tag({
         name: "Nginx",
         color: "white",
-        textColor: "black",
         url: "https://www.nginx.com",
         iconUrl: "/images/logos/nginx.svg"
     })

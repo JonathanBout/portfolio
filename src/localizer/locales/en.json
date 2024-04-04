@@ -31,7 +31,13 @@
         "title": "Projects",
         "intro": "Below are some of the projects I've worked on with relevant links and tags. Feel free to check them out and let me know what you think!",
         "see-more": "See more on my GitHub!",
-        "open-preview": "preview (beta)"
+        "open-preview": "preview (beta)",
+        "github-stats": {
+            "text": "GitHub Statistics",
+            "error": "Something went wrong.",
+            "loading": "Loading...",
+            "top-languages": "Top languages"
+        }
     },
     "version": "version",
     "pathName": {

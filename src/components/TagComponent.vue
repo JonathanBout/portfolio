@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import tagsData, { Tag } from "@/assets/projects"
+import tagsData, { Tag } from "@/projects"
 
 const props = defineProps({
     tag: String
@@ -10,7 +10,7 @@ const foundTag = (tagsData.tags as any)[props.tag || ""] as Tag
 let style: string | undefined = undefined
 
 if (foundTag) {
-    style = `background-color: ${foundTag.color ?? "white"}; color: ${foundTag.textColor ?? "black"}`
+    style = `background-color: ${foundTag.color ?? "white"}; color: ${foundTag.textColor.toCSSColorString() ?? "black"}`
 }
 </script>
 

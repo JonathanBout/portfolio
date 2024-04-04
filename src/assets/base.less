@@ -49,8 +49,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
+    *,
+    *::before,
+    *::after {
+        transition-duration: 25ms !important;
+        animation-duration: 25ms !important;
     }
 }
 
