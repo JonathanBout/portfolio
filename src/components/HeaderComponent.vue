@@ -69,9 +69,9 @@ function translatePathName(index: number, part: string) {
             <div class="header-toggle-backdrop"></div>
         </button>
         <div class="location-marker" v-if="fullPath() != '/'">
-            <a v-for="(part, index) in fullPathParts()" :href="basePath(index)" v-bind:key="part">{{
+            <router-link v-for="(part, index) in fullPathParts()" :to="{ path: basePath(index) }" v-bind:key="part">{{
                 translatePathName(index, part)
-            }}</a>
+            }}</router-link>
         </div>
         <header :class="'monospace' + (headerOpen ? '' : ' closed')">
             <router-link to="/" active-class="active" class="site-title">
@@ -80,8 +80,13 @@ function translatePathName(index: number, part: string) {
             <router-link active-class="active" to="/projects">
                 <span>{{ $t("header.projects") }}</span>
             </router-link>
+            <!-- <a href="https://github.com/sponsors/JonathanBout">Sponsor me</a> -->
             <div class="flex-filler"></div>
-            <div class="version">{{ $t("version") + " " + versionHash }}</div>
+            <div class="version">
+                <a :href="'https://github.com/JonathanBout/portfolio/commit/' + versionHash">{{
+                    $t("version") + " " + versionHash
+                }}</a>
+            </div>
         </header>
     </div>
 </template>

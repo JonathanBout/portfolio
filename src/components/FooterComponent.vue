@@ -13,11 +13,11 @@ const locale = inject("locale")
     <footer class="monospace" :inert="inert">
         <p class="language-display">
             <!-- @vue-expect-error property does not exist on type ... -->
-            <button :class="'link' + (locale === 'en' ? ' current' : '')" @click="$updateLocale('en')">
+            <button :class="'link no-external-icon' + (locale === 'en' ? ' current' : '')" @click="$updateLocale('en')">
                 {{ $t("language.en") }}
             </button>
             <!-- @vue-expect-error -->
-            <button :class="'link' + (locale === 'nl' ? ' current' : '')" @click="$updateLocale('nl')">
+            <button :class="'link no-external-icon' + (locale === 'nl' ? ' current' : '')" @click="$updateLocale('nl')">
                 {{ $t("language.nl") }}
             </button>
         </p>

@@ -1,6 +1,14 @@
 {
     "extends": "@tsconfig/node18/tsconfig.json",
-    "include": ["vite.config.*", "vitest.config.*", "cypress.config.*", "playwright.config.*", "*.plugin.*"],
+    "include": [
+        "vite.config.*",
+        "vitest.config.*",
+        "cypress.config.*",
+        "playwright.config.*",
+        "*.plugin.*",
+        "plugins/*",
+        "plugins/*"
+    ],
     "compilerOptions": {
         "composite": true,
         "types": ["node"]
