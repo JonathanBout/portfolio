@@ -1,15 +1,15 @@
 import { Plugin } from "vite"
-import { OutputOptions, OutputBundle, EmittedAsset } from "rollup"
+import { OutputOptions, OutputBundle, EmittedAsset, OutputAsset } from "rollup"
 import fs from "fs"
 import { extname } from "path"
 
-function getFiles(bundle: OutputBundle): RollupHtmlTemplateOptions["files"] {
+function getFiles(bundle: OutputBundle): { [key: string]: (OutputAsset | OutputBundle)[] } {
     const result = {} as ReturnType<typeof getFiles>
     for (const file of Object.values(bundle)) {
         const { fileName } = file
         const extension = extname(fileName).substring(1)
 
-        result[extension] = (result[extension] || []).concat(file)
+        result[extension] = (result[extension] || []).concat(file as any)
     }
 
     return result

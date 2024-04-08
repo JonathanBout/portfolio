@@ -52,8 +52,8 @@
     *,
     *::before,
     *::after {
-        transition-duration: 25ms !important;
-        animation-duration: 25ms !important;
+        transition-duration: 0.01s !important;
+        animation-duration: 0.01s !important;
     }
 }
 
@@ -99,6 +99,43 @@ a {
         &:hover {
             text-decoration: underline;
             color: var(--color-link);
+
+            &[href^="https://"], &[href^="http://"]
+            {
+                &:not(.no-external-icon)::after {
+                    display: inline-block;
+                    font-display: block;
+                    font-family: bootstrap-icons !important;
+                    font-style: normal;
+                    font-weight: 600 !important;
+                    font-variant: normal;
+
+                    text-transform: none;
+                    line-height: 1;
+                    vertical-align: -0.125em;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+
+                    margin-left: 10px;
+
+                    content: "\f1c5";
+
+                    animation: slide 0.1s ease-out;
+                    animation-fill-mode: forwards;
+                    overflow: hidden;
+
+                    @keyframes slide {
+                        0% {
+                            width: 0;
+                            opacity: 0;
+                        }
+                        100% {
+                            width: 1em;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
         }
     }
 }

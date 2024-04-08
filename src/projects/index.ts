@@ -8,7 +8,6 @@ export class Project {
     demo?: string = undefined
     description?: { [K in Locale]: string }
     tags: TagName[] = []
-    allowPreview?: boolean = false
 
     constructor(args: { [K in keyof Project]?: Project[K] }) {
         Object.assign(this, args)
@@ -119,7 +118,7 @@ const projects: Project[] = [
         tags: ["watchface", "wfs", "wearOS"],
         description: {
             en: "A watchface for Wear OS that shows the current time, date, battery level and step count in a JSON format with Visual Studio Code theme colors.",
-            nl: "Een wijzerplaat voor Wear OS die de huidige tijd, datum, batterijpercentage en stappenteller weergeeft in een JSON-formaat met Visual Studio Code themakleuren."
+            nl: "Een wijzerplaat voor Wear OS die de huidige tijd, datum, batterijpercentage en stappenteller weergeeft als JSON met Visual Studio Code themakleuren."
         }
     }),
     new Project({
@@ -128,7 +127,7 @@ const projects: Project[] = [
         demo: "https://server.jonathanbout.com",
         tags: ["docker", "apache", "nginx", "ubuntu", "linux", "mySQL"],
         description: {
-            en: "My own webserver, running Ubuntu on an Odroid N2+. Most of my web based projects are hosted on this server using Docker and Apache, and inside the containers I use Nginx when a proxy is needed.",
+            en: "My own webserver, running Ubuntu on an Odroid N2+. Most of my web based projects are hosted on this server using Docker and Apache, and within the containers I use Nginx when a proxy is needed.",
             nl: "Mijn eigen webserver, Ubuntu op een Odroid N2+. De meeste van mijn webprojecten worden gehost op deze server met behulp van Docker en Apache, en binnen de containers gebruik ik Nginx wanneer een proxy nodig is."
         }
     }),
@@ -141,8 +140,7 @@ const projects: Project[] = [
             en: "A simple web app that fetches the Astronomy Picture of the Day from NASA's API and displays it in a clean, responsive layout.",
             nl: "Een simpele webapp die de Astronomy Picture of the Day van NASA's API ophaalt en deze in een nette, responsive layout weergeeft."
         },
-        tags: ["vue", "nasaApi"],
-        allowPreview: true
+        tags: ["vue", "nasaApi"]
     }),
     new Project({
         name: "Portfolio",
