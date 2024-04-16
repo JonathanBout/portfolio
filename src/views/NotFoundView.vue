@@ -7,7 +7,7 @@ const path = useRoute().path
 <template>
     <div class="page-root">
         <h1 class="monospace">404</h1>
-        <h2>{{ $t("errorPage.pageNotFound", { path }) }}</h2>
+        <h2>{{ $t("errorPage.pageNotFound", { path: decodeURI(path) }) }}</h2>
         <div class="separated">
             <span>
                 <a href="/">{{ $t("errorPage.back") }}</a>
