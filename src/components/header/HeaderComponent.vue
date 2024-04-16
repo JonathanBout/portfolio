@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { inject, ref, watch } from "vue"
 import { RouterLink, useRoute, useRouter } from "vue-router"
-import BurgerMenuIconComponent from "./BurgerMenuIconComponent.vue"
+import BurgerMenuIconComponent from "../BurgerMenuIconComponent.vue"
 import { useI18n } from "vue-i18n"
 
 const emit = defineEmits<{
@@ -36,26 +36,34 @@ function fullPath() {
 }
 
 function fullPathParts() {
-    return route.fullPath
-        .split("?")[0]
-        .split("/")
-        .filter((x) => !!x)
+    let parts = route.fullPath.split("?")[0].split("/")
+
+    if (!parts[0]) {
+        parts = parts.slice(1)
+    }
+
+    return parts
+    //.filter((x) => !!x)
 }
 
-function basePath(index: number) {
-    return (
+function basePath(index: number, decode: boolean = false) {
+    const path =
         "/" +
         fullPathParts()
             .slice(0, index + 1)
             .join("/")
-    )
+
+    return decode ? decodeURI(path) : path
 }
 
-function translatePathName(index: number, part: string) {
-    const key = `pathName.${basePath(index).replace(/(^\/)|(\/$)/, "")}`
+function transformPathName(index: number, part: string) {
+    part = decodeURI(part)
+    const key = `pathName.${basePath(index, true).replace(/(^\/)|(\/$)/, "")}`
+
     if (translationExists(key)) {
         return translate(key)
     }
+
     return part
 }
 //#endregion
@@ -70,7 +78,7 @@ function translatePathName(index: number, part: string) {
         </button>
         <div class="location-marker" v-if="fullPath() != '/'">
             <router-link v-for="(part, index) in fullPathParts()" :to="{ path: basePath(index) }" v-bind:key="part">{{
-                translatePathName(index, part)
+                transformPathName(index, part)
             }}</router-link>
         </div>
         <header :class="'monospace' + (headerOpen ? '' : ' closed')">
