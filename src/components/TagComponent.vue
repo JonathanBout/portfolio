@@ -10,25 +10,35 @@ const foundTag = (tagsData.tags as any)[props.tag || ""] as Tag
 let style: string | undefined = undefined
 
 if (foundTag) {
-    style = `background-color: ${foundTag.color ?? "white"}; color: ${foundTag.textColor.toCSSColorString() ?? "black"}`
+    style = `--tag-background-color: ${foundTag.color ?? "white"}; --tag-text-color: ${
+        foundTag.textColor.toCSSColorString() ?? "black"
+    }`
 }
 </script>
 
 <template>
-    <component :is="foundTag.url ? 'a' : 'span'" :href="foundTag.url" :style="style">
+    <component :is="foundTag.url ? 'a' : 'span'" class="tag-element" :href="foundTag.url" :style="style">
         <img v-if="foundTag.iconUrl" :src="foundTag.iconUrl" alt="icon" />
-        {{ foundTag?.name ?? tag }}
+        <span>
+            {{ foundTag?.name ?? tag }}
+        </span>
     </component>
 </template>
 
 <style lang="less" scoped>
-span,
-a {
+.tag-element {
     padding-inline: 10px;
     padding-block: 0px;
     border-radius: 100px;
-    background-color: var(--color-text);
-    color: var(--color-secondary-background);
+    height: 100%;
+    margin-top: 3px;
+    &,
+    & > span {
+        background-color: var(--tag-background-color);
+        color: var(--tag-text-color);
+        height: 100%;
+    }
+
     img {
         height: 1em;
         aspect-ratio: 1;

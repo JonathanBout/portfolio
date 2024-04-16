@@ -1,4 +1,4 @@
-import { createRouter as createRouterInternal, createWebHistory } from "vue-router"
+import { createRouter as createRouterInternal, createWebHistory, type RouteLocationNormalized } from "vue-router"
 import HomeView from "../views/HomeView.vue"
 
 const router = createRouterInternal({
@@ -37,13 +37,34 @@ const router = createRouterInternal({
     ]
 })
 
-const setDocumentTitle = (to: { meta: any }) => {
-    document.title = (to.meta.title as string) || "Jonathan Bout"
+function setDocumentTitle(to: RouteLocationNormalized) {
+    document.title = (to.meta.title || "Jonathan Bout") as string
 }
+
+function setCanonical() {
+    let linkElement = document.querySelector("link[rel=canonical]")
+
+    if (!linkElement) {
+        linkElement = document.createElement("link")
+        linkElement.setAttribute("rel", "canonical")
+        document.head.appendChild(linkElement)
+    }
+
+    const url = location.href.replace(/(?:#|\?).*$/, "").replace(/^http:\/\//, "https://")
+
+    linkElement.setAttribute("href", url)
+
+    console.log(document.querySelector("link[rel=canonical]")?.getAttribute("href") ?? "No canonical link")
+}
+
 router.beforeEach((to, from, next) => {
     setDocumentTitle(to)
     next()
 })
+
+setCanonical()
+
 router.afterEach(setDocumentTitle)
+router.afterEach(setCanonical)
 
 export const createRouter = () => router
