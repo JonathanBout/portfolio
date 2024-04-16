@@ -101,6 +101,7 @@ a {
             &[href^="https://"], &[href^="http://"]
             {
                 &:not(.no-external-icon)::after {
+                    --vertical-shift: -0.125em;
                     display: inline-block;
                     font-display: block;
                     font-family: bootstrap-icons !important;
@@ -109,8 +110,9 @@ a {
                     font-variant: normal;
 
                     text-transform: none;
-                    line-height: 1;
-                    vertical-align: -0.125em;
+                    line-height: 1em;
+                    font-size: calc(1em + var(--vertical-shift));
+                    vertical-align: var(--vertical-shift);
                     -webkit-font-smoothing: antialiased;
                     -moz-osx-font-smoothing: grayscale;
 

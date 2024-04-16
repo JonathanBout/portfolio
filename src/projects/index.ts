@@ -92,9 +92,10 @@ const tags = {
         name: "portfolio",
         color: "white"
     }),
-    localization: new Tag({
-        name: "localization",
-        color: "#f0db4f"
+    internationalization: new Tag({
+        name: "internationalization",
+        color: "#f0db4f",
+        url: "https://en.wikipedia.org/wiki/Internationalization"
     }),
     nginx: new Tag({
         name: "Nginx",
@@ -127,8 +128,8 @@ const projects: Project[] = [
         demo: "https://server.jonathanbout.com",
         tags: ["docker", "apache", "nginx", "ubuntu", "linux", "mySQL"],
         description: {
-            en: "My own webserver, running Ubuntu on an Odroid N2+. Most of my web based projects are hosted on this server using Docker and Apache, and within the containers I use Nginx when a proxy is needed.",
-            nl: "Mijn eigen webserver, Ubuntu op een Odroid N2+. De meeste van mijn webprojecten worden gehost op deze server met behulp van Docker en Apache, en binnen de containers gebruik ik Nginx wanneer een proxy nodig is."
+            en: "My own webserver, running Ubuntu on an Odroid N2+. Most of my web based projects are hosted on this server using Docker, and Apache's HTTPD implementation as a proxy. Within the containers I use Nginx when a server is needed.",
+            nl: "Mijn eigen webserver, Ubuntu op een Odroid N2+. De meeste van mijn webprojecten worden gehost op deze server met behulp van Docker en Apache's HTTPD implementatie als proxy. Binnen de containers gebruik ik Nginx wanneer daar een server nodig is."
         }
     }),
     new Project({
@@ -151,7 +152,7 @@ const projects: Project[] = [
             en: "This website! My personal portfolio website, built with Vue.js. To support a broader audience, it's available in both English and Dutch using i18n and two domains.",
             nl: "Deze website! Mijn persoonlijke portfolio website, gebouwd met Vue.js. Om een breder publiek te ondersteunen, is deze beschikbaar in zowel het Engels als het Nederlands met behulp van i18n en twee domeinen."
         },
-        tags: ["portfolio", "localization", "vue"]
+        tags: ["portfolio", "internationalization", "vue"]
     })
 ]
 

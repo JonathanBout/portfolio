@@ -14,11 +14,25 @@ if (foundTag) {
         foundTag.textColor.toCSSColorString() ?? "black"
     }`
 }
+
+function getIconUrl() {
+    if (foundTag.iconUrl) {
+        return foundTag.iconUrl
+    } else if (foundTag.url) {
+        return `https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${foundTag.url}&size=32`
+    }
+    return undefined
+}
 </script>
 
 <template>
     <component :is="foundTag.url ? 'a' : 'span'" class="tag-element" :href="foundTag.url" :style="style">
-        <img v-if="foundTag.iconUrl" :src="foundTag.iconUrl" alt="icon" />
+        <img
+            v-if="foundTag.iconUrl || foundTag.url"
+            :src="getIconUrl()"
+            onerror="this.style.display = 'none';"
+            alt="icon"
+        />
         <span>
             {{ foundTag?.name ?? tag }}
         </span>
@@ -30,8 +44,13 @@ if (foundTag) {
     padding-inline: 10px;
     padding-block: 0px;
     border-radius: 100px;
-    height: 100%;
     margin-top: 3px;
+    display: inline-block;
+
+    @media (prefers-color-scheme: light) {
+        box-shadow: 0 0 10px -4px #000;
+    }
+
     &,
     & > span {
         background-color: var(--tag-background-color);
