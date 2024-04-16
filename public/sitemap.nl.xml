@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	<url>
 		<loc>https://jonathanbout.nl</loc>
-		<xhtml rel="alternate" link="https://jonathanbout.nl" hreflang="nl" />
-		<xhtml rel="alternate" link="https://jonathanbout.com" hreflang="en" />
+		<xhtml:link rel="alternate" link="https://jonathanbout.nl" hreflang="nl" />
+		<xhtml:link rel="alternate" link="https://jonathanbout.com" hreflang="en" />
 	</url>
 	<url>
 		<loc>https://jonathanbout.nl/projects</loc>
-		<xhtml rel="alternate" link="https://jonathanbout.nl/projects" hreflang="nl" />
-		<xhtml rel="alternate" link="https://jonathanbout.com/projects" hreflang="en" />
+		<xhtml:link rel="alternate" link="https://jonathanbout.nl/projects" hreflang="nl" />
+		<xhtml:link rel="alternate" link="https://jonathanbout.com/projects" hreflang="en" />
 	</url>
 </urlset>
