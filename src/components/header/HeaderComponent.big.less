@@ -1,0 +1,85 @@
+.header-toggle,
+.header-backdrop {
+    display: none;
+}
+
+header > a {
+    height: 100%;
+    text-decoration: none;
+    color: var(--color-text);
+    transform-origin: top center;
+    display: inline-block;
+    transition: font-size 0.1s linear;
+    font-size: 1em;
+
+    transition: background-color var(--animation-duration) linear;
+
+    padding: 5px 20px 0px var(--border-radius);
+
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+
+    &::before,
+    &::after {
+        z-index: 20;
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 40px;
+        background-color: transparent;
+        left: calc(0px - var(--border-radius));
+        bottom: 0;
+        border-bottom-right-radius: var(--border-radius);
+        transition: box-shadow var(--animation-duration) linear;
+    }
+
+    &::after {
+        background-color: transparent;
+        left: unset;
+        right: calc(0px - var(--border-radius));
+        border-bottom-right-radius: unset;
+        border-bottom-left-radius: var(--border-radius);
+    }
+
+    &.active {
+        background-color: var(--color-background);
+
+        &::before,
+        &::after {
+            box-shadow: 0 var(--border-radius) 0 0 var(--color-background);
+        }
+    }
+
+    @media (hover: hover) {
+        &:hover:not(.active) {
+            filter: brightness(1.1);
+        }
+    }
+
+    &[href^="https://"], &[href^="http://"]
+    {
+        &:hover::after {
+            content: "↗";
+            font-size: 0.8em;
+            right: -5px;
+            height: 25px;
+            line-height: 25px;
+            transform: translateY(-50%);
+        }
+
+        height: calc(100% - 10px);
+        border-radius: var(--border-radius);
+        border-bottom-left-radius: calc(var(--border-radius) - 10px);
+    }
+}
+
+header {
+    --animation-duration: 0.2s;
+    flex: 0 1 0px;
+    width: 100%;
+    box-shadow: 100px 0 0 0 var(--color-secondary-background);
+    padding-top: 5px;
+    gap: 10px;
+    top: 0;
+}

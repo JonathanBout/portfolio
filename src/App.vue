@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router"
 import Footer from "./components/FooterComponent.vue"
-import Header from "./components/HeaderComponent.vue"
+import Header from "./components/header/HeaderComponent.vue"
 import { ref } from "vue"
 
 const menuIsOpen = ref(false)

@@ -1,0 +1,65 @@
+.version {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 0.6rem;
+    padding-right: 5px;
+    padding-top: 5px;
+    margin: 0;
+    line-height: 1;
+    text-transform: lowercase;
+}
+
+.menu-wrapper {
+    display: contents;
+}
+
+.site-title {
+    font-size: 1.4em;
+}
+
+.flex-filler,
+.location-marker {
+    display: none;
+}
+
+header {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    text-transform: capitalize;
+    background-color: var(--color-secondary-background);
+}
+
+.header-toggle {
+    background-color: var(--color-secondary-background);
+    &::before,
+    &::after {
+        background-color: transparent;
+
+        top: calc(0px - var(--border-radius) * 2);
+        left: 0;
+
+        content: "";
+        position: absolute;
+        width: var(--border-radius);
+        height: calc(var(--border-radius) * 2);
+        border-bottom-left-radius: var(--border-radius);
+        box-shadow: 0 var(--border-radius) 0 0 var(--color-secondary-background);
+    }
+
+    &::after {
+        top: unset;
+        border-bottom-left-radius: unset;
+        border-top-left-radius: var(--border-radius);
+        box-shadow: 0 calc(0px - var(--border-radius)) 0 0 var(--color-secondary-background);
+        bottom: calc(0px - var(--border-radius) * 2);
+    }
+}
+
+@media (width > 700px) {
+    @import url(./HeaderComponent.big.less);
+}
+@media (width <= 700px) {
+    @import url(./HeaderComponent.small.less);
+}
