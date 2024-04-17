@@ -72,7 +72,7 @@ function transformPathName(index: number, part: string) {
 <template>
     <div class="menu-wrapper" :style="'--animation-duration: ' + animationDuration">
         <div :class="'header-backdrop' + (headerOpen ? '' : ' closed')" @click="close_menu"></div>
-        <button class="header-toggle" @click="toggle_menu">
+        <button aria-label="menu" class="header-toggle" @click="toggle_menu">
             <BurgerMenuIconComponent :animation-duration="animationDuration" :open="headerOpen" />
             <div class="header-toggle-backdrop"></div>
         </button>
