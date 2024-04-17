@@ -58,13 +58,11 @@ export function createLocalizer(): Localizer {
         legacy: false
     })
 
-    if (navigator.userAgent.match(/bot|googlebot|crawler|spider|robot|crawling/i)) {
+    if (navigator.userAgent.match(/bot|googlebot|crawler|spider|robot|crawling|Inspection\s+Tool/i)) {
         return {
             locale,
             install: (app: any) => {
-                app.config.globalProperties.$updateLocale = (...params: any[]) => {
-                    params.length
-                }
+                app.config.globalProperties.$updateLocale = () => {}
                 app.provide("locale", locale)
                 app.use(i18n)
             }
