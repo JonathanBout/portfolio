@@ -37,26 +37,60 @@ const locale = inject("locale")
 
 <style scoped lang="less">
 .credits,
-.language-display,
+.language-display > button,
 .links {
     text-align: center;
     font-size: 0.9em;
+
+    @media (pointer: coarse) {
+        line-height: 3;
+    }
 }
 
 .links {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    overflow: auto;
+    justify-content: safe center;
+
+    --padding-size: 20px;
+
+    padding-inline: var(--padding-size);
+    * {
+        text-wrap: nowrap;
+    }
+
+    &::before {
+        position: sticky;
+        content: "_";
+        color: transparent;
+        left: calc(var(--padding-size) * -1);
+        top: 0;
+        width: var(--padding-size);
+        height: 100%;
+        z-index: 10;
+        background: linear-gradient(90deg, var(--color-background) 0%, transparent 100%);
+    }
+
+    &::after {
+        position: sticky;
+        content: "_";
+        color: transparent;
+        right: calc(var(--padding-size) * -1);
+        top: 0;
+        width: var(--padding-size);
+        height: 100%;
+        z-index: 10;
+        background: linear-gradient(-90deg, var(--color-background) 0%, transparent 100%);
+    }
 }
 
 .language-display {
-    font-size: 0.6em;
-
     button {
         border: none;
         background: none;
         cursor: pointer;
-        font-size: 1.5em;
+        font-size: 0.9em;
         margin-inline: 5px;
 
         &.current {
