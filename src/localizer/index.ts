@@ -60,7 +60,7 @@ export function createLocalizer(): Localizer {
 
     console.log(navigator.userAgent)
 
-    if (navigator.userAgent.match(/bot|googlebot|crawler|spider|robot|crawling|Inspection\s+Tool/i)) {
+    if (navigator.userAgent.match(/bot|googlebot|crawler|spider|robot|crawling|InspectionTool/i)) {
         return {
             locale,
             install: (app: any) => {
