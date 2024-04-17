@@ -11,7 +11,7 @@ const locale = inject("locale")
 
 <template>
     <footer class="monospace" :inert="inert">
-        <p class="language-display">
+        <p class="language-display" translate="no">
             <!-- @vue-expect-error property does not exist on type ... -->
             <button :class="'link no-external-icon' + (locale === 'en' ? ' current' : '')" @click="$updateLocale('en')">
                 {{ $t("language.en") }}
