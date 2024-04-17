@@ -19,7 +19,7 @@ function getIconUrl() {
     if (foundTag.iconUrl) {
         return foundTag.iconUrl
     } else if (foundTag.url) {
-        return `https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${foundTag.url}&size=32`
+        return `https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${foundTag.url}&size=64`
     }
     return undefined
 }
@@ -45,7 +45,8 @@ function getIconUrl() {
     padding-block: 0px;
     border-radius: 100px;
     margin-top: 3px;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
 
     @media (prefers-color-scheme: light) {
         box-shadow: 0 0 10px -4px #000;
@@ -62,7 +63,9 @@ function getIconUrl() {
         height: 1em;
         aspect-ratio: 1;
         margin-right: 5px;
-        transform: translateY(0.11em);
+        margin-left: -5px;
+        border-radius: 25%;
+        //transform: translateY(0.11em);
     }
 }
 </style>
