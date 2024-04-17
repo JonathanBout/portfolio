@@ -31,7 +31,7 @@ function getTotalSizeCSS() {
 </script>
 
 <template>
-    <div class="github-stats">
+    <div class="github-stats" translate="no">
         <template v-if="stats.topLanguages.length > 0">
             <h3>{{ $t("projects.github-stats.top-languages") }}</h3>
             <div class="percentage-bar" :style="getTotalSizeCSS()">
