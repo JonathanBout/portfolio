@@ -87,15 +87,17 @@ a {
     color: inherit;
     border: none;
     background-color: inherit;
-    margin: none;
-    padding: none;
+    margin: 0;
+    padding: 0;
     font: inherit;
     display: inline;
     padding: unset;
     cursor: pointer;
     text-decoration: none;
+
     @media (hover: hover) {
-        &:hover {
+        &:hover,
+        &:focus-visible {
             text-decoration: underline;
             color: var(--color-link);
 

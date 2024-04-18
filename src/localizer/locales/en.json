@@ -12,7 +12,8 @@
         "github": "My GitHub"
     },
     "language": {
-        "name": "English"
+        "name": "English",
+        "availableLocaleMessage": "This site is available in:"
     },
     "header": {
         "projects": "Projects",
