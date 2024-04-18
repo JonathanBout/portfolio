@@ -12,14 +12,22 @@ const locale = inject("locale")
 <template>
     <footer class="monospace" :inert="inert">
         <p class="language-display" translate="no">
-            <!-- @vue-expect-error property does not exist on type ... -->
-            <button :class="'link no-external-icon' + (locale === 'en' ? ' current' : '')" @click="$updateLocale('en')">
-                {{ $t("language.en") }}
-            </button>
-            <!-- @vue-expect-error -->
-            <button :class="'link no-external-icon' + (locale === 'nl' ? ' current' : '')" @click="$updateLocale('nl')">
-                {{ $t("language.nl") }}
-            </button>
+            <span>{{ $t("language.availableLocaleMessage") }}</span>
+            <br />
+			<ul>
+				<li>
+					<!-- @vue-expect-error property does not exist on type ... -->
+					<button :class="'link no-external-icon' + (locale === 'en' ? ' current' : '')" @click="$updateLocale('en')">
+					{{ $t("language.en") }}
+					</button>
+				</li>
+				<li>
+					<!-- @vue-expect-error -->
+					<button :class="'link no-external-icon' + (locale === 'nl' ? ' current' : '')" @click="$updateLocale('nl')">
+						{{ $t("language.nl") }}
+					</button>
+				</li>
+			</ul>
         </p>
         <p class="links separated">
             <span>&copy; {{ creditsYear }} Jonathan Bout</span>
@@ -43,7 +51,7 @@ const locale = inject("locale")
     font-size: 0.9em;
 
     @media (pointer: coarse) {
-        line-height: 3;
+        line-height: 48px;
     }
 }
 
@@ -86,16 +94,16 @@ const locale = inject("locale")
 }
 
 .language-display {
+	ul, li {
+		list-style: none;
+		padding: 0;
+	}
     button {
         border: none;
         background: none;
         cursor: pointer;
         font-size: 0.9em;
         margin-inline: 5px;
-
-        &.current {
-            display: none;
-        }
     }
 }
 .version {
@@ -107,5 +115,19 @@ const locale = inject("locale")
     padding: 0;
     font-size: 0.6em;
     text-align: end;
+}
+
+footer {
+    border-top: 1px solid #8888;
+	@media (prefers-color-scheme: light) {
+		--color-background: white;
+		--color-text: black;
+	}
+	@media (prefers-color-scheme: dark) {
+		--color-background: #161611;
+		--color-text: white;
+	}
+	color: var(--color-text);
+	background-color: var(--color-background);
 }
 </style>

@@ -12,7 +12,8 @@
         "github": "Mijn GitHub"
     },
     "language": {
-        "name": "Nederlands"
+        "name": "Nederlands",
+        "availableLocaleMessage": "Deze site is beschikbaar in:"
     },
     "header": {
         "projects": "Projecten",

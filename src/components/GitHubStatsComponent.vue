@@ -107,11 +107,12 @@ function getTotalSizeCSS() {
 
             &::before,
             &::after {
-                transform-origin: bottom center;
+                transform-origin: center center;
                 position: absolute;
                 right: 0;
                 background-color: var(--lang-color);
                 opacity: 0;
+                pointer-events: none;
             }
 
             &::after {
@@ -140,18 +141,22 @@ function getTotalSizeCSS() {
 
                 &::after,
                 &::before {
-                    animation: slide-up 0.3s;
+                    pointer-events: all;
+                    animation: slide-up 0.3s ease-out;
                     opacity: 1;
                 }
             }
         }
     }
     @keyframes slide-up {
-        from {
+        0% {
             opacity: 0;
             transform: translateY(100%) scaleY(0);
         }
-        to {
+        66% {
+            opacity: 0.5;
+        }
+        100% {
             opacity: 1;
             transform: translateY(0) scaleY(1);
         }
