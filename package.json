@@ -25,7 +25,7 @@
     },
     "devDependencies": {
         "@babel/types": "^7.23.6",
-        "@rushstack/eslint-patch": "^1.2.0",
+        "@rushstack/eslint-patch": "^1.10.2",
         "@tsconfig/node18": "^2.0.0",
         "@types/node": "^20.12.7",
         "@vitejs/plugin-vue": "^4.2.1",
