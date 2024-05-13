@@ -33,7 +33,7 @@
         "@vue/eslint-config-typescript": "^11.0.3",
         "@vue/tsconfig": "^0.5.1",
         "eslint": "^9.2.0",
-        "eslint-plugin-vue": "^9.11.0",
+        "eslint-plugin-vue": "^9.26.0",
         "less": "^4.2.0",
         "less-loader": "^12.2.0",
         "prettier": "^3.2.5",
