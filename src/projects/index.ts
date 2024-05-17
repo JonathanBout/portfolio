@@ -125,7 +125,7 @@ const projects: Project[] = [
     new Project({
         name: "Webserver",
         id: "webserver",
-        demo: "https://server.jonathanbout.com",
+        demo: "https://server01.jonathanbout.dev",
         tags: ["docker", "apache", "nginx", "ubuntu", "linux", "mySQL"],
         description: {
             en: "My own webserver, running Ubuntu on an Odroid N2+. Most of my web based projects are hosted on this server using Docker, and Apache's HTTPD implementation as a proxy. Within the containers I use Nginx when a server is needed.",
@@ -147,7 +147,7 @@ const projects: Project[] = [
         name: "Portfolio",
         id: "portfolio",
         github: "https://github.com/jonathanbout/portfolio",
-        demo: "https://jonathanbout.com",
+        demo: "/",
         description: {
             en: "This website! My personal portfolio website, built with Vue.js. To support a broader audience, it's available in both English and Dutch using i18n and two domains.",
             nl: "Deze website! Mijn persoonlijke portfolio website, gebouwd met Vue.js. Om een breder publiek te ondersteunen, is deze beschikbaar in zowel het Engels als het Nederlands met behulp van i18n en twee domeinen."
