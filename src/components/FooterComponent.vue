@@ -32,7 +32,7 @@ const locale = inject("locale")
         <p class="links separated">
             <span>&copy; {{ creditsYear }} Jonathan Bout</span>
             <span>
-                <a :aria-label="$t('footer.projectGitHub')" href="https://github.com/jonathanbout/portfolio">
+                <a href="https://github.com/jonathanbout/portfolio">
                     {{ $t("footer.view-on-gh") }}
                 </a>
             </span>

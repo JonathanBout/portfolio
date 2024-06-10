@@ -63,6 +63,12 @@ const tags = {
         url: "https://ubuntu.com",
         iconUrl: "/images/logos/ubuntu.png"
     }),
+    debian: new Tag({
+        name: "Debian",
+        color: "white",
+        url: "https://www.debian.org",
+        iconUrl: "/images/logos/debian.svg"
+    }),
     linux: new Tag({
         name: "Linux",
         color: "#000",
@@ -72,6 +78,12 @@ const tags = {
         name: "MySQL",
         color: "#00758F",
         url: "https://www.mysql.com"
+    }),
+    postgres: new Tag({
+        name: "PostgreSQL",
+        color: "#336791",
+        url: "https://www.postgresql.org",
+        iconUrl: "/images/logos/postgres.svg"
     }),
     watchface: new Tag({
         name: "watchface",
@@ -126,10 +138,10 @@ const projects: Project[] = [
         name: "Webserver",
         id: "webserver",
         demo: "https://server01.jonathanbout.dev",
-        tags: ["docker", "apache", "nginx", "ubuntu", "linux", "mySQL"],
+        tags: ["docker", "apache", "nginx", "debian", "linux", "mySQL", "postgres"],
         description: {
-            en: "My own webserver, running Ubuntu on an Odroid N2+. Most of my web based projects are hosted on this server using Docker, and Apache's HTTPD implementation as a proxy. Within the containers I use Nginx when a server is needed.",
-            nl: "Mijn eigen webserver, Ubuntu op een Odroid N2+. De meeste van mijn webprojecten worden gehost op deze server met behulp van Docker en Apache's HTTPD implementatie als proxy. Binnen de containers gebruik ik Nginx wanneer daar een server nodig is."
+            en: "My own webserver, running Debian on an Odroid N2+. Most of my web based projects are hosted on this server using Docker, and Apache's HTTPD implementation as a proxy. Within the containers I use Nginx when it contains just static files, for example with Vue.",
+            nl: "Mijn eigen webserver, Debian op een Odroid N2+. De meeste van mijn webprojecten worden gehost op deze server met behulp van Docker en Apache's HTTPD implementatie als proxy. Binnen de containers gebruik ik Nginx wanneer daar alleen statische bestanden staan, bijvoorbeeld met Vue."
         }
     }),
     new Project({

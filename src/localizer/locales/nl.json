@@ -32,12 +32,16 @@
         "title": "Projecten",
         "intro": "Hieronder een aantal van mijn projecten met relevante links en tags. Neem gerust een kijkje en feedback is altijd welkom!",
         "see-more": "Bekijk meer van mijn projecten op GitHub!",
-        "open-preview": "Voorbeeld (béta)",
+        "view-on-gh": "Bekijk het project '{name}' op GitHub",
+        "view-demo": "Bekijk de live demo van project '{name}'",      
         "github-stats": {
             "text": "GitHub Statistieken",
             "error": "Er ging wat mis.",
             "loading": "Laden...",
-            "top-languages": "Meest gebruikte talen"
+            "top-languages": {
+                "title": "Meest gebruikte talen",
+                "description": "De talen die ik het meeste gebruikt heb in projecten, in bytes."
+            }
         }
     },
     "version": "versie",

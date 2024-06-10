@@ -28,12 +28,26 @@ function getTotalSizeCSS() {
     const size = getTotalSize()
     return `--total-lang-size: ${size};`
 }
+
+function getTotalSizeFriendly(size: number) {
+    // return sizes in B, KiB, MiB or GiB
+    if (size < 1024) {
+        return size + " B"
+    } else if (size < 1024 * 1024) {
+        return (size / 1024).toFixed(2) + " KiB"
+    } else if (size < 1024 * 1024 * 1024) {
+        return (size / (1024 * 1024)).toFixed(2) + " MiB"
+    } else {
+        return (size / (1024 * 1024 * 1024)).toFixed(2) + " GiB"
+    }
+}
 </script>
 
 <template>
     <div class="github-stats" translate="no">
         <template v-if="stats.topLanguages.length > 0">
-            <h3>{{ $t("projects.github-stats.top-languages") }}</h3>
+            <h3>{{ $t("projects.github-stats.top-languages.title") }}</h3>
+            <div v-html="$t('projects.github-stats.top-languages.description')"></div>
             <div class="percentage-bar" :style="getTotalSizeCSS()">
                 <div
                     :style="getCSS(stat)"
@@ -41,10 +55,11 @@ function getTotalSizeCSS() {
                     :key="stat.name"
                     :data-lang-name="stat.name"
                     :data-lang-percentage="getPercentageString(stat)"
+                    :data-total-lang-size="getTotalSizeFriendly(stat.size)"
                     tabindex="0"
                 >
                     <span>{{ stat.name }}</span>
-                    <span>{{ getPercentageString(stat) }}</span>
+                    <span>{{ getTotalSizeFriendly(stat.size) }} ({{ getPercentageString(stat) }})</span>
                 </div>
             </div>
         </template>
@@ -92,10 +107,6 @@ function getTotalSizeCSS() {
             &:last-child {
                 border-radius: 0 0 5px 5px;
             }
-
-            span::after {
-                content: " - " calc(var(--lang-size) / var(--total-lang-size));
-            }
         }
     }
 
@@ -116,7 +127,7 @@ function getTotalSizeCSS() {
             }
 
             &::after {
-                content: attr(data-lang-name) " - " attr(data-lang-percentage);
+                content: attr(data-lang-name) " - " attr(data-total-lang-size) " (" attr(data-lang-percentage) ")";
                 top: calc(-100% - 10px);
                 height: fit-content;
                 width: fit-content;
