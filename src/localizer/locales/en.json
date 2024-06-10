@@ -32,12 +32,16 @@
         "title": "Projects",
         "intro": "Below are some of the projects I've worked on with relevant links and tags. Feel free to check them out and let me know what you think!",
         "see-more": "See more on my GitHub!",
-        "open-preview": "preview (beta)",
+        "view-on-gh": "View project '{name}' on GitHub",
+        "view-demo": "View a live demo of project '{name}'",      
         "github-stats": {
             "text": "GitHub Statistics",
             "error": "Something went wrong.",
             "loading": "Loading...",
-            "top-languages": "Top languages"
+            "top-languages": {
+                "title": "Top languages",
+                "description": "The languages I use most in my projects, in bytes."
+            }
         }
     },
     "version": "version",
