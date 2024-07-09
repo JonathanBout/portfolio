@@ -79,7 +79,9 @@ function getTotalSizeFriendly(size: number) {
 
     div {
         color: var(--lang-contrast-color);
-        transition: height 0.3s, transform 0.3s;
+        transition:
+            height 0.3s,
+            transform 0.3s;
         height: 100%;
         flex-basis: calc(var(--lang-size) / var(--total-lang-size) * 100%);
         background-color: var(--lang-color);
