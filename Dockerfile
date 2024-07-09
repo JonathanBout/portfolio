@@ -1,5 +1,5 @@
 # Use the node image from official Docker Hub
-FROM node:lts-alpine as build-stage
+FROM node:lts-alpine AS build-stage
 # set the working directory
 WORKDIR /app
 # Copy the working directory in the container
@@ -16,7 +16,7 @@ RUN npm run build
 
 
 # Use the lightweight Nginx image from the previous stage for the nginx container
-FROM nginx:stable-alpine as production-stage
+FROM nginx:stable-alpine AS production-stage
 WORKDIR /app
 # Copy the build application from the previous stage to the Nginx container
 COPY --from=build-stage /app/dist ./

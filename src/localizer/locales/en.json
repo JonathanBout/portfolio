@@ -33,7 +33,7 @@
         "intro": "Below are some of the projects I've worked on with relevant links and tags. Feel free to check them out and let me know what you think!",
         "see-more": "See more on my GitHub!",
         "view-on-gh": "View project '{name}' on GitHub",
-        "view-demo": "View a live demo of project '{name}'",      
+        "view-demo": "View a live demo of project '{name}'",
         "github-stats": {
             "text": "GitHub Statistics",
             "error": "Something went wrong.",

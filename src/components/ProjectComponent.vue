@@ -19,10 +19,20 @@ const locale = inject("locale") as string
         </div>
         <ul class="links">
             <li v-if="project.github">
-                <a :href="project.github" :aria-label="$t('projects.view-on-gh', { name: project.name })" target="_blank" class="bi bi-github big no-external-icon"></a>
+                <a
+                    :href="project.github"
+                    :aria-label="$t('projects.view-on-gh', { name: project.name })"
+                    target="_blank"
+                    class="bi bi-github big no-external-icon"
+                ></a>
             </li>
             <li v-if="project.demo">
-                <a :href="project.demo" :aria-label="$t('projects.view-demo', { name: project.name })" target="_blank" class="bi bi-box-arrow-up-right big no-external-icon"></a>
+                <a
+                    :href="project.demo"
+                    :aria-label="$t('projects.view-demo', { name: project.name })"
+                    target="_blank"
+                    class="bi bi-box-arrow-up-right big no-external-icon"
+                ></a>
             </li>
             <li v-for="tag in project.tags" class="tag" v-bind:key="tag">
                 <TagComponent :tag="tag" />
