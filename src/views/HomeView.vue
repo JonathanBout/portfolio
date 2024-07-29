@@ -68,7 +68,7 @@ function jump() {
     <div class="page-root grow-in">
         <div class="stack">
             <div class="me-image" draggable="false">
-                <img @click="jump" src="https://gravatar.com/avatar/be19bd79a37e5f322b7a1898a1147127?size=1000" alt="Jonathan Bout" />
+                <img rel="prefetch" @click="jump" src="https://gravatar.com/avatar/be19bd79a37e5f322b7a1898a1147127?size=1000" alt="Jonathan Bout" />
             </div>
             <div class="me-info">
                 <h2><i class="bi bi-geo-alt"></i> {{ $t("home.country") }} <span class="fi fi-nl"></span> </h2>
