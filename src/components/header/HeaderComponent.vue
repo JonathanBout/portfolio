@@ -96,7 +96,6 @@ function transformPathName(index: number, part: string) {
             </a>
             <div class="flex-filler"></div>
             <div class="version">
-                <i class="bi bi-git"></i>
                 <a :href="'https://github.com/JonathanBout/portfolio/commit/' + versionHash">{{
                     $t("version") + " " + versionHash
                 }}</a>
