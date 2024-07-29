@@ -11,7 +11,7 @@ const locale = inject("locale")
 
 <template>
     <footer class="monospace" :inert="inert">
-        <p class="language-display" translate="no">
+        <div class="language-display" translate="no">
             <span>{{ $t("language.availableLocaleMessage") }}</span>
             <br />
 			<ul>
@@ -28,18 +28,15 @@ const locale = inject("locale")
 					</button>
 				</li>
 			</ul>
-        </p>
-        <p class="links separated">
+        </div>
+        <div class="links separated">
             <span>&copy; {{ creditsYear }} Jonathan Bout</span>
             <span>
                 <a href="https://github.com/jonathanbout/portfolio">
                     {{ $t("footer.view-on-gh") }}
                 </a>
             </span>
-            <span>
-                <a href="/disclaimer.html">{{ $t("footer.disclaimer") }}</a>
-            </span>
-        </p>
+        </div>
     </footer>
 </template>
 

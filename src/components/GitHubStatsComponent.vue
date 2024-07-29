@@ -46,7 +46,6 @@ function getTotalSizeFriendly(size: number) {
 <template>
     <div class="github-stats" translate="no">
         <template v-if="stats.topLanguages.length > 0">
-            <h3>{{ $t("projects.github-stats.top-languages.title") }}</h3>
             <div v-html="$t('projects.github-stats.top-languages.description')"></div>
             <div class="percentage-bar" :style="getTotalSizeCSS()">
                 <div
@@ -76,6 +75,7 @@ function getTotalSizeFriendly(size: number) {
     width: 100%;
     height: 20px;
     display: flex;
+    animation: percentage-bar-slide 0.3s ease-out;
 
     div {
         color: var(--lang-contrast-color);
@@ -85,6 +85,7 @@ function getTotalSizeFriendly(size: number) {
         height: 100%;
         flex-basis: calc(var(--lang-size) / var(--total-lang-size) * 100%);
         background-color: var(--lang-color);
+
     }
 
     @media (width <= 600px) or (hover: none) {
@@ -108,6 +109,10 @@ function getTotalSizeFriendly(size: number) {
 
             &:last-child {
                 border-radius: 0 0 5px 5px;
+            }
+
+            span {
+                color: var(--lang-contrast-color);
             }
         }
     }
@@ -172,6 +177,15 @@ function getTotalSizeFriendly(size: number) {
         100% {
             opacity: 1;
             transform: translateY(0) scaleY(1);
+        }
+    }
+
+    @keyframes percentage-bar-slide {
+        from {
+            transform: scaleX(0);
+        }
+        to {
+            transform: scaleX(1);
         }
     }
 }

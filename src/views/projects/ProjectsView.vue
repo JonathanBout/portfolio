@@ -7,10 +7,6 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
     <div class="page-root">
         <p class="intro">{{ $t("projects.intro") }}</p>
         <ProjectComponent :project="project" v-for="project in projectsData.projects" :key="project.id" />
-        <br />
-        <hr />
-        <h2 class="github-stats-text">{{ $t("projects.github-stats.text") }}</h2>
-        <GitHubStatsComponent />
 
         <div class="see-more">
             <a href="https://github.com/jonathanbout">{{ $t("projects.see-more") }}</a>
@@ -21,14 +17,37 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
 .intro {
     text-align: center;
     font-size: 1.1em;
+    margin-block-end: 1em;
 }
 .see-more {
-    display: flex;
-    justify-content: safe center;
-    align-items: safe center;
-    width: 100%;
-    text-align: center;
     font-weight: bold;
     font-size: 1.3em;
+
+    a {
+        background: linear-gradient(90deg, #ff8a00, rgb(198, 148, 245));
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent;
+
+        transition: font-size 0.3s;
+        
+        &:hover {
+            font-size: 1.2em;
+        }
+    }
+}
+
+.page-root {
+    animation: scale-in 0.5s;
+}
+
+@keyframes scale-in {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 </style>

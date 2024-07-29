@@ -56,22 +56,6 @@ header > a {
             filter: brightness(1.1);
         }
     }
-
-    &[href^="https://"], &[href^="http://"]
-    {
-        &:hover::after {
-            content: "↗";
-            font-size: 0.8em;
-            right: -5px;
-            height: 25px;
-            line-height: 25px;
-            transform: translateY(-50%);
-        }
-
-        height: calc(100% - 10px);
-        border-radius: var(--border-radius);
-        border-bottom-left-radius: calc(var(--border-radius) - 10px);
-    }
 }
 
 header {

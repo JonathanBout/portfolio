@@ -1,5 +1,8 @@
 @header-breakpoint: 700px;
 
+@import "/node_modules/flag-icons/css/flag-icons.min.css";
+
+
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
     --background-light: white;
@@ -70,6 +73,9 @@
 * {
     text-wrap: pretty;
     color: var(--color-text);
+
+    scroll-behavior: smooth;
+
     &,
     ::before,
     ::after {
@@ -130,7 +136,10 @@ a {
 
                     animation: slide 0.1s ease-out;
                     animation-fill-mode: forwards;
-                    overflow: hidden;
+
+                    text-decoration: none;
+
+                    z-index: 100;
 
                     @keyframes slide {
                         0% {

@@ -88,9 +88,15 @@ function transformPathName(index: number, part: string) {
             <router-link active-class="active" to="/projects">
                 <span>{{ $t("header.projects") }}</span>
             </router-link>
-            <!-- <a href="https://github.com/sponsors/JonathanBout">Sponsor me</a> -->
+            <a href="https://github.com/JonathanBout" class="no-external-icon">
+                <span><i class="bi bi-github"></i></span>
+            </a>
+            <a href="https://linkedin.com/in/jonathanbout" class="no-external-icon">
+                <span><i class="bi bi-linkedin"></i></span>
+            </a>
             <div class="flex-filler"></div>
             <div class="version">
+                <i class="bi bi-git"></i>
                 <a :href="'https://github.com/JonathanBout/portfolio/commit/' + versionHash">{{
                     $t("version") + " " + versionHash
                 }}</a>
