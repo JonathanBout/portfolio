@@ -19,25 +19,25 @@
         "npm-run-all": "^4.1.5",
         "parse-css-color": "^0.2.1",
         "read-last-lines": "^1.8.0",
-        "vue": "^3.4.31",
+        "vite": "^5.3.5",
+        "vue": "^3.4.34",
         "vue-i18n": "^9.13.1",
         "vue-router": "^4.4.0"
     },
     "devDependencies": {
-        "@babel/types": "^7.24.7",
-        "@rushstack/eslint-patch": "^1.10.3",
+        "@babel/types": "^7.25.0",
+        "@rushstack/eslint-patch": "^1.10.4",
         "@tsconfig/node18": "^18.2.4",
-        "@types/node": "^20.14.10",
-        "@vitejs/plugin-vue": "^5.0.5",
+        "@types/node": "^22.0.0",
+        "@vitejs/plugin-vue": "^5.1.1",
         "@vue/eslint-config-prettier": "^9.0.0",
         "@vue/eslint-config-typescript": "^11.0.3",
         "@vue/tsconfig": "^0.5.1",
         "eslint-plugin-vue": "^9.27.0",
         "less": "^4.2.0",
         "less-loader": "^12.2.0",
-        "prettier": "^3.3.2",
-        "typescript": "~5.5.3",
-        "vite": "^5.3.3",
-        "vue-tsc": "^2.0.26"
+        "prettier": "^3.3.3",
+        "typescript": "~5.5.4",
+        "vue-tsc": "^2.0.29"
     }
 }

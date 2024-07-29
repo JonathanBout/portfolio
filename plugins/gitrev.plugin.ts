@@ -10,9 +10,9 @@ export default function gitrevPlugin(): Plugin {
             if (id == moduleId) return resolvedModuleId
         },
         async load(id) {
-            const lastLog = await lastLines.read(".git/logs/HEAD", 1)
-            const currentHash = lastLog.split(" ")[1]
             if (id == resolvedModuleId) {
+                const lastLog = await lastLines.read(".git/logs/HEAD", 1)
+                const currentHash = lastLog.split(" ")[1]
                 return `export const rev = "${currentHash}"`
             }
         }

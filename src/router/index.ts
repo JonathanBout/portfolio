@@ -57,6 +57,10 @@ function setCanonical() {
     console.log(document.querySelector("link[rel=canonical]")?.getAttribute("href") ?? "No canonical link")
 }
 
+function resetScroll() {
+    window.scrollTo(0, 0)
+}
+
 router.beforeEach((to, from, next) => {
     setDocumentTitle(to)
     next()
@@ -66,5 +70,6 @@ setCanonical()
 
 router.afterEach(setDocumentTitle)
 router.afterEach(setCanonical)
+router.afterEach(resetScroll)
 
 export const createRouter = () => router

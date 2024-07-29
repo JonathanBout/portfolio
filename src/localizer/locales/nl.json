@@ -7,9 +7,12 @@
         "home": "Home",
         "pageNotFound": "Pagina '{path}' niet gevonden"
     },
-    "homePage": {
-        "linkedin": "Mijn LinkedIn",
-        "github": "Mijn GitHub"
+    "home": {
+        "greeting": "Hoi, ik ben Jonathan!",
+        "intro": "Ik studeer momenteel Informatica aan Hogeschool Rotterdam maar heb al meer dan 4 jaar ervaring in software ontwikkeling, voornamelijk in C# en TypeScript.",
+        "country": "Nederland",
+        "quick-overview": "Mijn ervaring",
+        "top-langs-title": "Meest gebruikte talen"
     },
     "language": {
         "name": "Nederlands",
@@ -21,8 +24,7 @@
     },
     "footer": {
         "view-on-gh": "Open op GitHub",
-        "apod-wrapper": "NASA APOD wrapper",
-        "disclaimer": "disclaimer"
+        "apod-wrapper": "NASA APOD wrapper"
     },
     "underConstruction": "Hier wordt nog aan gewerkt!",
     "privacy": {
@@ -40,7 +42,7 @@
             "loading": "Laden...",
             "top-languages": {
                 "title": "Meest gebruikte talen",
-                "description": "De talen die ik het meeste gebruikt heb in projecten, in bytes."
+                "description": "De talen die ik het meest gebruikt heb in projecten, in bytes. Alle data komt direct van GitHub."
             }
         }
     },

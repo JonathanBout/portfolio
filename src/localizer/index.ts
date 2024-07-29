@@ -58,8 +58,6 @@ export function createLocalizer(): Localizer {
         legacy: false
     })
 
-    console.log(navigator.userAgent)
-
     if (navigator.userAgent.match(/bot|googlebot|crawler|spider|robot|crawling|InspectionTool/i)) {
         return {
             locale,

@@ -7,9 +7,12 @@
         "home": "Home",
         "pageNotFound": "Page '{path}' not found"
     },
-    "homePage": {
-        "linkedin": "My LinkedIn",
-        "github": "My GitHub"
+    "home": {
+        "greeting": "Hi, I'm Jonathan!",
+        "intro": "I'm currently studying Computer Science at Hogeschool Rotterdam but already have 4+ years of experience in software development, primarily C# and TypeScript.",
+        "country": "The Netherlands",
+        "quick-overview": "My expertise",
+        "top-langs-title": "Top languages"
     },
     "language": {
         "name": "English",
@@ -21,8 +24,7 @@
     },
     "footer": {
         "view-on-gh": "View on GitHub",
-        "apod-wrapper": "NASA APOD wrapper",
-        "disclaimer": "disclaimer"
+        "apod-wrapper": "NASA APOD wrapper"
     },
     "underConstruction": "This page is under construction!",
     "privacy": {
@@ -40,7 +42,7 @@
             "loading": "Loading...",
             "top-languages": {
                 "title": "Top languages",
-                "description": "The languages I use most in my projects, in bytes."
+                "description": "The languages I use most in my projects, in bytes. All this data comes directly from GitHub."
             }
         }
     },

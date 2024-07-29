@@ -1,59 +1,311 @@
 <script setup lang="ts">
-import { useRoute } from "vue-router"
+import { is } from "@babel/types";
+import GitHubStatsComponent from "@/components/GitHubStatsComponent.vue"
+import { ref } from "vue";
+import { useI18n } from "vue-i18n"
 
-const route = useRoute()
+const { t } = useI18n()
 
-route.meta.title = "Test Test"
+let intro = t("home.intro")
+
+// make sure the random number is shuffeled a bit better
+for (let i = 0; i < Math.random() * 100; i+= Math.random() * 10) {}
+
+const highlight = (a: any) => `<span class="highlight hi${Math.round(Math.random() * 5) + 1}">${a}</span>`
+
+intro = intro
+    .replace(/\d+?\+.*?ience/gi, highlight)
+    .replace(/\d+?.*?aring/gi, highlight)
+    .replace(/informatica/gi, highlight)
+    .replace(/computer science/gi, highlight)
+    .replace(/c#/gi, highlight)
+    .replace(/typescript/gi, highlight)
+
+const clickCount = ref(0)
+const lastClick = ref(Date.now())
+
+function jump() {
+    const img = document.querySelector(".me-image img") as HTMLImageElement
+
+    if (Date.now() - lastClick.value < 1000) {
+        clickCount.value += 1
+    } else {
+        clickCount.value = 1
+    }
+
+    lastClick.value = Date.now()
+
+    // animate a jump
+    img.animate([
+        { transform: "translateY(0) rotate(-10deg)" },
+        { transform: "translateY(-50px) rotate(10deg)" },
+        { transform: "translateY(0)" },
+        { transform: "translateY(-40px)" },
+        { transform: "translateY(0) rotate(5deg)" },
+        { transform: "translateY(-30px)" },
+        { transform: "translateY(0) rotate(0)" },
+
+    ], {
+        duration: 500,
+        easing: "ease-out",
+        iterations: 1
+    })
+
+    if (clickCount.value > 10) {        
+        const originalUrl = img.src
+        img.src = "/images/ugh.png"
+
+        setTimeout(() => {
+            img.src = originalUrl
+        }, 2000)
+
+        clickCount.value = 0
+    }
+}
 </script>
 
 <template>
-    <div class="page-root">
-        <div class="icons">
-            <a
-                href="https://github.com/jonathanbout"
-                class="bi bi-github no-external-icon"
-                :aria-label="$t('homePage.github')"
-            >
-            </a>
-            <a
-                href="https://linkedin.com/in/jonathanbout"
-                class="bi bi-linkedin no-external-icon"
-                :aria-label="$t('homePage.linkedin')"
-            >
-            </a>
+    <div class="page-root grow-in">
+        <div class="stack">
+            <div class="me-image" draggable="false">
+                <img rel="prefetch" @click="jump" src="https://gravatar.com/avatar/be19bd79a37e5f322b7a1898a1147127?size=1000" alt="Jonathan Bout" />
+            </div>
+            <div class="me-info">
+                <h2><i class="bi bi-geo-alt"></i> {{ $t("home.country") }} <span class="fi fi-nl"></span> </h2>
+                <h1>{{ $t("home.greeting") }}</h1>
+                <p class="intro" v-html="intro"></p>
+            </div>
         </div>
+        <div class="quick-overview">    
+            <h3>{{ $t('home.quick-overview') }}</h3>
+            <div class="icons">
+                <label>
+                    <img src="https://skillicons.dev/icons?i=cs"></img>
+                    <span>C#</span>
+                </label>
+                <label>
+                    <img src="https://skillicons.dev/icons?i=py"></img>
+                    <span>Python</span>
+                </label>
+                <label>
+                    <img src="https://skillicons.dev/icons?i=ts"></img>
+                    <span>Typescript</span>
+                </label>
+                <label>
+                    <img src="https://skillicons.dev/icons?i=vue"></img>
+                    <span>Vue</span>
+                </label>
+                <label>
+                    <img src="https://skillicons.dev/icons?i=html"></img>
+                    <span>HTML</span>
+                </label>
+                <label>
+                    <img src="https://skillicons.dev/icons?i=css"></img>
+                    <span>CSS</span>
+                </label>
+            </div>
+        </div>
+        <div class="top-langs">
+            <h2 class="top-langs-text">{{ $t("home.top-langs-title") }}</h2>
+            <GitHubStatsComponent />
+        </div> 
     </div>
 </template>
 
 <style scoped lang="less">
-.icons .bi {
-    font-size: 3rem;
-    line-height: 3rem;
-    display: block;
-    transition: all 50ms ease-in-out;
-    color: var(--color-text);
+
+
+h1 {
+    text-align: start;
 }
 
-.bi-github:hover {
-    color: #777;
-    @media (prefers-color-scheme: dark) {
-        color: #bbb;
-    }
-}
-
-.bi-linkedin:hover {
-    color: #0077b5;
-    &:after {
-        position: absolute;
-        inset: 10px;
-        background-color: white;
-    }
-}
-
-.icons {
+.page-root {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
 
-    gap: 20px;
+.me-image img {
+    border-radius: 100vmax;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+
+    animation: image .5s ease-in-out;
+    user-select: none;
+
+    user-drag: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.me-info {
+    &, * {
+        width: fit-content;
+    }
+    
+    &:deep(.highlight) {
+
+        .text-gradient(@from, @to) {
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent;
+            background: linear-gradient(90deg, @from, @to);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            &.hi1 {
+                .text-gradient(#f9d423, #ff7577);
+            }
+            &.hi2 {
+                .text-gradient(#ee82ff, #95f8ff);
+            }
+            &.hi3 {
+                .text-gradient(#a8ff78, #78ffd6);
+            }
+            &.hi4 {
+                .text-gradient(rgb(255, 130, 213), #ff4e50);
+            }
+
+            &.hi5 {
+                .text-gradient(#dabeef, #faa);
+            }
+
+            &.hi6 {
+                .text-gradient(#ea00ff, #acce55);
+            }
+
+        }
+
+        @media (prefers-color-scheme: light) {
+            &.hi1 {
+                .text-gradient(#837220, #9c2729);
+            }
+            &.hi2 {
+                .text-gradient(#ad24c2, #339aa1);
+            }
+            &.hi3 {
+                .text-gradient(#53992e, #309174);
+            }
+            &.hi4 {
+                .text-gradient(rgb(199, 0, 133), #a7282a);
+            }
+
+            &.hi5 {
+                .text-gradient(#553b69, rgb(121, 93, 93));
+            }
+
+            &.hi6 {
+                .text-gradient(#451349, #0c4b0f);
+            }
+        }
+    }
+
+    
+    .bi-geo-alt {
+        margin-right: .5ch;
+    }
+
+    h2 {
+        font-size: .9em;
+    }
+
+    .fi-nl {
+        width: 2em;
+    }
+}
+
+h3 {
+    font-size: 1.6em;
+    text-align: center;
+}
+
+.stack {
+    gap: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 2em;
+
+    animation: scale-xy .5s;
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+    }
+}
+
+.quick-overview {
+    animation: slide-y .5s ease-out;
+    animation-fill-mode: forwards;
+
+    .icons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1em;
+        margin-top: 1em;
+
+        label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .5em;
+
+            img {
+                width: 3em;
+                height: 3em;
+                
+                transition: transform .3s;
+
+                &:hover {
+                    transform: scale(1.3);
+                }
+            }
+        }
+    }
+}
+
+.top-langs {
+    width: 100%;
+    text-align: center;
+
+    animation: slide-y .6s ease-out;
+
+    .top-langs-text {
+        margin-top: 1em;
+    }
+}
+
+@keyframes scale-xy {
+    from {
+        scale: 0;
+    }
+    to {
+        scale: 1;
+    }
+}
+
+@keyframes slide-y {
+    from {
+        transform: translateY(100dvh);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes image {
+    from {
+        transform: translateX(-50vw);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 </style>
