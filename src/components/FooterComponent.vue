@@ -102,20 +102,12 @@ const locale = inject("locale")
         font-size: 0.9em;
         margin-inline: 5px;
     }
-}
-.version {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: fit-content;
-    margin: 0;
-    padding: 0;
-    font-size: 0.6em;
-    text-align: end;
+
+    padding-bottom: 1em;
 }
 
 footer {
-    padding-block: 3em;
+    padding-top: 3em;
     border-top: 1px solid #8888;
 	@media (prefers-color-scheme: light) {
 		--color-background: white;

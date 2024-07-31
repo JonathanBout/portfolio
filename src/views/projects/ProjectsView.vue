@@ -9,7 +9,7 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
         <ProjectComponent :project="project" v-for="project in projectsData.projects" :key="project.id" />
 
         <div class="see-more">
-            <a href="https://github.com/jonathanbout">{{ $t("projects.see-more") }}</a>
+            <a href="https://github.com/jonathanbout?tab=repositories">{{ $t("projects.see-more") }}</a>
         </div>
     </div>
 </template>
