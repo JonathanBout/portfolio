@@ -12,40 +12,61 @@ const locale = inject("locale") as string
 
 <template>
     <a class="project no-external-icon" :href="project.demo ?? project.github ?? undefined" target="_blank">
-        <div class="name" v-if="typeof project.name == 'string'">{{ project.name }}</div>
-        <div class="name" v-else>{{ (project.name as any)[locale] }}</div>
-        <div class="description" v-if="project.description">
-            {{ (project.description as any)[locale] }}
+        <img class="image" v-if="project.image" :src="project.image" alt="Project preview" />
+        <div class="vertical-stack">
+            <div class="name" v-if="typeof project.name == 'string'">{{ project.name }}</div>
+            <div class="name" v-else>{{ (project.name as any)[locale] }}</div>
+            <div class="description" v-if="project.description">
+                {{ (project.description as any)[locale] }}
+            </div>
+            <ul class="links">
+                <li v-if="project.github">
+                    <a
+                        :href="project.github"
+                        :aria-label="$t('projects.view-on-gh', { name: project.name })"
+                        target="_blank"
+                        class="bi bi-github big no-external-icon"
+                    ></a>
+                </li>
+                <li v-if="project.demo">
+                    <a
+                        :href="project.demo"
+                        :aria-label="$t('projects.view-demo', { name: project.name })"
+                        target="_blank"
+                        class="bi bi-box-arrow-up-right big no-external-icon"
+                    ></a>
+                </li>
+                <li v-for="tag in project.tags" class="tag" v-bind:key="tag">
+                    <TagComponent :tag="tag" />
+                </li>
+            </ul>
         </div>
-        <ul class="links">
-            <li v-if="project.github">
-                <a
-                    :href="project.github"
-                    :aria-label="$t('projects.view-on-gh', { name: project.name })"
-                    target="_blank"
-                    class="bi bi-github big no-external-icon"
-                ></a>
-            </li>
-            <li v-if="project.demo">
-                <a
-                    :href="project.demo"
-                    :aria-label="$t('projects.view-demo', { name: project.name })"
-                    target="_blank"
-                    class="bi bi-box-arrow-up-right big no-external-icon"
-                ></a>
-            </li>
-            <li v-for="tag in project.tags" class="tag" v-bind:key="tag">
-                <TagComponent :tag="tag" />
-            </li>
-        </ul>
     </a>
 </template>
 <style lang="less" scoped>
 .project {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+
+    &:nth-child(2n) {
+        flex-direction: row-reverse;
+    }
+
+    & > .vertical-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    & > .image {
+        flex-grow: 1;
+        flex-basis: 1px;
+        max-width: 25%;
+        border-radius: 10px;
+    }
+
     gap: 10px;
-    border-radius: 20px;
+    border-radius: 30px;
 
     padding: 20px;
 
@@ -79,6 +100,7 @@ const locale = inject("locale") as string
     .big {
         font-size: 1.5em;
     }
+
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -87,7 +109,7 @@ const locale = inject("locale") as string
     margin: 0;
 
     .tag {
-        display: contents;
+        display: flex;
     }
 }
 

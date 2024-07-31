@@ -39,6 +39,10 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
 .page-root {
     animation: scale-in 0.5s;
 
+    * {
+        animation: slide-in 0.5s ease-in-out;
+    }
+
     &> :not(:last-child) {
         margin-bottom: 2em;
     }
@@ -52,6 +56,16 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
     to {
         transform: scale(1);
         opacity: 1;
+    }
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateY(50dvh);
+    }
+
+    to {
+        transform: translateY(0);
     }
 }
 </style>

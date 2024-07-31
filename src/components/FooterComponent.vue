@@ -18,12 +18,14 @@ const locale = inject("locale")
 				<li>
 					<!-- @vue-expect-error property does not exist on type ... -->
 					<button :class="'link no-external-icon' + (locale === 'en' ? ' current' : '')" @click="$updateLocale('en')">
+                    <i class="fi fi-gb"></i>
 					{{ $t("language.en") }}
 					</button>
 				</li>
 				<li>
 					<!-- @vue-expect-error -->
 					<button :class="'link no-external-icon' + (locale === 'nl' ? ' current' : '')" @click="$updateLocale('nl')">
+                    <i class="fi fi-nl"></i>
 						{{ $t("language.nl") }}
 					</button>
 				</li>
@@ -37,6 +39,9 @@ const locale = inject("locale")
                 </a>
             </span>
         </div>
+        <i class="credits-notice">
+            {{ $t('imageCreditNotice') }}
+        </i>
     </footer>
 </template>
 
@@ -119,5 +124,12 @@ footer {
 	}
 	color: var(--color-text);
 	background-color: var(--color-background);
+}
+
+.credits-notice {
+    font-size: 0.8em;
+    display: block;
+    text-align: center;
+    color: #999;
 }
 </style>

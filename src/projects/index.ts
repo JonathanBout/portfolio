@@ -7,6 +7,7 @@ export class Project {
     github?: string = undefined
     demo?: string = undefined
     description?: { [K in Locale]: string }
+    image?: string = undefined
     tags: TagName[] = []
 
     constructor(args: { [K in keyof Project]?: Project[K] }) {
@@ -129,6 +130,7 @@ const projects: Project[] = [
         github: "https://github.com/jonathanbout/programmer-watchface",
         demo: "https://play.google.com/store/apps/details?id=com.jonathanbout.watchface.programmer",
         tags: ["watchface", "wfs", "wearOS"],
+        image: "/images/projects/programmer-watchface.png",
         description: {
             en: "A watchface for Wear OS that shows the current time, date, battery level and step count in a JSON format with Visual Studio Code theme colors.",
             nl: "Een wijzerplaat voor Wear OS die de huidige tijd, datum, batterijpercentage en stappenteller weergeeft als JSON met Visual Studio Code themakleuren."
@@ -138,10 +140,11 @@ const projects: Project[] = [
         name: "Webserver",
         id: "webserver",
         demo: "https://server01.jonathanbout.dev",
+        image: "/images/projects/linux.png",
         tags: ["docker", "apache", "nginx", "debian", "linux", "mySQL", "postgres"],
         description: {
-            en: "My own webserver, running Debian on an Odroid N2+. Most of my web based projects are hosted on this server using Docker, and Apache's HTTPD implementation as a proxy. Within the containers I use Nginx when it contains just static files, for example with Vue.",
-            nl: "Mijn eigen webserver, Debian op een Odroid N2+. De meeste van mijn webprojecten worden gehost op deze server met behulp van Docker en Apache's HTTPD implementatie als proxy. Binnen de containers gebruik ik Nginx wanneer daar alleen statische bestanden staan, bijvoorbeeld met Vue."
+            en: "My own webserver, running Debian on an Odroid N2+. All my web based projects are hosted on this server using Docker, and Apache's HTTPD implementation as a proxy. Within the containers I use Nginx when it contains just static files, for example with Vue.",
+            nl: "Mijn eigen webserver, Debian op een Odroid N2+. Al mijn webprojecten worden gehost op deze server met behulp van Docker en Apache's HTTPD implementatie als proxy. Binnen de containers gebruik ik Nginx wanneer daar alleen statische bestanden staan, bijvoorbeeld met Vue."
         }
     }),
     new Project({
@@ -149,6 +152,7 @@ const projects: Project[] = [
         id: "apod-wrapper",
         github: "https://github.com/jonathanbout/apod-web",
         demo: "https://apod.jonathanbout.com",
+        image: "/images/projects/nasa.webp",
         description: {
             en: "A simple web app that fetches the Astronomy Picture of the Day from NASA's API and displays it in a clean, responsive layout.",
             nl: "Een simpele webapp die de Astronomy Picture of the Day van NASA's API ophaalt en deze in een nette, responsive layout weergeeft."
