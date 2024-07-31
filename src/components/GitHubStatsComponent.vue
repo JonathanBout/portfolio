@@ -75,7 +75,7 @@ function getTotalSizeFriendly(size: number) {
     width: 100%;
     height: 20px;
     display: flex;
-    animation: percentage-bar-slide 0.3s ease-out;
+    animation: percentage-bar-slide 1s ease-out;
 
     div {
         color: var(--lang-contrast-color);
@@ -181,10 +181,11 @@ function getTotalSizeFriendly(size: number) {
     }
 
     @keyframes percentage-bar-slide {
-        from {
+        0% {
             transform: scaleX(0);
         }
-        to {
+
+        100% {
             transform: scaleX(1);
         }
     }

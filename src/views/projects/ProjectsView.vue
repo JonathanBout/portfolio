@@ -9,7 +9,7 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
         <ProjectComponent :project="project" v-for="project in projectsData.projects" :key="project.id" />
 
         <div class="see-more">
-            <a href="https://github.com/jonathanbout">{{ $t("projects.see-more") }}</a>
+            <a href="https://github.com/jonathanbout?tab=repositories">{{ $t("projects.see-more") }}</a>
         </div>
     </div>
 </template>
@@ -38,6 +38,10 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
 
 .page-root {
     animation: scale-in 0.5s;
+
+    &> :not(:last-child) {
+        margin-bottom: 2em;
+    }
 }
 
 @keyframes scale-in {
