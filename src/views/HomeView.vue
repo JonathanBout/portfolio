@@ -8,8 +8,10 @@ const { t } = useI18n()
 
 let intro = t("home.intro")
 
-// make sure the random number is shuffeled a bit better
-for (let i = 0; i < Math.random() * 100; i+= Math.random() * 10) {}
+// for some reason the page is centered after reload. This is a workaround to fix that
+setTimeout(() => {
+    scrollTo(0, 0)
+}, 200)
 
 const highlight = (a: any) => `<span class="highlight hi${Math.round(Math.random() * 5) + 1}">${a}</span>`
 
@@ -68,7 +70,7 @@ function jump() {
     <div class="page-root grow-in">
         <div class="stack">
             <div class="me-image" draggable="false">
-                <img rel="prefetch" @click="jump" src="https://gravatar.com/avatar/be19bd79a37e5f322b7a1898a1147127?size=1000" alt="Jonathan Bout" />
+                <img rel="prefetch" @click="jump" src="https://gravatar.com/avatar/be19bd79a37e5f322b7a1898a1147127?size=512" alt="Jonathan Bout" />
             </div>
             <div class="me-info">
                 <h2><i class="bi bi-geo-alt"></i> {{ $t("home.country") }} <span class="fi fi-nl"></span> </h2>
@@ -128,12 +130,20 @@ h1 {
 
 .me-image img {
     border-radius: 100vmax;
-    width: 100%;
-    max-width: 200px;
     margin: 0 auto;
     display: block;
 
-    animation: image .5s ease-in-out;
+    aspect-ratio: 1;
+    width: 200px;
+
+    @media (width > 700px) {
+        animation: image-horizontal .5s ease-in-out;
+    }
+
+    @media (width <= 700px) {
+        animation: image-vertical .5s ease-in-out;
+    }
+
     user-select: none;
 
     user-drag: none;
@@ -298,13 +308,25 @@ h3 {
     }
 }
 
-@keyframes image {
+@keyframes image-horizontal {
     from {
         transform: translateX(-50vw);
         opacity: 0;
     }
     to {
         transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes image-vertical {
+    from {
+        transform: translateY(-50vh);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
         opacity: 1;
     }
 }

@@ -115,6 +115,7 @@ const locale = inject("locale")
 }
 
 footer {
+    padding-block: 3em;
     border-top: 1px solid #8888;
 	@media (prefers-color-scheme: light) {
 		--color-background: white;

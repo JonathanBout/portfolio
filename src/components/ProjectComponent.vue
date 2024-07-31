@@ -11,7 +11,7 @@ const locale = inject("locale") as string
 </script>
 
 <template>
-    <div class="project">
+    <a class="project no-external-icon" :href="project.demo ?? project.github ?? undefined" target="_blank">
         <div class="name" v-if="typeof project.name == 'string'">{{ project.name }}</div>
         <div class="name" v-else>{{ (project.name as any)[locale] }}</div>
         <div class="description" v-if="project.description">
@@ -38,18 +38,28 @@ const locale = inject("locale") as string
                 <TagComponent :tag="tag" />
             </li>
         </ul>
-    </div>
+    </a>
 </template>
 <style lang="less" scoped>
 .project {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    border-radius: 20px;
+
+    padding: 20px;
 
     * + & {
         border-top: 1px solid var(--color-text);
         margin-top: 20px;
         padding-top: 10px;
+    }
+
+    &:hover {
+        outline: 1px solid var(--color-primary-button);
+        filter: brightness(1.1);
+        text-decoration: initial;
+        transform: scale(1.01);
     }
 }
 

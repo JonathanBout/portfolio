@@ -38,6 +38,10 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
 
 .page-root {
     animation: scale-in 0.5s;
+
+    &> :not(:last-child) {
+        margin-bottom: 2em;
+    }
 }
 
 @keyframes scale-in {
