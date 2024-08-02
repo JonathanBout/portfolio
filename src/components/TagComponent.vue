@@ -19,6 +19,7 @@ function getIconUrl() {
     if (foundTag.iconUrl) {
         return foundTag.iconUrl
     } else if (foundTag.url) {
+        // fallback to use Google's favicon service
         return `https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${foundTag.url}&size=64`
     }
     return undefined
@@ -26,7 +27,7 @@ function getIconUrl() {
 </script>
 
 <template>
-    <component :is="foundTag.url ? 'a' : 'span'" class="tag-element" :href="foundTag.url" :style="style">
+    <component :is="foundTag.url ? 'a' : 'span'" class="tag-element no-external-icon" :href="foundTag.url" :style="style">
         <img
             v-if="foundTag.iconUrl || foundTag.url"
             :src="getIconUrl()"
@@ -65,7 +66,6 @@ function getIconUrl() {
         margin-right: 5px;
         margin-left: -5px;
         border-radius: 25%;
-        //transform: translateY(0.11em);
     }
 }
 </style>

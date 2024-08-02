@@ -88,7 +88,7 @@ function getTotalSizeFriendly(size: number) {
 
     }
 
-    @media (width <= 600px) or (hover: none) {
+    @media (width <= 700px) or (hover: none) {
         height: max-content;
         flex-direction: column;
         position: relative;
@@ -117,7 +117,7 @@ function getTotalSizeFriendly(size: number) {
         }
     }
 
-    @media (width > 600px) and (hover: hover) {
+    @media (width > 700px) and (hover: hover) {
         div {
             span {
                 display: none;

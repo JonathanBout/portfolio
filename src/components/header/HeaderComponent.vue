@@ -15,7 +15,7 @@ const route = useRoute()
 const { t: translate, te: translationExists } = useI18n()
 const animationDuration = ".2s"
 
-const versionHash = inject<string>("gitRev")!
+const versionHash = inject<string>("gitRev") ?? "unknown"
 
 watch(router.currentRoute, () => {
     close_menu()
@@ -43,7 +43,6 @@ function fullPathParts() {
     }
 
     return parts
-    //.filter((x) => !!x)
 }
 
 function basePath(index: number, decode: boolean = false) {

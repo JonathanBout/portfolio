@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { LOCALES, type Locale, type Localized, changeLanguage } from "@/localizer";
 import { inject } from "vue"
 const creditsYear = new Date().getFullYear()
 
@@ -6,7 +7,13 @@ defineProps<{
     inert: boolean
 }>()
 
-const locale = inject("locale")
+const currentLocale = inject<Locale>("locale")
+
+const iconsByLocale : Localized<string> = {
+    en: "gb",
+    nl: "nl"
+}
+
 </script>
 
 <template>
@@ -15,18 +22,13 @@ const locale = inject("locale")
             <span>{{ $t("language.availableLocaleMessage") }}</span>
             <br />
 			<ul>
-				<li>
-					<!-- @vue-expect-error property does not exist on type ... -->
-					<button :class="'link no-external-icon' + (locale === 'en' ? ' current' : '')" @click="$updateLocale('en')">
-					{{ $t("language.en") }}
+				<li v-for="locale in LOCALES" v-bind:key="locale">
+					<button :class="'link no-external-icon' + (currentLocale === locale ? ' current' : '')" @click="changeLanguage(locale)">
+                    <i :class="'fi fi-'+ iconsByLocale[locale]"></i>
+					{{ $t("language." + locale) }}
 					</button>
 				</li>
-				<li>
-					<!-- @vue-expect-error -->
-					<button :class="'link no-external-icon' + (locale === 'nl' ? ' current' : '')" @click="$updateLocale('nl')">
-						{{ $t("language.nl") }}
-					</button>
-				</li>
+
 			</ul>
         </div>
         <div class="links separated">
@@ -37,6 +39,9 @@ const locale = inject("locale")
                 </a>
             </span>
         </div>
+        <i class="credits-notice">
+            {{ $t('imageCreditNotice') }}
+        </i>
     </footer>
 </template>
 
@@ -119,5 +124,12 @@ footer {
 	}
 	color: var(--color-text);
 	background-color: var(--color-background);
+}
+
+.credits-notice {
+    font-size: 0.8em;
+    display: block;
+    text-align: center;
+    color: #999;
 }
 </style>
