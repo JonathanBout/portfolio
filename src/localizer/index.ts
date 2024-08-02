@@ -104,7 +104,7 @@ export function createLocalizer(): Localizer {
             if (LOCALES.includes(navigatorLocale)) {
                 locale = navigatorLocale
             }
-        } else if (preferredLocale) {
+        } else {
             locale = preferredLocale as Locale
         }
         if (!window.location.host.match("localhost")) {
