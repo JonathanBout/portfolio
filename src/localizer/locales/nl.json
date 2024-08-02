@@ -31,6 +31,7 @@
         "message": "Goed nieuws: de wijzerplaat verzamelt geen gegevens!"
     },
     "projects": {
+        "present": "nu",
         "title": "Projecten",
         "intro": "Hieronder een aantal van mijn projecten met relevante links en tags. Neem gerust een kijkje en feedback is altijd welkom!",
         "see-more": "Bekijk meer van mijn projecten op GitHub!",

@@ -26,6 +26,7 @@
     },
     "devDependencies": {
         "@babel/types": "^7.25.2",
+        "@eslint/object-schema": "^2.1.4",
         "@rushstack/eslint-patch": "^1.10.4",
         "@tsconfig/node18": "^18.2.4",
         "@types/node": "^22.0.0",

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { is } from "@babel/types";
 import GitHubStatsComponent from "@/components/GitHubStatsComponent.vue"
 import { ref } from "vue";
 import { useI18n } from "vue-i18n"
@@ -82,27 +81,27 @@ function jump() {
             <h3>{{ $t('home.quick-overview') }}</h3>
             <div class="icons">
                 <label>
-                    <img src="https://skillicons.dev/icons?i=cs"></img>
+                    <img src="https://skillicons.dev/icons?i=cs"/>
                     <span>C#</span>
                 </label>
                 <label>
-                    <img src="https://skillicons.dev/icons?i=py"></img>
+                    <img src="https://skillicons.dev/icons?i=py"/>
                     <span>Python</span>
                 </label>
                 <label>
-                    <img src="https://skillicons.dev/icons?i=ts"></img>
+                    <img src="https://skillicons.dev/icons?i=ts"/>
                     <span>Typescript</span>
                 </label>
                 <label>
-                    <img src="https://skillicons.dev/icons?i=vue"></img>
+                    <img src="https://skillicons.dev/icons?i=vue"/>
                     <span>Vue</span>
                 </label>
                 <label>
-                    <img src="https://skillicons.dev/icons?i=html"></img>
+                    <img src="https://skillicons.dev/icons?i=html"/>
                     <span>HTML</span>
                 </label>
                 <label>
-                    <img src="https://skillicons.dev/icons?i=css"></img>
+                    <img src="https://skillicons.dev/icons?i=css"/>
                     <span>CSS</span>
                 </label>
             </div>
@@ -146,7 +145,6 @@ h1 {
 
     user-select: none;
 
-    user-drag: none;
     -webkit-user-drag: none;
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -243,7 +241,7 @@ h3 {
 
     animation: scale-xy .5s;
 
-    @media (min-width: 768px) {
+    @media (min-width: 700px) {
         flex-direction: row;
     }
 }

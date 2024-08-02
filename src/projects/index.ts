@@ -1,17 +1,23 @@
-import type { Locale } from "@/localizer"
+import type { Localized } from "@/localizer"
 import { CSSColor, contrastingColor } from "@/util/color"
 
 export class Project {
-    name: string | { [K in Locale]: string } = ""
+    name: string | Localized<string> = ""
     id: string = ""
     github?: string = undefined
+    playStore?: string = undefined
     demo?: string = undefined
-    description?: { [K in Locale]: string }
+    description?: Localized<string>
     image?: string = undefined
     tags: TagName[] = []
+    timeframe?: { start: Date; end?: Date | "present" } = undefined
 
     constructor(args: { [K in keyof Project]?: Project[K] }) {
         Object.assign(this, args)
+    }
+
+    get url() {
+        return this.demo ?? this.playStore ?? this.github
     }
 }
 
@@ -124,27 +130,35 @@ const projects: Project[] = [
     new Project({
         name: {
             en: "Programmer Watchface",
-            nl: "Developer-wijzerplaat"
+            nl: "Developer-wijzerplaat",
         },
         id: "programmer-watchface",
         github: "https://github.com/jonathanbout/programmer-watchface",
-        demo: "https://play.google.com/store/apps/details?id=com.jonathanbout.watchface.programmer",
+        playStore: "https://play.google.com/store/apps/details?id=com.jonathanbout.watchface.programmer",
         tags: ["watchface", "wfs", "wearOS"],
         image: "/images/projects/programmer-watchface.png",
         description: {
             en: "A watchface for Wear OS that shows the current time, date, battery level and step count in a JSON format with Visual Studio Code theme colors.",
             nl: "Een wijzerplaat voor Wear OS die de huidige tijd, datum, batterijpercentage en stappenteller weergeeft als JSON met Visual Studio Code themakleuren."
+        },
+        timeframe: {
+            start: new Date(2024, 2),
+            end: "present"
         }
     }),
     new Project({
         name: "Webserver",
         id: "webserver",
         demo: "https://server01.jonathanbout.dev",
-        image: "/images/projects/linux.png",
+        image: "/images/projects/server.png",
         tags: ["docker", "apache", "nginx", "debian", "linux", "mySQL", "postgres"],
         description: {
             en: "My own webserver, running Debian on an Odroid N2+. All my web based projects are hosted on this server using Docker, and Apache's HTTPD implementation as a proxy. Within the containers I use Nginx when it contains just static files, for example with Vue.",
             nl: "Mijn eigen webserver, Debian op een Odroid N2+. Al mijn webprojecten worden gehost op deze server met behulp van Docker en Apache's HTTPD implementatie als proxy. Binnen de containers gebruik ik Nginx wanneer daar alleen statische bestanden staan, bijvoorbeeld met Vue."
+        },
+        timeframe: {
+            start: new Date(2023, 7),
+            end: "present"
         }
     }),
     new Project({
@@ -152,12 +166,16 @@ const projects: Project[] = [
         id: "apod-wrapper",
         github: "https://github.com/jonathanbout/apod-web",
         demo: "https://apod.jonathanbout.com",
-        image: "/images/projects/nasa.webp",
+        image: "/images/projects/apod.png",
         description: {
             en: "A simple web app that fetches the Astronomy Picture of the Day from NASA's API and displays it in a clean, responsive layout.",
             nl: "Een simpele webapp die de Astronomy Picture of the Day van NASA's API ophaalt en deze in een nette, responsive layout weergeeft."
         },
-        tags: ["vue", "nasaApi"]
+        tags: ["vue", "nasaApi"],
+        timeframe: {
+            start: new Date(2024, 2),
+            end: "present"
+        }
     }),
     new Project({
         name: "Portfolio",
@@ -168,11 +186,15 @@ const projects: Project[] = [
             en: "This website! My personal portfolio website, built with Vue.js. To support a broader audience, it's available in both English and Dutch using i18n and two domains.",
             nl: "Deze website! Mijn persoonlijke portfolio website, gebouwd met Vue.js. Om een breder publiek te ondersteunen, is deze beschikbaar in zowel het Engels als het Nederlands met behulp van i18n en twee domeinen."
         },
-        tags: ["portfolio", "internationalization", "vue"]
+        tags: ["portfolio", "internationalization", "vue"],
+        timeframe: {
+            start: new Date(2023, 8),
+            end: "present"
+        }
     })
 ]
 
 export default {
-    projects,
+    projects: projects.sort((a, b) => b.timeframe?.start.toISOString() == a.timeframe?.start.toISOString() ? 0 : (b.timeframe?.start.toISOString() ?? '') > (a.timeframe?.start.toISOString() ?? '') ? 1 : -1),
     tags
 }

@@ -19,6 +19,7 @@ function getIconUrl() {
     if (foundTag.iconUrl) {
         return foundTag.iconUrl
     } else if (foundTag.url) {
+        // fallback to use Google's favicon service
         return `https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${foundTag.url}&size=64`
     }
     return undefined

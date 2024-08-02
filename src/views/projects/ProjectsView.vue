@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import projectsData from "@/projects"
-import GitHubStatsComponent from "@/components/GitHubStatsComponent.vue"
 import ProjectComponent from "@/components/ProjectComponent.vue"
 </script>
 <template>
