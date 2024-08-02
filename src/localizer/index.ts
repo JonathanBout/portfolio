@@ -60,7 +60,7 @@ export function createLocalizer(): Localizer {
     let locale : Locale = "en"
 
     for (const loc of LOCALES) {
-        if (window.location.host.match(domainsByLocale[loc])) {
+        if (window.location.origin.toLowerCase() === domainsByLocale[loc].toLowerCase()) {
             locale = loc
             break
         }
