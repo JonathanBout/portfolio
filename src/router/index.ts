@@ -53,8 +53,6 @@ function setCanonical() {
     const url = location.href.replace(/(?:#|\?).*$/, "").replace(/^http:\/\//, "https://")
 
     linkElement.setAttribute("href", url)
-
-    console.log(document.querySelector("link[rel=canonical]")?.getAttribute("href") ?? "No canonical link")
 }
 
 function resetScroll() {
