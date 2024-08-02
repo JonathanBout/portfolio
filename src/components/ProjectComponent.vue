@@ -82,9 +82,6 @@ const timeframeText = computed(() => {
     display: flex;
     align-items: stretch;
     flex-direction: row;
-
-    overflow-x: auto;
-    overflow-y: hidden;
     
     
     & > .vertical-stack {
