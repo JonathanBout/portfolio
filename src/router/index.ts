@@ -1,5 +1,6 @@
 import { createRouter as createRouterInternal, createWebHistory, type RouteLocationNormalized } from "vue-router"
 import HomeView from "../views/HomeView.vue"
+import { domainsByLocale, type Locale, i18n } from "@/localizer"
 
 const router = createRouterInternal({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,7 +15,10 @@ const router = createRouterInternal({
         {
             path: "/projects",
             name: "projects",
-            component: () => import("../views/projects/ProjectsView.vue")
+            component: () => import("../views/projects/ProjectsView.vue"),
+            meta: {
+                title: "projects.title"
+            }
         },
         {
             path: "/privacy",
@@ -38,10 +42,18 @@ const router = createRouterInternal({
 })
 
 function setDocumentTitle(to: RouteLocationNormalized) {
-    document.title = (to.meta.title || "Jonathan Bout") as string
+    let title = "Jonathan Bout"
+
+    if (typeof to.meta.title === "string")
+    {
+        title = i18n.global.t(to.meta.title).toString() + " • " + title
+    }
+
+    document.title = title
 }
 
-function setCanonical() {
+function updateLinks() {
+    // set the canonical link to the current URL with https
     let linkElement = document.querySelector("link[rel=canonical]")
 
     if (!linkElement) {
@@ -53,6 +65,34 @@ function setCanonical() {
     const url = location.href.replace(/(?:#|\?).*$/, "").replace(/^http:\/\//, "https://")
 
     linkElement.setAttribute("href", url)
+
+    // set the alternate links to the other domains to have the same path
+    for (const key of Object.keys(domainsByLocale)) {
+        const locale = key as Locale
+
+        const element = document.querySelector(`link[rel=alternate][hreflang=${locale}]`)
+        if (element) {
+            element.setAttribute("href", domainsByLocale[locale] + location.pathname)
+        } else {
+            const link = document.createElement("link")
+            link.setAttribute("rel", "alternate")
+            link.setAttribute("hreflang", locale)
+            link.setAttribute("href", domainsByLocale[locale] + location.pathname)
+            document.head.appendChild(link)
+        }
+    }
+
+    // set the x-default link to the English domain
+    const element = document.querySelector("link[rel=alternate][hreflang=x-default]")
+    if (element) {
+        element.setAttribute("href", domainsByLocale.en + location.pathname)
+    } else {
+        const link = document.createElement("link")
+        link.setAttribute("rel", "alternate")
+        link.setAttribute("hreflang", "x-default")
+        link.setAttribute("href", domainsByLocale.en + location.pathname)
+        document.head.appendChild(link)
+    }
 }
 
 function resetScroll() {
@@ -64,10 +104,10 @@ router.beforeEach((to, from, next) => {
     next()
 })
 
-setCanonical()
+updateLinks()
 
 router.afterEach(setDocumentTitle)
-router.afterEach(setCanonical)
+router.afterEach(updateLinks)
 router.afterEach(resetScroll)
 
 export const createRouter = () => router

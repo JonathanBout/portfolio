@@ -37,6 +37,7 @@
         "see-more": "See more on my GitHub!",
         "view-on-gh": "View project '{name}' on GitHub",
         "view-demo": "View a live demo of project '{name}'",
+        "view-on-play-store": "View the app on the Google Play Store",
         "github-stats": {
             "text": "GitHub Statistics",
             "error": "Something went wrong.",

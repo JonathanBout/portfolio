@@ -2,15 +2,18 @@
 import type { Project } from "@/projects"
 import { computed, inject } from "vue"
 import TagComponent from "@/components/TagComponent.vue"
-import { useI18n } from "vue-i18n";
-import { formatDate } from "@/localizer/dates";
-import type { Locale } from "@/localizer";
+import { useI18n } from "vue-i18n"
+import { formatDate } from "@/localizer/dates"
+import type { Locale } from "@/localizer"
 
 const props = defineProps<{
     project: Project
 }>()
 
-const { t, locale: { value: lang } } = useI18n()
+const {
+    t,
+    locale: { value: lang }
+} = useI18n()
 
 const locale = inject("locale") as string
 
@@ -25,20 +28,26 @@ const timeframeText = computed(() => {
     } else if (start && !end) {
         return startString
     } else if (start) {
-        return startString  + " - " + t("projects.present")
+        return startString + " - " + t("projects.present")
     }
 
     return ""
 })
 
+const projectName = computed(() => {
+    if (typeof props.project.name === "string") {
+        return props.project.name
+    }
+
+    return (props.project.name as any)[locale]
+})
 </script>
 
 <template>
     <a class="project no-external-icon" :href="project.url" target="_blank">
         <img class="image" v-if="project.image" :src="project.image" alt="Project preview" />
         <div class="vertical-stack">
-            <div class="name" v-if="typeof project.name == 'string'">{{ project.name }}</div>
-            <div class="name" v-else>{{ (project.name as any)[locale] }}</div>
+            <div class="name">{{ projectName }}</div>
             <div class="description" v-if="project.description">
                 {{ (project.description as any)[locale] }}
             </div>
@@ -46,7 +55,7 @@ const timeframeText = computed(() => {
                 <li v-if="project.github">
                     <a
                         :href="project.github"
-                        :aria-label="$t('projects.view-on-gh', { name: project.name })"
+                        :aria-label="$t('projects.view-on-gh', { name: projectName })"
                         target="_blank"
                         class="bi bi-github big no-external-icon"
                     ></a>
@@ -54,7 +63,7 @@ const timeframeText = computed(() => {
                 <li v-if="project.demo">
                     <a
                         :href="project.demo"
-                        :aria-label="$t('projects.view-demo', { name: project.name })"
+                        :aria-label="$t('projects.view-demo', { name: projectName })"
                         target="_blank"
                         class="bi bi-box-arrow-up-right big no-external-icon"
                     ></a>
@@ -62,7 +71,7 @@ const timeframeText = computed(() => {
                 <li v-if="project.playStore">
                     <a
                         :href="project.playStore"
-                        :aria-label="$t('projects.view-on-play-store', { name: project.name })"
+                        :aria-label="$t('projects.view-on-play-store', { name: projectName })"
                         target="_blank"
                         class="bi bi-google-play big no-external-icon"
                     ></a>
@@ -82,35 +91,32 @@ const timeframeText = computed(() => {
     display: flex;
     align-items: stretch;
     flex-direction: row;
-    
-    
+
     & > .vertical-stack {
         display: flex;
         flex-direction: column;
         gap: 10px;
     }
-    
+
     & > .image {
         height: fit-content;
         align-self: center;
         max-width: 25%;
         border-radius: 10px;
     }
-    
+
     gap: 10px;
     border-radius: 30px;
-    
+
     padding: 20px;
-    
-    @media (width > 700px)
-    {
+
+    @media (width > 700px) {
         &:nth-child(2n) {
             flex-direction: row-reverse;
         }
     }
 
-    @media (width <= 700px)
-    {
+    @media (width <= 700px) {
         flex-direction: column;
 
         & > .image {
@@ -126,7 +132,7 @@ const timeframeText = computed(() => {
         margin-top: 20px;
         padding-top: 10px;
     }
-    
+
     &:hover {
         outline: 1px solid var(--color-primary-button);
         filter: brightness(1.1);
