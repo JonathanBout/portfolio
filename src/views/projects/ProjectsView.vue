@@ -27,10 +27,13 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
         background-clip: text !important;
         -webkit-text-fill-color: transparent;
 
-        transition: font-size 0.3s;
+        transition: transform 0.3s;
+        transform-origin: left center;
+        display: inline-block;
+        margin-left: 20px;
         
         &:hover {
-            font-size: 1.2em;
+            transform: scale(1.1);
         }
     }
 }

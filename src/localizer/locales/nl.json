@@ -9,7 +9,7 @@
     },
     "home": {
         "greeting": "Hoi, ik ben Jonathan!",
-        "intro": "Ik studeer momenteel Informatica aan Hogeschool Rotterdam maar heb al meer dan 4 jaar ervaring in software ontwikkeling, voornamelijk in C# en TypeScript.",
+        "intro": "Ik studeer momenteel %Informatica% aan Hogeschool Rotterdam maar heb al %meer dan 4 jaar ervaring% in software ontwikkeling, voornamelijk in %C#% en %TypeScript%. Voor school heb ik ook veel met %Python% gewerkt.",
         "country": "Nederland",
         "quick-overview": "Mijn ervaring",
         "top-langs-title": "Meest gebruikte talen"

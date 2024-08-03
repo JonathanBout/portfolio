@@ -45,7 +45,9 @@ const projectName = computed(() => {
 
 <template>
     <a class="project no-external-icon" :href="project.url" target="_blank">
-        <img class="image" v-if="project.image" :src="project.image" alt="Project preview" />
+        <div class="image-wrapper">
+            <img class="image" v-if="project.image" :src="project.image" alt="Project preview" />
+        </div>
         <div class="vertical-stack">
             <div class="name">{{ projectName }}</div>
             <div class="description" v-if="project.description">
@@ -92,17 +94,29 @@ const projectName = computed(() => {
     align-items: stretch;
     flex-direction: row;
 
+    & > .image-wrapper {
+        display: contents;
+    }
+
     & > .vertical-stack {
         display: flex;
         flex-direction: column;
         gap: 10px;
+        background: linear-gradient(to bottom, transparent, rgb(from var(--color-background) r g b / 0.5) 5%, var(--color-background) 25%);
     }
 
-    & > .image {
+
+    & > .image-wrapper {
         height: fit-content;
         align-self: center;
         max-width: 25%;
         border-radius: 10px;
+
+        & > img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
     }
 
     gap: 10px;
@@ -119,9 +133,15 @@ const projectName = computed(() => {
     @media (width <= 700px) {
         flex-direction: column;
 
-        & > .image {
+        
+        & > .image-wrapper {
+            align-self: center;
+            display: flex;
+            align-items: start;
             max-width: 300px;
             flex-grow: 1;
+            overflow-y: visible;
+            max-height: 200px;
         }
 
         border: 1px solid #8884;

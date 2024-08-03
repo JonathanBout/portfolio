@@ -1,26 +1,21 @@
 <script setup lang="ts">
 import GitHubStatsComponent from "@/components/GitHubStatsComponent.vue"
-import { ref } from "vue";
+import { ref } from "vue"
 import { useI18n } from "vue-i18n"
 
 const { t } = useI18n()
 
 let intro = t("home.intro")
 
-// for some reason the page is centered after reload. This is a workaround to fix that
+// for some reason the page scrolled to the center after reload. This is a workaround to fix that
 setTimeout(() => {
     scrollTo(0, 0)
 }, 200)
 
-const highlight = (a: any) => `<span class="highlight hi${Math.round(Math.random() * 5) + 1}">${a}</span>`
+const highlight = (_: any, b: any) => `<span class="highlight hi${Math.round(Math.random() * 5) + 1}">${b}</span>`
 
 intro = intro
-    .replace(/\d+?\+.*?ience/gi, highlight)
-    .replace(/\d+?.*?aring/gi, highlight)
-    .replace(/informatica/gi, highlight)
-    .replace(/computer science/gi, highlight)
-    .replace(/c#/gi, highlight)
-    .replace(/typescript/gi, highlight)
+.replace(/%(.*?)%/gi, highlight)
 
 const clickCount = ref(0)
 const lastClick = ref(Date.now())
@@ -37,22 +32,24 @@ function jump() {
     lastClick.value = Date.now()
 
     // animate a jump
-    img.animate([
-        { transform: "translateY(0) rotate(-10deg)" },
-        { transform: "translateY(-50px) rotate(10deg)" },
-        { transform: "translateY(0)" },
-        { transform: "translateY(-40px)" },
-        { transform: "translateY(0) rotate(5deg)" },
-        { transform: "translateY(-30px)" },
-        { transform: "translateY(0) rotate(0)" },
+    img.animate(
+        [
+            { transform: "translateY(0) rotate(-10deg)" },
+            { transform: "translateY(-50px) rotate(10deg)" },
+            { transform: "translateY(0)" },
+            { transform: "translateY(-40px)" },
+            { transform: "translateY(0) rotate(5deg)" },
+            { transform: "translateY(-30px)" },
+            { transform: "translateY(0) rotate(0)" }
+        ],
+        {
+            duration: 500,
+            easing: "ease-out",
+            iterations: 1
+        }
+    )
 
-    ], {
-        duration: 500,
-        easing: "ease-out",
-        iterations: 1
-    })
-
-    if (clickCount.value > 10) {        
+    if (clickCount.value > 10) {
         const originalUrl = img.src
         img.src = "/images/ugh.png"
 
@@ -63,45 +60,59 @@ function jump() {
         clickCount.value = 0
     }
 }
+
+function showActualImage() {
+    const img = document.querySelector(".me-image img") as HTMLImageElement
+    img.style.display = "block"
+    ;(img.nextElementSibling! as HTMLElement).style.display = "none"
+}
 </script>
 
 <template>
     <div class="page-root grow-in">
         <div class="stack">
             <div class="me-image" draggable="false">
-                <img rel="prefetch" @click="jump" src="https://gravatar.com/avatar/be19bd79a37e5f322b7a1898a1147127?size=512" alt="Jonathan Bout" />
+                <img
+                    rel="prefetch"
+                    @click="jump"
+                    src="https://gravatar.com/avatar/be19bd79a37e5f322b7a1898a1147127?size=512"
+                    alt="Jonathan Bout"
+                    v-on:load="showActualImage"
+                    style="display: none"
+                />
+                <img src="/images/placeholder.svg" />
             </div>
             <div class="me-info">
-                <h2><i class="bi bi-geo-alt"></i> {{ $t("home.country") }} <span class="fi fi-nl"></span> </h2>
+                <h2><i class="bi bi-geo-alt"></i> {{ $t("home.country") }} <span class="fi fi-nl"></span></h2>
                 <h1>{{ $t("home.greeting") }}</h1>
                 <p class="intro" v-html="intro"></p>
             </div>
         </div>
-        <div class="quick-overview">    
-            <h3>{{ $t('home.quick-overview') }}</h3>
+        <div class="quick-overview">
+            <h3>{{ $t("home.quick-overview") }}</h3>
             <div class="icons">
                 <label>
-                    <img src="https://skillicons.dev/icons?i=cs"/>
+                    <img src="https://skillicons.dev/icons?i=cs" />
                     <span>C#</span>
                 </label>
                 <label>
-                    <img src="https://skillicons.dev/icons?i=py"/>
+                    <img src="https://skillicons.dev/icons?i=py" />
                     <span>Python</span>
                 </label>
                 <label>
-                    <img src="https://skillicons.dev/icons?i=ts"/>
+                    <img src="https://skillicons.dev/icons?i=ts" />
                     <span>Typescript</span>
                 </label>
                 <label>
-                    <img src="https://skillicons.dev/icons?i=vue"/>
+                    <img src="https://skillicons.dev/icons?i=vue" />
                     <span>Vue</span>
                 </label>
                 <label>
-                    <img src="https://skillicons.dev/icons?i=html"/>
+                    <img src="https://skillicons.dev/icons?i=html" />
                     <span>HTML</span>
                 </label>
                 <label>
-                    <img src="https://skillicons.dev/icons?i=css"/>
+                    <img src="https://skillicons.dev/icons?i=css" />
                     <span>CSS</span>
                 </label>
             </div>
@@ -109,13 +120,11 @@ function jump() {
         <div class="top-langs">
             <h2 class="top-langs-text">{{ $t("home.top-langs-title") }}</h2>
             <GitHubStatsComponent />
-        </div> 
+        </div>
     </div>
 </template>
 
 <style scoped lang="less">
-
-
 h1 {
     text-align: start;
 }
@@ -127,37 +136,38 @@ h1 {
     flex-direction: column;
 }
 
-.me-image img {
-    border-radius: 100vmax;
-    margin: 0 auto;
-    display: block;
-
-    aspect-ratio: 1;
-    width: 200px;
-
+.me-image {
     @media (width > 700px) {
-        animation: image-horizontal .5s ease-in-out;
+        animation: image-horizontal 0.5s ease-in-out;
     }
 
     @media (width <= 700px) {
-        animation: image-vertical .5s ease-in-out;
+        animation: image-vertical 0.5s ease-in-out;
     }
+    img {
+        border-radius: 100vmax;
+        margin: 0 auto;
+        display: block;
 
-    user-select: none;
+        aspect-ratio: 1;
+        width: 200px;
 
-    -webkit-user-drag: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
+        user-select: none;
+
+        -webkit-user-drag: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
 }
 
 .me-info {
-    &, * {
+    &,
+    * {
         width: fit-content;
     }
-    
-    &:deep(.highlight) {
 
+    &:deep(.highlight) {
         .text-gradient(@from, @to) {
             background-clip: text !important;
             -webkit-text-fill-color: transparent;
@@ -185,7 +195,6 @@ h1 {
             &.hi6 {
                 .text-gradient(#ea00ff, #acce55);
             }
-
         }
 
         @media (prefers-color-scheme: light) {
@@ -212,13 +221,12 @@ h1 {
         }
     }
 
-    
     .bi-geo-alt {
-        margin-right: .5ch;
+        margin-right: 0.5ch;
     }
 
     h2 {
-        font-size: .9em;
+        font-size: 0.9em;
     }
 
     .fi-nl {
@@ -239,7 +247,7 @@ h3 {
     flex-direction: column;
     margin-bottom: 2em;
 
-    animation: scale-xy .5s;
+    animation: scale-xy 0.5s;
 
     @media (min-width: 700px) {
         flex-direction: row;
@@ -247,7 +255,7 @@ h3 {
 }
 
 .quick-overview {
-    animation: slide-y .5s ease-out;
+    animation: slide-y 0.5s ease-out;
     animation-fill-mode: forwards;
 
     .icons {
@@ -261,13 +269,13 @@ h3 {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: .5em;
+            gap: 0.5em;
 
             img {
                 width: 3em;
                 height: 3em;
-                
-                transition: transform .3s;
+
+                transition: transform 0.3s;
 
                 &:hover {
                     transform: scale(1.3);
@@ -281,7 +289,7 @@ h3 {
     width: 100%;
     text-align: center;
 
-    animation: slide-y .6s ease-out;
+    animation: slide-y 0.6s ease-out;
 
     .top-langs-text {
         margin-top: 1em;
