@@ -9,7 +9,7 @@
     },
     "home": {
         "greeting": "Hi, I'm Jonathan!",
-        "intro": "I'm currently studying Computer Science at Hogeschool Rotterdam but already have 4+ years of experience in software development, primarily C# and TypeScript.",
+        "intro": "I'm currently studying %Computer Science% at Hogeschool Rotterdam but already have %4+ years of experience% in software development, primarily %C#% and %TypeScript%. For school projects I have also worked a lot with %Python%.",
         "country": "The Netherlands",
         "quick-overview": "My expertise",
         "top-langs-title": "Top languages"

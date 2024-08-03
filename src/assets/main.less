@@ -36,13 +36,12 @@ body {
     justify-content: safe center;
     align-items: safe center;
 
-    --outer-color: color-mix(in srgb, var(--color-background) 100%, black 60%);
+    --outer-color: hsl(in var(--color-background), h s l);
 
-    background-color: var(--color-background);
-    /* background is a radial gradient of --color-background in the center and slightly darker on the border, using color-mix */
-    // background: radial-gradient(var(--color-background) 10%, var(--outer-color) 100%);
+    background: var(--outer-color);
+    background: var(--color-background);
+
     z-index: 1;
-    // overflow: auto;
     scrollbar-gutter: stable;
 }
 
@@ -56,14 +55,7 @@ main {
     min-height: calc(100dvh - 60px);
 }
 
-footer {
-    width: 100%;
-    & > * {
-        width: 100%;
-        display: block;
-    }
-    text-align: center;
-}
+
 
 button:not(.link) {
     font-family: inherit;

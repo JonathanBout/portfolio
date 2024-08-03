@@ -112,8 +112,10 @@ const iconsByLocale : Localized<string> = {
 }
 
 footer {
+    width: 100%;
     padding-top: 3em;
     border-top: 1px solid #8888;
+    text-align: center;
 	@media (prefers-color-scheme: light) {
 		--color-background: white;
 		--color-text: black;
@@ -124,6 +126,11 @@ footer {
 	}
 	color: var(--color-text);
 	background-color: var(--color-background);
+
+    & > * {
+        width: 100%;
+        display: block;
+    }
 }
 
 .credits-notice {
