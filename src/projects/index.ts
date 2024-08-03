@@ -114,7 +114,7 @@ const tags = {
     internationalization: new Tag({
         name: "internationalization",
         color: "#f0db4f",
-        url: "https://en.wikipedia.org/wiki/Internationalization"
+        url: "https://en.m.wikipedia.org/wiki/Internationalization_and_localization"
     }),
     nginx: new Tag({
         name: "Nginx",
