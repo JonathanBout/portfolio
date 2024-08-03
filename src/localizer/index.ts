@@ -66,13 +66,6 @@ export function createLocalizer(): Localizer {
         }
     }
     
-    const i18n = createI18n({
-        locale: locale,
-        fallbackLocale: "common",
-        messages: localizedStrings,
-        legacy: false
-    })
-    
     // if crawler is visiting the site, we don't want to change the locale or do any redirects
     if (navigator.userAgent.match(/bot|googlebot|crawler|spider|robot|crawling|InspectionTool/i)) {
         return {
@@ -129,3 +122,10 @@ export function createLocalizer(): Localizer {
         }
     } as Localizer
 }
+
+export const i18n = createI18n({
+    locale: "en",
+    fallbackLocale: "common",
+    messages: localizedStrings,
+    legacy: false
+})
