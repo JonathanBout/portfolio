@@ -69,7 +69,7 @@ export default function localizerPlugin(): Plugin {
 
                     newHtml = newHtml.replace(/[^\\]\[\[locale\]\]/g, '"' + locale)
 
-                    newHtml = "<!-- This page search engine optimized for the '" + locale + "' locale -->\n" + newHtml
+                    newHtml = "<!-- This page is search engine optimized for the '" + locale + "' locale -->\n" + newHtml
 
                     const htmlFile: EmittedAsset = {
                         type: "asset",

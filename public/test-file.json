@@ -1,7 +1,7 @@
 {
     "string": "Hello, World!",
     "number": 42,
-    "exponential": 1.23e4,
+    "exponential": 1.23e100,
     "negative": -42,
     "boolean": true,
     "nullValue": null,
