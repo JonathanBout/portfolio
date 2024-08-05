@@ -22,5 +22,6 @@
 **/values.dev.yaml
 **/build
 **/dist
+*.timestamp*.mjs
 LICENSE
 README.md

@@ -1,12 +1,10 @@
 {
     "nl": {
-        "description": "Hallo!",
         "meta": {
             "description": "Nederlandse Software Developer en Student"
         }
     },
     "en": {
-        "description": "Hello!",
         "meta": {
             "description": "Dutch Software Developer and Student"
         }
