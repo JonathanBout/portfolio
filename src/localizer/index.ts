@@ -68,6 +68,9 @@ export function createLocalizer(): Localizer {
     
     // if crawler is visiting the site, we don't want to change the locale or do any redirects
     if (navigator.userAgent.match(/bot|googlebot|crawler|spider|robot|crawling|InspectionTool/i)) {
+        
+        i18n.global.locale.value = locale
+        
         return {
             locale,
             install: (app: any) => {
