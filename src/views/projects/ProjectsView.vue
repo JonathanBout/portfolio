@@ -30,7 +30,8 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
         transition: transform 0.3s;
         transform-origin: left center;
         display: inline-block;
-        margin-left: 20px;
+        margin-inline: 20px;
+        text-align: center;
         
         &:hover {
             transform: scale(1.1);

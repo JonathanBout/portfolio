@@ -94,10 +94,6 @@ const projectName = computed(() => {
     align-items: stretch;
     flex-direction: row;
 
-    & > .image-wrapper {
-        display: contents;
-    }
-
     & > .vertical-stack {
         display: flex;
         flex-direction: column;
