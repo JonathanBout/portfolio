@@ -98,7 +98,6 @@ const projectName = computed(() => {
         display: flex;
         flex-direction: column;
         gap: 10px;
-        background: linear-gradient(to bottom, transparent, rgb(from var(--color-background) r g b / 0.5) 5%, var(--color-background) 25%);
     }
 
 
@@ -128,6 +127,7 @@ const projectName = computed(() => {
 
     @media (width <= 700px) {
         flex-direction: column;
+        border: 1px solid #8884;
 
         
         & > .image-wrapper {
@@ -140,7 +140,10 @@ const projectName = computed(() => {
             max-height: 200px;
         }
 
-        border: 1px solid #8884;
+        & > .vertical-stack {
+            background: linear-gradient(to bottom, transparent, rgb(from var(--color-background) r g b / 0.5) 5%, var(--color-background) 25%);
+        }
+
     }
 
     * + & {
