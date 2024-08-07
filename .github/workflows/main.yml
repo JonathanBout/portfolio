@@ -24,7 +24,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.CI_GHCR_PAT }}
+          password: ${{ github.token }}
       - name: Extract metadata for Docker GHCR
         env:
           REGISTRY: ghcr.io
