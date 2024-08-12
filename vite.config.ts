@@ -13,5 +13,12 @@ export default defineConfig({
             //@ts-ignore
             "@": fileURLToPath(new URL("./src", import.meta.url))
         }
+    },
+    css: {
+        preprocessorOptions: {
+            less: {
+                 additionalData: `@import "@/assets/variables.less";`
+            }
+        }
     }
 })

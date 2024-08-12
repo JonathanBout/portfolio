@@ -1,38 +1,23 @@
-@header-breakpoint: 700px;
 
 @import "/node_modules/flag-icons/css/flag-icons.min.css";
-
+@import "variables.less";
 
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
-    --background-light: white;
-    --secondary-background-light: #f0f0f0;
-    --background-dark: #2e2a2a;
-    --secondary-background-dark: #373333;
-    --primary-button-light: #ccc;
-    --primary-button-light-text: black;
 
-    --text-light: black;
-    --secondary-text-light: #333;
-    --text-dark: white;
-    --secondary-text-dark: #ccc;
-    --primary-button-dark: #444;
-    --primary-button-dark-text: white;
-
-    --link-light: blue;
-    --link-dark: lightblue;
-
-    --border-radius: 20px;
-
-    --header-breakpoint: @header-breakpoint;
 
     --color-background: var(--background-dark);
     --color-secondary-background: var(--secondary-background-dark);
     --color-text: var(--text-dark);
     --color-secondary-text: var(--secondary-text-dark);
     --color-link: var(--link-dark);
+    --color-default-button: var(--default-button-dark);
+    --color-default-button-text: var(--default-button-dark-text);
     --color-primary-button: var(--primary-button-dark);
     --color-primary-button-text: var(--primary-button-dark-text);
+    --color-danger-button: var(--danger-button-dark);
+    --color-danger-button-text: var(--danger-button-dark-text);
+    --color-error: var(--error-dark);
     color-scheme: dark;
 }
 
@@ -43,8 +28,13 @@
         --color-text: var(--text-light);
         --color-secondary-text: var(--secondary-text-light);
         --color-link: var(--link-light);
+        --color-default-button: var(--default-button-light);
+        --color-default-button-text: var(--default-button-light-text);
         --color-primary-button: var(--primary-button-light);
         --color-primary-button-text: var(--primary-button-light-text);
+        --color-error: var(--error-light);
+        --color-danger-button: var(--danger-button-light);
+        --color-danger-button-text: var(--danger-button-light-text);
         color-scheme: light;
     }
 }
@@ -130,7 +120,7 @@ a {
                     -webkit-font-smoothing: antialiased;
                     -moz-osx-font-smoothing: grayscale;
 
-                    margin-left: 10px;
+                    margin-left: max(1ch, 5px);
 
                     content: "\f1c5";
 
@@ -153,9 +143,67 @@ a {
                     }
                 }
             }
+
+        }
+    }
+    &[href^="mailto:"] {
+        &:not(.no-external-icon)::after {
+            --vertical-shift: -0.125em;
+            display: inline-block;
+            font-display: block;
+            font-family: bootstrap-icons !important;
+            font-style: normal;
+            font-weight: 200 !important;
+            font-variant: normal;
+
+            text-transform: none;
+            line-height: 1em;
+            font-size: calc(1em + var(--vertical-shift));
+            vertical-align: var(--vertical-shift);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+
+            margin-left: 5px;
+
+            content: "\F32F";
+
+            text-decoration: none;
         }
     }
 }
+
+button:not(.link) {
+    font-family: inherit;
+    font-size: 1em;
+    padding: 0.1em 1em;
+    border: 1px solid var(--color-primary-button-text);
+    border-radius: 0.5em;
+    cursor: pointer;
+    transition:
+        border 0.2s,
+        color 0.2s;
+    font-size: 1.2em;
+
+    color: var(--color-default-button-text);
+    background-color: var(--color-default-button);
+
+    @media (hover: hover) {
+        &:hover {
+            outline: 2px solid var(--color-primary-button-text);
+        }
+    }
+
+    &.primary {
+        background-color: var(--color-primary-button);
+        color: var(--color-primary-button-text);
+    }
+
+    &.danger {
+        background-color: var(--color-danger-button);
+        color: var(--color-danger-button-text);
+    }
+}
+
 
 h1 {
     text-align: center;

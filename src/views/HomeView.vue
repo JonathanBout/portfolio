@@ -125,6 +125,8 @@ function showActualImage() {
 </template>
 
 <style scoped lang="less">
+
+
 h1 {
     text-align: start;
 }
@@ -137,11 +139,11 @@ h1 {
 }
 
 .me-image {
-    @media (width > 700px) {
+    @media (width > @breakpoint) {
         animation: image-horizontal 0.5s ease-in-out;
     }
 
-    @media (width <= 700px) {
+    @media (width <= @breakpoint) {
         animation: image-vertical 0.5s ease-in-out;
     }
     img {
@@ -249,7 +251,7 @@ h3 {
 
     animation: scale-xy 0.5s;
 
-    @media (min-width: 700px) {
+    @media (width >= @breakpoint) {
         flex-direction: row;
     }
 }

@@ -54,5 +54,20 @@
         "privacy": "privacy",
         "privacy/programmer-watchface": "programmer watchface"
     },
-    "imageCreditNotice": "All rights to images used on this site belong to their respective owners."
+    "imageCreditNotice": "All rights to images used on this site belong to their respective owners.",
+    "contact": {
+        "title": "Contact",
+        "description": "Got any questions or tips? Feel free to reach out to me via an email ({email}) or this contact form!",
+        "name": "Your Name",
+        "name-error": "Please enter your name.",
+        "email": "Your Email address",
+        "email-error": "Please enter a valid email address.",
+        "message": "Message",
+        "message-error": "Please enter a message longer than 10 characters and shorter than 4096 characters.",
+        "submit": "Send",
+        "sending": "Sending your message...",
+        "sent": "Your message has been delivered, thank you! I'll get back to you as soon as I can.",
+        "error": "Something went wrong. Please try again.",
+        "clear": "Clear"
+    }
 }

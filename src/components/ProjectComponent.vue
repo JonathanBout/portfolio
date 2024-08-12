@@ -89,6 +89,8 @@ const projectName = computed(() => {
     </a>
 </template>
 <style lang="less" scoped>
+
+
 .project {
     display: flex;
     align-items: stretch;
@@ -119,13 +121,13 @@ const projectName = computed(() => {
 
     padding: 20px;
 
-    @media (width > 700px) {
+    @media (width > @breakpoint) {
         &:nth-child(2n) {
             flex-direction: row-reverse;
         }
     }
 
-    @media (width <= 700px) {
+    @media (width <= @breakpoint) {
         flex-direction: column;
         border: 1px solid #8884;
 

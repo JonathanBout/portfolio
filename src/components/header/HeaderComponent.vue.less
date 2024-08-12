@@ -57,9 +57,9 @@ header {
     }
 }
 
-@media (width > 700px) {
+@media (width > @breakpoint) {
     @import url(./HeaderComponent.big.less);
 }
-@media (width <= 700px) {
+@media (width <= @breakpoint) {
     @import url(./HeaderComponent.small.less);
 }
