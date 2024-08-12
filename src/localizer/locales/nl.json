@@ -66,8 +66,8 @@
         "message-error": "Vul een bericht in van minimaal 10 en maximaal 4096 tekens",
         "submit": "Verstuur",
         "sending": "Je bericht wordt verstuurd...",
-        "sent":"Je bericht is aangekomen, bedankt! Ik probeer zo snel mogelijk te reageren.",
-        "error":"Er ging wat mis.",
+        "sent": "Je bericht is aangekomen, bedankt! Ik probeer zo snel mogelijk te reageren.",
+        "error": "Er ging wat mis.",
         "clear": "Leegmaken"
     }
 }

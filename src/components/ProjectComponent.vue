@@ -89,8 +89,6 @@ const projectName = computed(() => {
     </a>
 </template>
 <style lang="less" scoped>
-
-
 .project {
     display: flex;
     align-items: stretch;
@@ -101,7 +99,6 @@ const projectName = computed(() => {
         flex-direction: column;
         gap: 10px;
     }
-
 
     & > .image-wrapper {
         height: fit-content;
@@ -131,7 +128,6 @@ const projectName = computed(() => {
         flex-direction: column;
         border: 1px solid #8884;
 
-        
         & > .image-wrapper {
             align-self: center;
             display: flex;
@@ -143,9 +139,13 @@ const projectName = computed(() => {
         }
 
         & > .vertical-stack {
-            background: linear-gradient(to bottom, transparent, rgb(from var(--color-background) r g b / 0.5) 5%, var(--color-background) 25%);
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgb(from var(--color-background) r g b / 0.5) 5%,
+                var(--color-background) 25%
+            );
         }
-
     }
 
     * + & {

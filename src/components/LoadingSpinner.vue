@@ -7,9 +7,9 @@
 </template>
 
 <style lang="less" scoped>
-    .spinner-root {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-    }
+.spinner-root {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
 </style>

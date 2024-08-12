@@ -1,6 +1,6 @@
 import type { Locale, Localized } from "."
 
-export const months : Localized = {
+export const months: Localized = {
     en: [
         "January",
         "February",
@@ -32,28 +32,28 @@ export const months : Localized = {
 }
 
 // export shortMonths and use TS to shorten the month names
-export const shortMonths : Localized = {
+export const shortMonths: Localized = {
     en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     nl: ["jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"]
 }
 
-export const days : Localized = {
+export const days: Localized = {
     en: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     nl: ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"]
 }
 
-export const shortDays : Localized = {
+export const shortDays: Localized = {
     en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
     nl: ["zo", "ma", "di", "wo", "do", "vr", "za"]
 }
 
-export const timeframes : Localized = {
+export const timeframes: Localized = {
     en: {
         present: "present"
     },
     nl: {
         present: "nu"
-    },
+    }
 }
 
 export function formatDate(
@@ -75,8 +75,7 @@ export function formatDate(
 
     let result = ""
 
-    if (lang == "en")
-    {
+    if (lang == "en") {
         if (includeMonth) {
             if (includeDayName && includeDayNumber) result += `${dayName}, `
             result += `${monthName} `
@@ -89,8 +88,8 @@ export function formatDate(
             if (includeDayNumber) {
                 if (includeDayName) result += `${dayName} `
                 result += `${day} `
-            } 
-                
+            }
+
             result += `${monthName} `
         }
 

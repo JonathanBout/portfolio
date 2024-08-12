@@ -14,8 +14,7 @@ setTimeout(() => {
 
 const highlight = (_: any, b: any) => `<span class="highlight hi${Math.round(Math.random() * 5) + 1}">${b}</span>`
 
-intro = intro
-.replace(/%(.*?)%/gi, highlight)
+intro = intro.replace(/%(.*?)%/gi, highlight)
 
 const clickCount = ref(0)
 const lastClick = ref(Date.now())
@@ -125,8 +124,6 @@ function showActualImage() {
 </template>
 
 <style scoped lang="less">
-
-
 h1 {
     text-align: start;
 }

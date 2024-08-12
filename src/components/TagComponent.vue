@@ -27,7 +27,12 @@ function getIconUrl() {
 </script>
 
 <template>
-    <component :is="foundTag.url ? 'a' : 'span'" class="tag-element no-external-icon" :href="foundTag.url" :style="style">
+    <component
+        :is="foundTag.url ? 'a' : 'span'"
+        class="tag-element no-external-icon"
+        :href="foundTag.url"
+        :style="style"
+    >
         <img
             v-if="foundTag.iconUrl || foundTag.url"
             :src="getIconUrl()"

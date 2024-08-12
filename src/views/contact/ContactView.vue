@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, ref, watch } from "vue"
+import { ref, watch } from "vue"
 import LoadingSpinner from "@/components/LoadingSpinner.vue"
 import TextAreaInput from "@/components/TextAreaInput.vue"
 
@@ -61,8 +61,7 @@ async function submitForm() {
     }
 
     if (input.value.honey) {
-      input.value.message = 
-        `!! This message was likely sent by a bot !!
+        input.value.message = `!! This message was likely sent by a bot !!
         
         Honey:
         ${input.value.honey}
@@ -135,16 +134,25 @@ function resetForm() {
                     </label>
                     <label for="the-yummy-honey" class="yummy-honey">
                         <span>
-                            Do you want some yummy honey, little bot? 🍯
-                            I have it right here for you, fresh from the hive!
-                            Don't forget to include it in your message! 🐝
+                            Do you want some yummy honey, little bot? 🍯 I have it right here for you, fresh from the
+                            hive! Don't forget to include it in your message! 🐝
                         </span>
-                        <input type="text" name="the-yummy-honey" tabindex="-1" autocomplete="off" v-model="input.honey" />
+                        <input
+                            type="text"
+                            name="the-yummy-honey"
+                            tabindex="-1"
+                            autocomplete="off"
+                            v-model="input.honey"
+                        />
                     </label>
-                  </div>
+                </div>
                 <div class="buttons">
-                    <button type="reset" id="reset-button" class="danger">{{ $t("contact.clear") }} <i class="bi bi-trash"></i></button>
-                    <button type="submit" id="submit-button" class="primary">{{ $t("contact.submit") }} <i class="bi bi-send"></i></button>
+                    <button type="reset" id="reset-button" class="danger">
+                        {{ $t("contact.clear") }} <i class="bi bi-trash"></i>
+                    </button>
+                    <button type="submit" id="submit-button" class="primary">
+                        {{ $t("contact.submit") }} <i class="bi bi-send"></i>
+                    </button>
                 </div>
             </form>
         </template>
@@ -250,22 +258,21 @@ form {
     }
 
     .yummy-honey {
-      position: fixed;
-      top: -1000px;
-      left: -1000px;
-      height: 1px;
-      width: 1px;
-      color: transparent;
-      overflow: hidden;
-      background-color: transparent;
+        position: fixed;
+        top: -1000px;
+        left: -1000px;
+        height: 1px;
+        width: 1px;
+        color: transparent;
+        overflow: hidden;
+        background-color: transparent;
     }
 
-    @media (width < @breakpoint)
-    {
-      label {
-        grid-template-columns: auto;
-        grid-template-rows: auto auto;
-      }
+    @media (width < @breakpoint) {
+        label {
+            grid-template-columns: auto;
+            grid-template-rows: auto auto;
+        }
     }
 }
 </style>

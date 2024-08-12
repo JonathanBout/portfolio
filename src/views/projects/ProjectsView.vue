@@ -32,7 +32,7 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
         display: inline-block;
         margin-inline: 20px;
         text-align: center;
-        
+
         &:hover {
             transform: scale(1.1);
         }
@@ -46,7 +46,7 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
         animation: slide-in 0.5s ease-in-out;
     }
 
-    &> :not(:last-child) {
+    & > :not(:last-child) {
         margin-bottom: 2em;
     }
 }

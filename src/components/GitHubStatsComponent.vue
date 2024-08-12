@@ -71,9 +71,6 @@ function getTotalSizeFriendly(size: number) {
     </div>
 </template>
 <style lang="less">
-
-
-
 .percentage-bar {
     width: 100%;
     height: 20px;
@@ -88,7 +85,6 @@ function getTotalSizeFriendly(size: number) {
         height: 100%;
         flex-basis: calc(var(--lang-size) / var(--total-lang-size) * 100%);
         background-color: var(--lang-color);
-
     }
 
     @media (width <= @breakpoint) or (hover: none) {

@@ -52,8 +52,7 @@ const router = createRouterInternal({
 function setDocumentTitle(to: RouteLocationNormalized) {
     let title = "Jonathan Bout"
 
-    if (typeof to.meta.title === "string")
-    {
+    if (typeof to.meta.title === "string") {
         title = i18n.global.t(to.meta.title).toString() + " • " + title
     }
 
