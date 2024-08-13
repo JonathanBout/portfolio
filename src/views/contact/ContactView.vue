@@ -191,15 +191,16 @@ function resetForm() {
         <template v-else-if="phase === 2">
             <p>
                 {{ $t("contact.sent") }}
-                <br />
-                <router-link to="/"
-                    ><i>{{ $t("contact.back") }}</i></router-link
-                >
             </p>
+            <div class="other-buttons">
+                <router-link to="/" class="button">
+                    <i class="bi bi-house-door-fill"></i> {{ $t("contact.back") }}
+                </router-link>
+            </div>
         </template>
         <template v-else-if="phase === 4">
             <p>{{ $t("contact.robot-challenge") }}</p>
-            <div class="robot-buttons">
+            <div class="other-buttons">
                 <button @click="() => submitFormChallengeFailed()" class="primary">{{ $t("contact.back") }}</button>
                 <button @click="submitFormChallengeFailed" class="danger">{{ $t("contact.submit") }}</button>
             </div>
@@ -256,23 +257,12 @@ form {
         background-color: var(--color-background);
     }
 
-    .character-count {
-        grid-column: span 2;
-        text-align: right;
-        font-size: 0.75rem;
-        color: #666;
-        position: absolute;
-        bottom: 0;
-        scrollbar-gutter: stable;
-        z-index: 10000;
-        width: fit-content;
-        justify-self: end;
-    }
+
 
     :deep(textarea) {
         resize: vertical;
         min-height: 25vh;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     button {
@@ -319,7 +309,7 @@ form {
     }
 }
 
-.robot-buttons {
+.other-buttons {
     display: flex;
     justify-content: center;
     gap: 1ch;
