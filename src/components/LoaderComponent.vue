@@ -1,7 +1,7 @@
 <template>
     <div class="spinner-root">
         <template v-for="n in 10" v-bind:key="n">
-            <div :style="'--animation-delay: ' + (n - 1) * 0.06 + 's'"></div>
+            <div :style="'--animation-delay: ' + (n - 1) * 0.06 + 's'" class="no-load-animation"></div>
         </template>
     </div>
 </template>
