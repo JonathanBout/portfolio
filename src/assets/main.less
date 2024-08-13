@@ -8,7 +8,6 @@ body {
 #app {
     min-height: 100dvh;
     max-width: 100dvw;
-    overflow-x: hidden;
     margin: 0;
     padding: 0;
     color: var(--color-text);
@@ -53,29 +52,6 @@ main {
     justify-content: center;
     align-items: safe center;
     min-height: calc(100dvh - 60px);
-}
-
-
-
-button:not(.link) {
-    font-family: inherit;
-    font-size: 1em;
-    padding: 0.1em 1em;
-    border: 1px solid var(--color-primary-button-text);
-    border-radius: 0.5em;
-    background-color: var(--color-primary-button);
-    color: var(--color-primary-button-text);
-    cursor: pointer;
-    transition:
-        border 0.2s,
-        color 0.2s;
-    font-size: 1.2em;
-
-    @media (hover: hover) {
-        &:hover {
-            outline: 2px solid var(--color-primary-button-text);
-        }
-    }
 }
 
 .monospace {

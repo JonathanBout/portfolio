@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LOCALES, type Locale, type Localized, changeLanguage } from "@/localizer";
+import { LOCALES, type Locale, type Localized, changeLanguage } from "@/localizer"
 import { inject } from "vue"
 const creditsYear = new Date().getFullYear()
 
@@ -9,11 +9,10 @@ defineProps<{
 
 const currentLocale = inject<Locale>("locale")
 
-const iconsByLocale : Localized<string> = {
+const iconsByLocale: Localized<string> = {
     en: "gb",
     nl: "nl"
 }
-
 </script>
 
 <template>
@@ -21,15 +20,17 @@ const iconsByLocale : Localized<string> = {
         <div class="language-display" translate="no">
             <span>{{ $t("language.availableLocaleMessage") }}</span>
             <br />
-			<ul>
-				<li v-for="locale in LOCALES" v-bind:key="locale">
-					<button :class="'link no-external-icon' + (currentLocale === locale ? ' current' : '')" @click="changeLanguage(locale)">
-                    <i :class="'fi fi-'+ iconsByLocale[locale]"></i>
-					{{ $t("language." + locale) }}
-					</button>
-				</li>
-
-			</ul>
+            <ul>
+                <li v-for="locale in LOCALES" v-bind:key="locale">
+                    <button
+                        :class="'link no-external-icon' + (currentLocale === locale ? ' current' : '')"
+                        @click="changeLanguage(locale)"
+                    >
+                        <i :class="'fi fi-' + iconsByLocale[locale]"></i>
+                        {{ $t("language." + locale) }}
+                    </button>
+                </li>
+            </ul>
         </div>
         <div class="links separated">
             <span>&copy; {{ creditsYear }} Jonathan Bout</span>
@@ -40,7 +41,7 @@ const iconsByLocale : Localized<string> = {
             </span>
         </div>
         <i class="credits-notice">
-            {{ $t('imageCreditNotice') }}
+            {{ $t("imageCreditNotice") }}
         </i>
     </footer>
 </template>
@@ -96,10 +97,11 @@ const iconsByLocale : Localized<string> = {
 }
 
 .language-display {
-	ul, li {
-		list-style: none;
-		padding: 0;
-	}
+    ul,
+    li {
+        list-style: none;
+        padding: 0;
+    }
     button {
         border: none;
         background: none;
@@ -114,18 +116,18 @@ const iconsByLocale : Localized<string> = {
 footer {
     width: 100%;
     padding-top: 3em;
-    border-top: 1px solid #8888;
+    border-top: 1px solid @border-color;
     text-align: center;
-	@media (prefers-color-scheme: light) {
-		--color-background: white;
-		--color-text: black;
-	}
-	@media (prefers-color-scheme: dark) {
-		--color-background: #161611;
-		--color-text: white;
-	}
-	color: var(--color-text);
-	background-color: var(--color-background);
+    @media (prefers-color-scheme: light) {
+        --color-background: white;
+        --color-text: black;
+    }
+    @media (prefers-color-scheme: dark) {
+        --color-background: #161611;
+        --color-text: white;
+    }
+    color: var(--color-text);
+    background-color: var(--color-background);
 
     & > * {
         width: 100%;

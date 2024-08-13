@@ -34,6 +34,14 @@ const router = createRouterInternal({
             ]
         },
         {
+            path: "/contact",
+            name: "contact",
+            component: () => import("../views/contact/ContactView.vue"),
+            meta: {
+                title: "contact.title"
+            }
+        },
+        {
             path: "/:fullPath(.*)",
             name: "not-found",
             component: () => import("../views/NotFoundView.vue")
@@ -44,9 +52,19 @@ const router = createRouterInternal({
 function setDocumentTitle(to: RouteLocationNormalized) {
     let title = "Jonathan Bout"
 
-    if (typeof to.meta.title === "string")
-    {
+    if (typeof to.meta.title === "string") {
         title = i18n.global.t(to.meta.title).toString() + " • " + title
+    }
+
+    const elementsToSetTitle = document.querySelectorAll("[data-set-page-title]")
+
+    for (const element of elementsToSetTitle) {
+        // if meta element, set content attribute
+        if (element instanceof HTMLMetaElement) {
+            element.content = title
+        } else {
+            element.textContent = title
+        }
     }
 
     document.title = title

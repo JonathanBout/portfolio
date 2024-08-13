@@ -2,19 +2,30 @@
 <html lang="[[locale]]" xml:lang="[[locale]]" xmlns="http://www.w3.org/1999/xhtml" translate="no">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Jonathan Bout</title>
-        <meta name="description" content="[[localize:meta.description]]" />
         <meta http-equiv="Content-Language" content="[[locale]]" />
-        <!-- favicon.png -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="[[localize:meta.description]]" />
+        <meta name="HandheldFriendly" content="true"/> 
+        
+        <!-- site icon -->
         <link rel="icon" type="image/png" href="/images/icon-light.png" />
         <link rel="icon" type="image/png" href="/images/icon-dark.png" media="(prefers-color-scheme: dark)" />
         <link rel="icon" type="image/png" href="/images/icon-light.png" media="(prefers-color-scheme: light)" />
+        
+        <!-- Language-specific alternate sites -->
         <link rel="alternate" href="https://jonathanbout.com" hreflang="en" />
         <link rel="alternate" href="https://jonathanbout.com" hreflang="x-default" />
         <link rel="alternate" href="https://jonathanbout.nl" hreflang="nl" />
         <!-- disallow translating the page -->
         <meta name="google" content="notranslate" />
+        
+        <!-- Page and site title -->
+        <meta property="og:site_name" content="Jonathan Bout" />
+        <meta data-set-page-title property="og:title" content="Jonathan Bout" />
+        <meta data-set-page-title name="title" content="Jonathan Bout" />
+
+        <title data-set-page-title>Jonathan Bout</title>
+        
     </head>
     <body>
         <div id="app"></div>

@@ -130,7 +130,7 @@ const projects: Project[] = [
     new Project({
         name: {
             en: "Programmer Watchface",
-            nl: "Developer-wijzerplaat",
+            nl: "Developer-wijzerplaat"
         },
         id: "programmer-watchface",
         github: "https://github.com/jonathanbout/programmer-watchface",
@@ -195,6 +195,12 @@ const projects: Project[] = [
 ]
 
 export default {
-    projects: projects.sort((a, b) => b.timeframe?.start.toISOString() == a.timeframe?.start.toISOString() ? 0 : (b.timeframe?.start.toISOString() ?? '') > (a.timeframe?.start.toISOString() ?? '') ? 1 : -1),
+    projects: projects.sort((a, b) =>
+        b.timeframe?.start.toISOString() == a.timeframe?.start.toISOString()
+            ? 0
+            : (b.timeframe?.start.toISOString() ?? "") > (a.timeframe?.start.toISOString() ?? "")
+              ? 1
+              : -1
+    ),
     tags
 }

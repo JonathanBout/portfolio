@@ -100,7 +100,6 @@ const projectName = computed(() => {
         gap: 10px;
     }
 
-
     & > .image-wrapper {
         height: fit-content;
         align-self: center;
@@ -119,17 +118,16 @@ const projectName = computed(() => {
 
     padding: 20px;
 
-    @media (width > 700px) {
+    @media (width > @breakpoint) {
         &:nth-child(2n) {
             flex-direction: row-reverse;
         }
     }
 
-    @media (width <= 700px) {
+    @media (width <= @breakpoint) {
         flex-direction: column;
-        border: 1px solid #8884;
+        border: 1px solid @border-color;
 
-        
         & > .image-wrapper {
             align-self: center;
             display: flex;
@@ -141,9 +139,13 @@ const projectName = computed(() => {
         }
 
         & > .vertical-stack {
-            background: linear-gradient(to bottom, transparent, rgb(from var(--color-background) r g b / 0.5) 5%, var(--color-background) 25%);
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgb(from var(--color-background) r g b / 0.5) 5%,
+                var(--color-background) 25%
+            );
         }
-
     }
 
     * + & {

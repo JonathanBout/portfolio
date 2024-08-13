@@ -8,9 +8,9 @@ export type Locale = (typeof LOCALES)[number]
 
 export type Localizer = { locale: Locale; install: (app: any) => void }
 
-export type Localized<V = any> = {[K in Locale]: V}
+export type Localized<V = any> = { [K in Locale]: V }
 
-export const domainsByLocale : Localized<`https://${string}`> = {
+export const domainsByLocale: Localized<`https://${string}`> = {
     en: "https://jonathanbout.com",
     nl: "https://jonathanbout.nl"
 }
@@ -57,7 +57,7 @@ export function createLocalizer(): Localizer {
      * 5. If none of the above, use the locale for the current domain (.com is English, .nl is Dutch)
      */
 
-    let locale : Locale = "en"
+    let locale: Locale = "en"
 
     for (const loc of LOCALES) {
         if (window.location.origin.toLowerCase() === domainsByLocale[loc].toLowerCase()) {
@@ -65,12 +65,11 @@ export function createLocalizer(): Localizer {
             break
         }
     }
-    
+
     // if crawler is visiting the site, we don't want to change the locale or do any redirects
     if (navigator.userAgent.match(/bot|googlebot|crawler|spider|robot|crawling|InspectionTool/i)) {
-        
         i18n.global.locale.value = locale
-        
+
         return {
             locale,
             install: (app: any) => {
@@ -130,5 +129,7 @@ export const i18n = createI18n({
     locale: "en",
     fallbackLocale: "common",
     messages: localizedStrings,
-    legacy: false
+    legacy: false,
+    fallbackWarn: import.meta.env.DEV,
+    missingWarn: import.meta.env.DEV
 })

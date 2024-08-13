@@ -85,10 +85,9 @@ function getTotalSizeFriendly(size: number) {
         height: 100%;
         flex-basis: calc(var(--lang-size) / var(--total-lang-size) * 100%);
         background-color: var(--lang-color);
-
     }
 
-    @media (width <= 700px) or (hover: none) {
+    @media (width <= @breakpoint) or (hover: none) {
         height: max-content;
         flex-direction: column;
         position: relative;
@@ -117,7 +116,7 @@ function getTotalSizeFriendly(size: number) {
         }
     }
 
-    @media (width > 700px) and (hover: hover) {
+    @media (width > @breakpoint) and (hover: hover) {
         div {
             span {
                 display: none;
