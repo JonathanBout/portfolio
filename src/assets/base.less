@@ -42,6 +42,7 @@
     *::after {
         transition-duration: 0.01s !important;
         animation-duration: 0.01s !important;
+        scroll-behavior: auto !important;
     }
 }
 
@@ -78,6 +79,10 @@
         outline-style: dashed;
         z-index: 100;
     }
+
+    &:focus:not(:focus-visible) {
+        outline-color: transparent;
+    }
 }
 
 .link,
@@ -91,7 +96,12 @@ a {
     display: inline;
     padding: unset;
     cursor: pointer;
-    text-decoration: none;
+
+    text-decoration: underline 1px dotted;
+
+    @media (prefers-contrast: no-preference), (prefers-contrast: less) {
+        text-decoration: none;
+    }
 
     @media (hover: hover) {
         &:hover,
@@ -168,6 +178,10 @@ a {
     }
 }
 
+textarea {
+    font-family: Code;
+}
+
 button:not(.link) {
     font-family: inherit;
     font-size: 1em;
@@ -209,4 +223,45 @@ h1 {
     margin-top: 50px;
 
     max-width: min(100%, 1000px);
+}
+
+.page-root:not(.custom-animation) {
+    animation: scale-in 0.5s;
+
+    *:not(.no-load-animation) {
+        animation: slide-in 0.5s ease-in-out;
+    }
+
+    @keyframes scale-in {
+        from {
+            transform: scale(0.9);
+            opacity: 0;
+            overflow: visible;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+            overflow: visible;
+        }
+    }
+
+    @keyframes slide-in {
+        from {
+            transform: translateY(50dvh);
+            overflow: visible;
+        }
+
+        to {
+            transform: translateY(0);
+            overflow: visible;
+        }
+    }
+}
+
+form {
+    overflow: auto;
+    &,
+    & > * {
+        min-width: fit-content;
+    }
 }

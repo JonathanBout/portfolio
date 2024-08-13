@@ -19,9 +19,12 @@ intro = intro.replace(/%(.*?)%/gi, highlight)
 const clickCount = ref(0)
 const lastClick = ref(Date.now())
 
-function jump() {
-    const img = document.querySelector(".me-image img") as HTMLImageElement
+const originalUrl = "https://gravatar.com/avatar/be19bd79a37e5f322b7a1898a1147127?size=512"
+const imageUrl = ref(originalUrl)
 
+let resetTimeout: number | null = null
+
+function jump() {
     if (Date.now() - lastClick.value < 1000) {
         clickCount.value += 1
     } else {
@@ -30,6 +33,7 @@ function jump() {
 
     lastClick.value = Date.now()
 
+    const img = document.querySelector(".me-image img") as HTMLImageElement
     // animate a jump
     img.animate(
         [
@@ -48,12 +52,14 @@ function jump() {
         }
     )
 
-    if (clickCount.value > 10) {
-        const originalUrl = img.src
-        img.src = "/images/ugh.png"
+    if (clickCount.value > 10 || resetTimeout) {
+        imageUrl.value = "/images/ugh.png"
 
-        setTimeout(() => {
-            img.src = originalUrl
+        resetTimeout && clearTimeout(resetTimeout)
+
+        resetTimeout = setTimeout(() => {
+            imageUrl.value = originalUrl
+            resetTimeout = null
         }, 2000)
 
         clickCount.value = 0
@@ -68,13 +74,13 @@ function showActualImage() {
 </script>
 
 <template>
-    <div class="page-root grow-in">
+    <div class="page-root grow-in custom-animation">
         <div class="stack">
             <div class="me-image" draggable="false">
                 <img
                     rel="prefetch"
                     @click="jump"
-                    src="https://gravatar.com/avatar/be19bd79a37e5f322b7a1898a1147127?size=512"
+                    :src="imageUrl"
                     alt="Jonathan Bout"
                     v-on:load="showActualImage"
                     style="display: none"

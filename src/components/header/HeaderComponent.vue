@@ -90,6 +90,54 @@ function transformPathName(index: number, part: string) {
             <router-link active-class="active" to="/contact">
                 <span>{{ $t("contact.title") }}</span>
             </router-link>
+            <!-- <router-link active-class="active" to="/contact">
+                <span>{{ $t("contact.title") }}</span>
+            </router-link>
+            <router-link active-class="active" to="/contact">
+                <span>{{ $t("contact.title") }}</span>
+            </router-link>
+            <router-link active-class="active" to="/contact">
+                <span>{{ $t("contact.title") }}</span>
+            </router-link>
+            <router-link active-class="active" to="/contact">
+                <span>{{ $t("contact.title") }}</span>
+            </router-link>
+            <router-link active-class="active" to="/contact">
+                <span>{{ $t("contact.title") }}</span>
+            </router-link>
+            <router-link active-class="active" to="/contact">
+                <span>{{ $t("contact.title") }}</span>
+            </router-link>
+            <router-link active-class="active" to="/contact">
+                <span>{{ $t("contact.title") }}</span>
+            </router-link>
+            <router-link active-class="active" to="/contact">
+                <span>{{ $t("contact.title") }}</span>
+            </router-link>
+            <router-link active-class="active" to="/contact">
+                <span>{{ $t("contact.title") }}</span>
+            </router-link>
+            <router-link active-class="active" to="/contact">
+                <span>{{ $t("contact.title") }}</span>
+            </router-link>
+            <router-link active-class="active" to="/contact">
+                <span>{{ $t("contact.title") }}</span>
+            </router-link>
+            <router-link active-class="active" to="/contact">
+                <span>{{ $t("contact.title") }}</span>
+            </router-link>
+            <router-link active-class="active" to="/contact">
+                <span>{{ $t("contact.title") }}</span>
+            </router-link>
+            <router-link active-class="active" to="/contact">
+                <span>{{ $t("contact.title") }}</span>
+            </router-link>
+            <router-link active-class="active" to="/contact">
+                <span>{{ $t("contact.title") }}</span>
+            </router-link>
+            <router-link active-class="active" to="/contact">
+                <span>{{ $t("contact.title") }}</span>
+            </router-link> -->
             <a href="https://github.com/JonathanBout" class="no-external-icon small">
                 <span><i class="bi bi-github"></i></span>
             </a>

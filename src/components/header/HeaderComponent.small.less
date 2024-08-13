@@ -81,13 +81,13 @@
 header {
     transition: transform var(--animation-duration) ease-out;
     position: fixed;
-    // flex-direction: column;
+
     flex-wrap: wrap;
     align-content: start;
 
     padding: 20px;
     z-index: 2;
-    transform-origin: right;
+    transform-origin: left;
     box-shadow: 0 2px 10px 0 black;
 
     top: 80px;
@@ -99,14 +99,18 @@ header {
     border-radius: calc(var(--border-radius) - 10px);
 
     &.closed {
-        transform: translateX(100dvw);
+        transform: translateX(110dvw);
     }
 
-    *:not(.small) {
+    :not(.small) {
         display: block;
         width: 100%;
         text-align: center;
         height: fit-content;
+    }
+
+    .small {
+        margin-inline: 5px;
     }
 }
 

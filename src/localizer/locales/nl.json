@@ -68,6 +68,8 @@
         "sending": "Je bericht wordt verstuurd...",
         "sent": "Je bericht is aangekomen, bedankt! Ik probeer zo snel mogelijk te reageren.",
         "error": "Er ging wat mis.",
-        "clear": "Leegmaken"
+        "clear": "Leegmaken",
+        "back": "Terug",
+        "robot-challenge": "Sorry, maar je invoer lijk op die van een robot. Als dar waar is, druk op \"Verstuur\". Druk anders op \"Terug\" om het formulier te versturen."
     }
 }

@@ -116,7 +116,7 @@ const iconsByLocale: Localized<string> = {
 footer {
     width: 100%;
     padding-top: 3em;
-    border-top: 1px solid #8888;
+    border-top: 1px solid @border-color;
     text-align: center;
     @media (prefers-color-scheme: light) {
         --color-background: white;

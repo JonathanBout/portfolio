@@ -68,6 +68,8 @@
         "sending": "Sending your message...",
         "sent": "Your message has been delivered, thank you! I'll get back to you as soon as I can.",
         "error": "Something went wrong. Please try again.",
-        "clear": "Clear"
+        "clear": "Clear",
+        "back": "Back",
+        "robot-challenge": "Sorry, but your input seems to be from a robot. If that's true, press \"Send\". Otherwise, press \"Back\" to send the form."
     }
 }

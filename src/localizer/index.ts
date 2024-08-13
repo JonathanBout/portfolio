@@ -129,5 +129,7 @@ export const i18n = createI18n({
     locale: "en",
     fallbackLocale: "common",
     messages: localizedStrings,
-    legacy: false
+    legacy: false,
+    fallbackWarn: import.meta.env.DEV,
+    missingWarn: import.meta.env.DEV
 })

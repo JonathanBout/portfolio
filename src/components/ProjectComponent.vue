@@ -126,7 +126,7 @@ const projectName = computed(() => {
 
     @media (width <= @breakpoint) {
         flex-direction: column;
-        border: 1px solid #8884;
+        border: 1px solid @border-color;
 
         & > .image-wrapper {
             align-self: center;

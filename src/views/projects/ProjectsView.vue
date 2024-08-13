@@ -40,35 +40,8 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
 }
 
 .page-root {
-    animation: scale-in 0.5s;
-
-    * {
-        animation: slide-in 0.5s ease-in-out;
-    }
-
     & > :not(:last-child) {
         margin-bottom: 2em;
-    }
-}
-
-@keyframes scale-in {
-    from {
-        transform: scale(0.9);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes slide-in {
-    from {
-        transform: translateY(50dvh);
-    }
-
-    to {
-        transform: translateY(0);
     }
 }
 </style>
