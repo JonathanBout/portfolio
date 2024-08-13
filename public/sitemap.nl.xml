@@ -12,4 +12,9 @@
 		<xhtml:link rel="alternate" link="https://jonathanbout.nl/projects" hreflang="nl" />
 		<xhtml:link rel="alternate" link="https://jonathanbout.com/projects" hreflang="en" />
 	</url>
+	<url>
+		<loc>https://jonathanbout.nl/contact</loc>
+		<xhtml:link rel="alternate" link="https://jonathanbout.nl/contact" hreflang="nl" />
+		<xhtml:link rel="alternate" link="https://jonathanbout.com/contact" hreflang="en" />
+	</url>
 </urlset>
