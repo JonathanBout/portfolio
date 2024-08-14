@@ -50,7 +50,7 @@ jobs:
           file: Dockerfile
           platforms: linux/arm64/v8
           cache-from: type=registry,ref=${{ steps.repo_slug.outputs.result }}:cache
-          cache-to: type=registry,ref=${{ steps.repo_slug.outputs.result }}:cache,mode=max
+          cache-to: type=registry,ref=${{ steps.repo_slug.outputs.result }}:cache,mode=min
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
