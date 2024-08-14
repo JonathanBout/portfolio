@@ -257,8 +257,6 @@ form {
         background-color: var(--color-background);
     }
 
-
-
     :deep(textarea) {
         resize: vertical;
         min-height: 25vh;
