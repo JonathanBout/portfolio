@@ -21,14 +21,24 @@
         
         <!-- Page and site title -->
         <meta property="og:site_name" content="Jonathan Bout" />
-        <meta data-set-page-title property="og:title" content="Jonathan Bout" />
-        <meta data-set-page-title name="title" content="Jonathan Bout" />
+        <meta data-set-page-title="content" property="og:title" content="Jonathan Bout" />
+        <meta data-set-page-title="content" name="title" content="Jonathan Bout" />
 
         <title data-set-page-title>Jonathan Bout</title>
+
+        <noscript>
+            <link rel="stylesheet" href="/no-js.css" />
+        </noscript>
         
     </head>
     <body>
         <div id="app"></div>
         <script type="module" src="/src/main.ts"></script>
+
+        <noscript>
+            <h1>[[localize:errors.javascript-disabled]]</h1>
+            <p>[[localize:errors.javascript-disabled-description]]</p>
+            <a href="https://www.enablejavascript.io/[[locale]]" target="_blank">[[localize:errors.enable-javascript-link]]</a>
+        </noscript>
     </body>
 </html>
