@@ -46,8 +46,8 @@ jobs:
           context: .
           file: Dockerfile
           platforms: linux/arm64/v8
-          cache-from: type=registry,ref=${{ steps.repo_slug.outputs.result }}:release
-          cache-to: type=inline
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
