@@ -15,13 +15,6 @@ jobs:
       contents: read
       packages: write
     steps:
-      # this step converts the repository name to lowercase as uppercase is not supported by docker
-      - name: Format repo slug
-        uses: actions/github-script@v7
-        id: repo_slug
-        with:
-          result-encoding: string
-          script: return `ghcr.io/${process.env.GITHUB_REPOSITORY.toLowerCase()}`
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Login to GHCR
@@ -40,17 +33,12 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-      #- name: Setup buildx
-        # this is needed because the default buildx doesn't support caching.
-      #  uses: docker/setup-buildx-action@v3
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
           context: .
           file: Dockerfile
           platforms: linux/arm64/v8
-          #cache-from: type=registry,ref=${{ steps.repo_slug.outputs.result }}:cache
-          #cache-to: type=registry,ref=${{ steps.repo_slug.outputs.result }}:cache,mode=min
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
