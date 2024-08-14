@@ -10,11 +10,18 @@ on:
       
 jobs:
   Publish:
-    runs-on: buildjet-8vcpu-ubuntu-2204-arm
+    runs-on: buildjet-4vcpu-ubuntu-2204-arm
     permissions:
       contents: read
       packages: write
     steps:
+      # this step converts the repository name to lowercase as uppercase is not supported by docker
+      - name: Format repo slug
+        uses: actions/github-script@v4
+        id: repo_slug
+        with:
+          result-encoding: string
+          script: return `ghcr.io/${github.repository.toLowerCase()}`
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Login to GHCR
@@ -39,7 +46,7 @@ jobs:
           context: .
           file: Dockerfile
           platforms: linux/arm64/v8
-          cache-from: type=registry,ref=${{ github.repository }}:release
+          cache-from: type=registry,ref=${{ steps.repo_slug.outputs.result }}:release
           cache-to: type=inline
           push: true
           tags: ${{ steps.meta.outputs.tags }}
