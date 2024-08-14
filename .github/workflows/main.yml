@@ -10,12 +10,7 @@ on:
       
 jobs:
   Publish:
-    strategy:
-      fail-fast: true # In case one of the jobs fails, the other jobs will be cancelled
-      matrix:
-        runs-on: [ buildjet-2vcpu-ubuntu-2204-arm, buildjet-4vcpu-ubuntu-2204-arm, buildjet-8vcpu-ubuntu-2204-arm, buildjet-16vcpu-ubuntu-2204-arm ]
-    name: ${{matrix.runs-on}}
-    runs-on: ${{matrix.runs-on}}
+    runs-on: buildjet-2vcpu-ubuntu-2204-arm
     permissions:
       contents: read
       packages: write
