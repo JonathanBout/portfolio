@@ -10,7 +10,7 @@ on:
       
 jobs:
   Publish:
-    runs-on: buildjet-4vcpu-ubuntu-2204-arm
+    runs-on: buildjet-2vcpu-ubuntu-2204-arm
     permissions:
       contents: read
       packages: write
