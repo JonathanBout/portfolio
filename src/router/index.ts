@@ -59,12 +59,9 @@ function setDocumentTitle(to: RouteLocationNormalized) {
     const elementsToSetTitle = document.querySelectorAll("[data-set-page-title]")
 
     for (const element of elementsToSetTitle) {
-        // if meta element, set content attribute
-        if (element instanceof HTMLMetaElement) {
-            element.content = title
-        } else {
-            element.textContent = title
-        }
+        const value = element.getAttribute("data-set-page-title") ?? "textContent"
+
+        ;(element as any)[value] = title
     }
 
     document.title = title

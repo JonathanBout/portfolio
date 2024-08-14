@@ -23,7 +23,9 @@ COPY --from=build-stage /app/dist ./
 # Copy the nginx configuration file
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 # Expose the ports 80 and 81 to the host machine
+# .com
 EXPOSE 80
+# .nl
 EXPOSE 81
 # Start Nginx to serve the application
 CMD ["nginx", "-g", "daemon off;"]
