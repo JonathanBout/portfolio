@@ -39,6 +39,8 @@ jobs:
           context: .
           file: Dockerfile
           platforms: linux/arm64/v8
+          cache-from: type=registry,ref=${{ github.repository }}:release
+          cache-to: type=inline
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
