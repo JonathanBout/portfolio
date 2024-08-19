@@ -7,7 +7,7 @@ import TextAreaInput from "@/components/forms/TextAreaInput.vue"
 // Nobody can do anything with it except send e-mails to me, which is the intended purpose.
 const WEB3FORMS_PUBLIC_KEY = "e1930f85-db30-440e-93a5-c8d64e0bd133"
 
-const infoData = { email: `<a href="mailto:contact@jonathanbout.com">contact@jonathanbout.com</a>` }
+const infoData = { email: `<a href="mailto:contact@jonathanbout.com" target="_blank">contact@jonathanbout.com</a>` }
 
 const input = ref({ name: "", email: "", message: "", honey: "" })
 const error = ref({ name: false, email: false, message: false })
