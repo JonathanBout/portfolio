@@ -13,7 +13,8 @@ export default defineConfig({
         alias: {
             //@ts-ignore
             "@": fileURLToPath(new URL("./src", import.meta.url))
-        }
+        },
+        dedupe: ["vue"]
     },
     css: {
         preprocessorOptions: {

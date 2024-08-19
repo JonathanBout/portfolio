@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue"
 import Loader from "@/components/LoaderComponent.vue"
-import TextAreaInput from "@/components/TextAreaInput.vue"
+import TextAreaInput from "@/components/forms/TextAreaInput.vue"
 
 // this key is public and can be shared. It doesn't matter if it's exposed, as it's only used to send e-mails to my e-mail address.
 // Nobody can do anything with it except send e-mails to me, which is the intended purpose.
@@ -24,6 +24,7 @@ watch(
 )
 
 watch(phase, () => {
+    window.scrollTo(0, 0)
     if (phase.value === 0) {
         error.value = { name: false, email: false, message: false }
     } else if (phase.value === 2) {
@@ -44,14 +45,14 @@ function loadFromLocalStorage() {
 async function submitForm() {
     if (input.value.honey) {
         phase.value = 4
-        return
+        return true
     }
 
-    await submitFormChallengePassed(false)
+    return await submitFormChallengePassed(false)
 }
 
 async function submitFormChallengeFailed() {
-    phase.value = 2
+    phase.value = 0
 }
 
 function validate(): boolean {
@@ -80,7 +81,7 @@ function validate(): boolean {
 async function submitFormChallengePassed(didCheck: boolean = true) {
     if (!validate()) {
         phase.value = 0
-        return
+        return false
     }
 
     if (didCheck) {
@@ -122,6 +123,8 @@ async function submitFormChallengePassed(didCheck: boolean = true) {
         console.error(result)
         phase.value = 3
     }
+
+    return true
 }
 
 function resetForm() {
@@ -137,28 +140,34 @@ function resetForm() {
         <template v-if="phase === 0 || phase === 3">
             <div v-if="phase === 3" class="error">{{ $t("contact.error") }}</div>
             <p v-html="$t('contact.description', infoData)"></p>
-            <form @submit.prevent="submitForm" @reset.prevent="resetForm">
+            <form @submit.prevent="submitForm" @reset="resetForm" novalidate>
                 <div class="form-body">
                     <label for="name">
                         <span>
                             {{ $t("contact.name") }}
                         </span>
-                        <input type="text" name="name" v-model="input.name" />
-                        <span class="error" v-if="error.name">{{ $t("contact.name-error") }}</span>
+                        <input required type="text" name="name" minlength="2" v-model="input.name" />
+                        <span class="error no-load-animation" :class="error.name ? 'visible' : 'hidden'">
+                            {{ $t("contact.name-error") }}
+                        </span>
                     </label>
                     <label for="email"
                         ><span>
                             {{ $t("contact.email") }}
                         </span>
-                        <input type="text" name="email" v-model="input.email" />
-                        <span class="error" v-if="error.email">{{ $t("contact.email-error") }}</span>
+                        <input required type="text" name="email" pattern="^.+@.+$" v-model="input.email" />
+                        <span class="error no-load-animation" :class="error.email ? 'visible' : 'hidden'">
+                            {{ $t("contact.email-error") }}
+                        </span>
                     </label>
                     <label for="message">
                         <span>
                             {{ $t("contact.message") }}
                         </span>
-                        <text-area-input v-model="input.message" :max-characters="4096" :min-characters="10" />
-                        <span class="error" v-if="error.message">{{ $t("contact.message-error") }}</span>
+                        <text-area-input required v-model="input.message" :max-characters="4096" :min-characters="10" />
+                        <span class="error no-load-animation" :class="error.message ? 'visible' : 'hidden'">
+                            {{ $t("contact.message-error") }}
+                        </span>
                     </label>
                     <label for="the-yummy-honey" class="yummy-stuff no-load-animation" aria-hidden="true">
                         <span>
@@ -237,73 +246,83 @@ form {
 
         margin-bottom: 0.5em;
     }
+}
+label {
+    &:not(:last-of-type) {
+        margin-bottom: 1rem;
+    }
+    display: grid;
 
+    width: 100%;
+
+    grid-template-columns: 1fr 3fr;
+}
+
+input,
+:deep(textarea) {
+    padding: 0.5rem;
+    border: 1px solid @border-color;
+    border-radius: 0.25rem;
+    background-color: var(--color-background);
+}
+
+:deep(textarea) {
+    resize: vertical;
+    min-height: 25vh;
+    overflow-y: auto;
+}
+
+button {
+    grid-column: span 2;
+    padding: 0.5rem;
+    margin-bottom: 2rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+
+    :first-child {
+        margin-inline-start: 1ch;
+    }
+}
+
+.error {
+    grid-column: span 2;
+    margin-top: 4px;
+    color: var(--color-error);
+
+    transition: height 0.5s, opacity 0.5s;
+
+    &.visible {
+        height: fit-content;
+    }
+
+    &.hidden {
+        height: 0;
+        opacity: 0;
+    }
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1ch;
+}
+
+.yummy-stuff {
+    position: fixed;
+    top: -1px;
+    left: -1px;
+    height: 1px;
+    width: 1px;
+    color: transparent;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+@media (width < @breakpoint) {
     label {
-        &:not(:last-of-type) {
-            margin-bottom: 1rem;
-        }
-        display: grid;
-
-        width: 100%;
-
-        grid-template-columns: 1fr 3fr;
-    }
-
-    input,
-    :deep(textarea) {
-        padding: 0.5rem;
-        border: 1px solid @border-color;
-        border-radius: 0.25rem;
-        background-color: var(--color-background);
-    }
-
-    :deep(textarea) {
-        resize: vertical;
-        min-height: 25vh;
-        overflow-y: auto;
-    }
-
-    button {
-        grid-column: span 2;
-        padding: 0.5rem;
-        margin-bottom: 2rem;
-        border: none;
-        border-radius: 0.25rem;
-        cursor: pointer;
-
-        :first-child {
-            margin-inline-start: 1ch;
-        }
-    }
-
-    .error {
-        grid-column: span 2;
-        margin-top: 0;
-        color: var(--color-error);
-    }
-
-    .buttons {
-        display: flex;
-        justify-content: space-evenly;
-        gap: 1ch;
-    }
-
-    .yummy-stuff {
-        position: fixed;
-        top: -1px;
-        left: -1px;
-        height: 1px;
-        width: 1px;
-        color: transparent;
-        overflow: hidden;
-        background-color: transparent;
-    }
-
-    @media (width < @breakpoint) {
-        label {
-            grid-template-columns: auto;
-            grid-template-rows: auto auto;
-        }
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
     }
 }
 

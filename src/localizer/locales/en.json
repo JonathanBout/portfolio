@@ -5,7 +5,8 @@
     "errorPage": {
         "back": "Back",
         "home": "Home",
-        "pageNotFound": "Page '{path}' not found"
+        "pageNotFound": "Page '{path}' not found",
+        "not-found-title": "404: Page not found"
     },
     "home": {
         "greeting": "Hi, I'm Jonathan!",

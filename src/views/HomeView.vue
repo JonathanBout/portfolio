@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import GitHubStatsComponent from "@/components/GitHubStatsComponent.vue"
-import { ref } from "vue"
+import { computed, ref } from "vue"
 import { useI18n } from "vue-i18n"
 
 const { t } = useI18n()
@@ -13,6 +13,8 @@ setTimeout(() => {
 }, 200)
 
 const highlight = (_: any, b: any) => `<span class="highlight hi${Math.round(Math.random() * 5) + 1}">${b}</span>`
+
+const theme = computed(() => (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"))
 
 intro = intro.replace(/%(.*?)%/gi, highlight)
 
@@ -71,6 +73,10 @@ function showActualImage() {
     img.style.display = "block"
     ;(img.nextElementSibling! as HTMLElement).style.display = "none"
 }
+
+function getSkilliconUrl(skill: string) {
+    return `https://skillicons.dev/icons?i=${skill}&theme=${theme.value}`
+}
 </script>
 
 <template>
@@ -88,7 +94,11 @@ function showActualImage() {
                 <img src="/images/placeholder.svg" />
             </div>
             <div class="me-info">
-                <h2><i class="bi bi-geo-alt"></i> {{ $t("home.country") }} <span class="fi fi-nl"></span></h2>
+                <h2>
+                    <i class="bi bi-geo-alt"></i>
+                    {{ $t("home.country") }}
+                    <span class="fi fi-nl"></span>
+                </h2>
                 <h1>{{ $t("home.greeting") }}</h1>
                 <p class="intro" v-html="intro"></p>
             </div>
@@ -97,27 +107,27 @@ function showActualImage() {
             <h3>{{ $t("home.quick-overview") }}</h3>
             <div class="icons">
                 <label>
-                    <img src="https://skillicons.dev/icons?i=cs" />
+                    <img :src="getSkilliconUrl(`cs`)" />
                     <span>C#</span>
                 </label>
                 <label>
-                    <img src="https://skillicons.dev/icons?i=py" />
+                    <img :src="getSkilliconUrl(`py`)" />
                     <span>Python</span>
                 </label>
                 <label>
-                    <img src="https://skillicons.dev/icons?i=ts" />
+                    <img :src="getSkilliconUrl(`ts`)" />
                     <span>Typescript</span>
                 </label>
                 <label>
-                    <img src="https://skillicons.dev/icons?i=vue" />
+                    <img :src="getSkilliconUrl(`vue`)" />
                     <span>Vue</span>
                 </label>
                 <label>
-                    <img src="https://skillicons.dev/icons?i=html" />
+                    <img :src="getSkilliconUrl(`html`)" />
                     <span>HTML</span>
                 </label>
                 <label>
-                    <img src="https://skillicons.dev/icons?i=css" />
+                    <img :src="getSkilliconUrl(`css`)" />
                     <span>CSS</span>
                 </label>
             </div>

@@ -44,6 +44,9 @@ const router = createRouterInternal({
         {
             path: "/:fullPath(.*)",
             name: "not-found",
+            meta: {
+                title: "errorPage.not-found-title"
+            },
             component: () => import("../views/NotFoundView.vue")
         }
     ]

@@ -11,6 +11,8 @@
         <link rel="icon" type="image/png" href="/images/icon-light.png" />
         <link rel="icon" type="image/png" href="/images/icon-dark.png" media="(prefers-color-scheme: dark)" />
         <link rel="icon" type="image/png" href="/images/icon-light.png" media="(prefers-color-scheme: light)" />
+
+        <link rel="preload" fetchpriority="high" href="/images/placeholder.svg" as="image" />
         
         <!-- Language-specific alternate sites -->
         <link rel="alternate" href="https://jonathanbout.com" hreflang="en" />
@@ -33,7 +35,7 @@
     </head>
     <body>
         <div id="app"></div>
-        <script type="module" src="/src/main.ts"></script>
+        <script type="module" src="/src/main.ts" defer async></script>
 
         <noscript>
             <h1>[[localize:errors.javascript-disabled]]</h1>
