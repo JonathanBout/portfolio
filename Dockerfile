@@ -16,7 +16,6 @@ COPY . .
 ENV IN_CONTAIER=true
 RUN npm run build-only
 
-
 # use flashspys/nginx-static image as the base image as it's way smaller than the official Nginx image
 FROM flashspys/nginx-static AS production-stage
 
