@@ -21,7 +21,9 @@
     },
     "header": {
         "projects": "Projects",
-        "about": "About"
+        "about": "About",
+        "github": "My GitHub",
+        "linkedin": "My LinkedIn"
     },
     "footer": {
         "view-on-gh": "View on GitHub",
