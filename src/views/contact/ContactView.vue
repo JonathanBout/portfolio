@@ -280,8 +280,8 @@ button {
     border-radius: 0.25rem;
     cursor: pointer;
 
-    :first-child {
-        margin-inline-start: 1ch;
+    i {
+        margin-inline-start: .4ch;
     }
 }
 
@@ -323,8 +323,9 @@ button {
 
 @media (width < @breakpoint) {
     label {
-        grid-template-columns: auto;
-        grid-template-rows: auto auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-auto-flow: column;
     }
 }
 
