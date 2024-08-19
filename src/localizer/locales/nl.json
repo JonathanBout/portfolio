@@ -21,7 +21,9 @@
     },
     "header": {
         "projects": "Projecten",
-        "about": "Over"
+        "about": "Over",
+        "github": "Mijn GitHub",
+        "linkedin": "Mijn LinkedIn"
     },
     "footer": {
         "view-on-gh": "Open op GitHub",

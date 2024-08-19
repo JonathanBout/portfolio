@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import GitHubStatsComponent from "@/components/GitHubStatsComponent.vue"
-import { computed, ref } from "vue"
+import { computed, onMounted, ref } from "vue"
 import { useI18n } from "vue-i18n"
 
 const { t } = useI18n()
@@ -25,6 +25,18 @@ const originalUrl = "https://gravatar.com/avatar/be19bd79a37e5f322b7a1898a114712
 const imageUrl = ref(originalUrl)
 
 let resetTimeout: number | null = null
+
+const heading = ref<HTMLHeadingElement>()
+
+onMounted(() => {
+    const text = t("home.greeting")
+    for (let i = 0; i <= text.length; i++) {
+        setTimeout(() => {
+            heading.value!.innerText = text.slice(0, i)
+        }, (i * 75) + 100)
+    }
+})
+
 
 function jump() {
     if (Date.now() - lastClick.value < 1000) {
@@ -94,40 +106,40 @@ function getSkilliconUrl(skill: string) {
                 <img src="/images/placeholder.svg" />
             </div>
             <div class="me-info">
-                <h2>
+                <span class="location-marker">
                     <i class="bi bi-geo-alt"></i>
                     {{ $t("home.country") }}
                     <span class="fi fi-nl"></span>
-                </h2>
-                <h1>{{ $t("home.greeting") }}</h1>
+                </span>
+                <h1 ref="heading" :aria-label="$t('home.greeting')"></h1>
                 <p class="intro" v-html="intro"></p>
             </div>
         </div>
         <div class="quick-overview">
-            <h3>{{ $t("home.quick-overview") }}</h3>
+            <h2>{{ $t("home.quick-overview") }}</h2>
             <div class="icons">
                 <label>
-                    <img :src="getSkilliconUrl(`cs`)" />
+                    <img alt="C#" :src="getSkilliconUrl(`cs`)" />
                     <span>C#</span>
                 </label>
                 <label>
-                    <img :src="getSkilliconUrl(`py`)" />
+                    <img alt="Python" :src="getSkilliconUrl(`py`)" />
                     <span>Python</span>
                 </label>
                 <label>
-                    <img :src="getSkilliconUrl(`ts`)" />
+                    <img alt="TypeScript" :src="getSkilliconUrl(`ts`)" />
                     <span>Typescript</span>
                 </label>
                 <label>
-                    <img :src="getSkilliconUrl(`vue`)" />
+                    <img alt="Vue" :src="getSkilliconUrl(`vue`)" />
                     <span>Vue</span>
                 </label>
                 <label>
-                    <img :src="getSkilliconUrl(`html`)" />
+                    <img alt="HTML" :src="getSkilliconUrl(`html`)" />
                     <span>HTML</span>
                 </label>
                 <label>
-                    <img :src="getSkilliconUrl(`css`)" />
+                    <img alt="CSS" :src="getSkilliconUrl(`css`)" />
                     <span>CSS</span>
                 </label>
             </div>
@@ -142,6 +154,7 @@ function getSkilliconUrl(skill: string) {
 <style scoped lang="less">
 h1 {
     text-align: start;
+    font-family: Code;
 }
 
 .page-root {
@@ -240,7 +253,7 @@ h1 {
         margin-right: 0.5ch;
     }
 
-    h2 {
+    .location-marker {
         font-size: 0.9em;
     }
 
@@ -249,7 +262,7 @@ h1 {
     }
 }
 
-h3 {
+h2 {
     font-size: 1.6em;
     text-align: center;
 }
