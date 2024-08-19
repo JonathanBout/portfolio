@@ -290,14 +290,16 @@ button {
     margin-top: 4px;
     color: var(--color-error);
 
-    transition: height 0.5s, opacity 0.5s;
+    transition: scale 0.2s, opacity 1s;
+
+    transform-origin: left center;
 
     &.visible {
-        height: fit-content;
+        scale: 1 1;
     }
 
     &.hidden {
-        height: 0;
+        scale: 0 0;
         opacity: 0;
     }
 }
