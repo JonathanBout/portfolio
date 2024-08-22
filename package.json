@@ -28,7 +28,7 @@
         "@eslint/object-schema": "^2.1.4",
         "@rushstack/eslint-patch": "^1.10.4",
         "@tsconfig/node18": "^18.2.4",
-        "@types/node": "^22.4.1",
+        "@types/node": "^22.5.0",
         "@vitejs/plugin-vue": "^5.1.1",
         "@vue/eslint-config-prettier": "^9.0.0",
         "@vue/eslint-config-typescript": "^6.0.0",
@@ -39,7 +39,7 @@
         "less-loader": "^12.2.0",
         "prettier": "^3.3.3",
         "typescript": "~5.5.4",
-        "vite": "^5.4.1",
+        "vite": "^5.4.2",
         "vite-plugin-vue-devtools": "^7.3.8",
         "vue-tsc": "^2.0.29"
     }
