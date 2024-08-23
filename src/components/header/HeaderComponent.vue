@@ -93,7 +93,11 @@ function transformPathName(index: number, part: string) {
             <a href="https://github.com/JonathanBout" :aria-label="$t('header.github')" class="no-external-icon small">
                 <span><i class="bi bi-github"></i></span>
             </a>
-            <a href="https://linkedin.com/in/jonathanbout" :aria-label="$t('header.linkedin')" class="no-external-icon small">
+            <a
+                href="https://linkedin.com/in/jonathanbout"
+                :aria-label="$t('header.linkedin')"
+                class="no-external-icon small"
+            >
                 <span><i class="bi bi-linkedin"></i></span>
             </a>
             <div class="flex-filler"></div>
