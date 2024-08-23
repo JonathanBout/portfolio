@@ -67,7 +67,11 @@ export function createLocalizer(): Localizer {
     }
 
     // if crawler is visiting the site, we don't want to change the locale or do any redirects
-    if (navigator.userAgent.match(/bot|googleother|google-extended|mediapartners|apis-google|google-safety|bingpreview|microsoftpreview|crawler|spider|robot|crawling|inspectiontool/i)) {
+    if (
+        navigator.userAgent.match(
+            /bot|googleother|google-extended|mediapartners|apis-google|google-safety|bingpreview|microsoftpreview|crawler|spider|robot|crawling|inspectiontool/i
+        )
+    ) {
         i18n.global.locale.value = locale
 
         return {

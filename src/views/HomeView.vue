@@ -31,12 +31,14 @@ const heading = ref<HTMLHeadingElement>()
 onMounted(() => {
     const text = t("home.greeting")
     for (let i = 0; i <= text.length; i++) {
-        setTimeout(() => {
-            heading.value!.innerText = text.slice(0, i)
-        }, (i * 75) + 100)
+        setTimeout(
+            () => {
+                heading.value!.innerText = text.slice(0, i)
+            },
+            i * 75 + 100
+        )
     }
 })
-
 
 function jump() {
     if (Date.now() - lastClick.value < 1000) {

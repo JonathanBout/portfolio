@@ -5,7 +5,7 @@ const model = defineModel<string>()
 
 const props = defineProps<{
     minCharacters?: number
-    maxCharacters?: number,
+    maxCharacters?: number
     required?: boolean
 }>()
 
@@ -33,7 +33,12 @@ updateCounter()
 </script>
 <template>
     <div class="text-area-better" ::valid="valid" ::invalid="(!valid) ? '' : undefined">
-        <textarea v-model="model" :required="required" :minlength="minCharacters || undefined" :maxlength="maxCharacters || undefined"></textarea>
+        <textarea
+            v-model="model"
+            :required="required"
+            :minlength="minCharacters || undefined"
+            :maxlength="maxCharacters || undefined"
+        ></textarea>
         <div :class="valid ? '' : 'invalid'">
             {{ characterCount }}
 

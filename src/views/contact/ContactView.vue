@@ -281,7 +281,7 @@ button {
     cursor: pointer;
 
     i {
-        margin-inline-start: .4ch;
+        margin-inline-start: 0.4ch;
     }
 }
 
@@ -290,7 +290,9 @@ button {
     margin-top: 4px;
     color: var(--color-error);
 
-    transition: scale 0.2s, opacity 1s;
+    transition:
+        scale 0.2s,
+        opacity 1s;
 
     transform-origin: left center;
 
