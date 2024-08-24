@@ -9,6 +9,7 @@ export class Project {
     demo?: string = undefined
     description?: Localized<string>
     image?: string = undefined
+    images?: string[] = []
     tags: TagName[] = []
     timeframe?: { start: Date; end?: Date | "present" } = undefined
 
@@ -223,7 +224,7 @@ const projects: Project[] = [
             start: new Date(2023, 3),
             end: new Date(2023, 6)
         },
-        image: "/images/projects/rara.png"
+        image: "/images/projects/rara.png",
     })
 ]
 
