@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { LOCALES, type Locale, type Localized, changeLanguage } from "@/localizer"
-import { inject } from "vue"
+import { LOCALES, type Localized, changeLanguage, currentLocale } from "@/localizer"
 const creditsYear = new Date().getFullYear()
 
 defineProps<{
     inert: boolean
 }>()
-
-const currentLocale = inject<Locale>("locale")
 
 const iconsByLocale: Localized<string> = {
     en: "gb",
@@ -18,8 +15,6 @@ const iconsByLocale: Localized<string> = {
 <template>
     <footer class="monospace" :inert="inert">
         <div class="language-display" translate="no">
-            <span>{{ $t("language.availableLocaleMessage") }}</span>
-            <br />
             <ul>
                 <li v-for="locale in LOCALES" v-bind:key="locale">
                     <button
@@ -97,6 +92,15 @@ const iconsByLocale: Localized<string> = {
 }
 
 .language-display {
+    ul {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1em;
+        max-width: 100%;
+    }
+
     ul,
     li {
         list-style: none;

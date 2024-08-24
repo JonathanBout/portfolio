@@ -108,7 +108,7 @@ const tags = {
         iconUrl: "/images/logos/wearos.png"
     }),
     portfolio: new Tag({
-        name: "portfolio",
+        name: "portfoio",
         color: "white"
     }),
     internationalization: new Tag({
@@ -121,6 +121,22 @@ const tags = {
         color: "white",
         url: "https://www.nginx.com",
         iconUrl: "/images/logos/nginx.svg"
+    }),
+    csharp: new Tag({
+        name: "C#",
+        color: "#68217A",
+        url: "https://docs.microsoft.com/en-us/dotnet/csharp/",
+        iconUrl: "/images/logos/csharp.svg"
+    }),
+    aspnetcore: new Tag({
+        name: "ASP.NET Core",
+        color: "#512BD4",
+        url: "https://dotnet.microsoft.com/apps/aspnet",
+        iconUrl: "/images/logos/dotnet.svg"
+    }),
+    websockets: new Tag({
+        name: "Websockets",
+        color: "#E95420"
     })
 }
 
@@ -191,6 +207,23 @@ const projects: Project[] = [
             start: new Date(2023, 8),
             end: "present"
         }
+    }),
+    new Project({
+        name: {
+            en: "Booking system for an airline",
+            nl: "Boekingssysteem voor een vliegtuigmaatschappij"
+        },
+        id: "flight-booking-system",
+        description: {
+            en: "A flight booking system for a school project. It's a console application written in C# that allows users to book flights, view their bookings and cancel them. Because the console application itself wasn't very challenging, we also added an online check-in page with websockets.",
+            nl: "Een vluchtboekingssysteem voor een schoolproject. Het is een console applicatie geschreven in C# waarmee gebruikers vluchten kunnen boeken, hun boekingen kunnen bekijken en annuleren. Omdat de console applicatie zelf niet erg uitdagend was, hebben we ook een online incheckpagina toegevoegd met websockets."
+        },
+        tags: ["csharp", "aspnetcore", "websockets"],
+        timeframe: {
+            start: new Date(2023, 3),
+            end: new Date(2023, 6)
+        },
+        image: "/images/projects/rara.png"
     })
 ]
 

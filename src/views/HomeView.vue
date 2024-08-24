@@ -28,14 +28,34 @@ let resetTimeout: number | null = null
 
 const heading = ref<HTMLHeadingElement>()
 
+const letters = "abcdefghijklmnopqrstuvwxyz0123456789"
+
+const randomString = (length: number) => {
+    let result = ""
+    for (let i = 0; i < length; i++) {
+        result += letters.charAt(Math.floor(Math.random() * letters.length))
+    }
+    return result
+}
+
 onMounted(() => {
     const text = t("home.greeting")
-    for (let i = 0; i <= text.length; i++) {
+
+    // if prefers-reduced-motion is set to reduce, don't animate the heading
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        heading.value!.innerText = text
+        return
+    }
+
+    // animate the heading
+    for (let i = 0; i <= text.length * 10; i++) {
         setTimeout(
             () => {
-                heading.value!.innerText = text.slice(0, i)
+                const slice = text.slice(0, i / 10)
+                const left = randomString(text.length - i / 10).replace(/(.)/g, highlight)
+                heading.value!.innerHTML = slice + left
             },
-            i * 75 + 100
+            i * 5 + 100
         )
     }
 })

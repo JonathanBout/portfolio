@@ -8,6 +8,12 @@ export type Locale = (typeof LOCALES)[number]
 
 export type Localizer = { locale: Locale; install: (app: any) => void }
 
+/**
+ * A type that represents a value that is localized in multiple languages.
+ * The key is the locale, and the value is the localized value.
+ * It uses the `Locale` type to ensure that all locales are present.
+ * @template V the type of the localized value
+ */
 export type Localized<V = any> = { [K in Locale]: V }
 
 export const domainsByLocale: Localized<`https://${string}`> = {
@@ -77,7 +83,7 @@ export function createLocalizer(): Localizer {
         return {
             locale,
             install: (app: any) => {
-                app.provide("locale", locale)
+                app.provide("locale")
                 app.use(i18n)
             }
         }
@@ -137,3 +143,5 @@ export const i18n = createI18n({
     fallbackWarn: import.meta.env.DEV,
     missingWarn: import.meta.env.DEV
 })
+
+export const currentLocale = i18n.global.locale
