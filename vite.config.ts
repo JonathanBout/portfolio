@@ -17,6 +17,11 @@ export default defineConfig({
         },
         dedupe: ["vue"]
     },
+    server: {
+        watch: {
+            usePolling: true
+        }
+    },
     css: {
         preprocessorOptions: {
             less: {

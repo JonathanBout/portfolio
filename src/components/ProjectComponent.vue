@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Project } from "@/projects"
-import { computed, inject } from "vue"
+import { computed } from "vue"
 import TagComponent from "@/components/TagComponent.vue"
 import { useI18n } from "vue-i18n"
 import { formatDate } from "@/localizer/dates"
@@ -10,18 +10,13 @@ const props = defineProps<{
     project: Project
 }>()
 
-const {
-    t,
-    locale: { value: lang }
-} = useI18n()
-
-const locale = inject("locale") as string
+const { t, locale: lang } = useI18n()
 
 const timeframeText = computed(() => {
     const { start, end } = props.project.timeframe ?? {}
 
-    const startString = formatDate(start, lang as Locale, false, false)
-    const endString = end == "present" ? t("projects.present") : formatDate(end, lang as Locale, false, false)
+    const startString = formatDate(start, lang.value as Locale, false, false)
+    const endString = end == "present" ? t("projects.present") : formatDate(end, lang.value as Locale, false, false)
 
     if (start && end && end != "present") {
         return startString + " - " + endString
@@ -39,7 +34,7 @@ const projectName = computed(() => {
         return props.project.name
     }
 
-    return (props.project.name as any)[locale]
+    return (props.project.name as any)[lang.value]
 })
 </script>
 
@@ -51,7 +46,7 @@ const projectName = computed(() => {
         <div class="vertical-stack">
             <div class="name">{{ projectName }}</div>
             <div class="description" v-if="project.description">
-                {{ (project.description as any)[locale] }}
+                {{ (project.description as any)[lang] }}
             </div>
             <ul class="links">
                 <li v-if="project.github">
