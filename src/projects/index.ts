@@ -109,7 +109,7 @@ const tags = {
         iconUrl: "/images/logos/wearos.png"
     }),
     portfolio: new Tag({
-        name: "portfoio",
+        name: "portfolio",
         color: "white"
     }),
     internationalization: new Tag({
