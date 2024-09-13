@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import GitHubStatsComponent from "@/components/GitHubStatsComponent.vue"
-import { computed, onMounted, ref } from "vue"
+import { computed, onMounted, onUnmounted, ref } from "vue"
 import { useI18n } from "vue-i18n"
 
 const { t } = useI18n()
@@ -38,6 +38,8 @@ const randomString = (length: number) => {
     return result
 }
 
+const timeouts: number[] = []
+
 onMounted(() => {
     const text = t("home.greeting")
 
@@ -49,15 +51,23 @@ onMounted(() => {
 
     // animate the heading
     for (let i = 0; i <= text.length * 10; i++) {
-        setTimeout(
+        const id = setTimeout(
             () => {
                 const slice = text.slice(0, i / 10)
                 const left = randomString(text.length - i / 10).replace(/(.)/g, highlight)
                 heading.value!.innerHTML = slice + left
+                // remove from timeouts array
+                timeouts.splice(timeouts.indexOf(id), 1)
             },
             i * 5 + 100
         )
+        timeouts.push(id)
     }
+})
+
+onUnmounted(() => {
+    resetTimeout && clearTimeout(resetTimeout)
+    timeouts.forEach((id) => clearTimeout(id))
 })
 
 function jump() {

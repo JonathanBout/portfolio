@@ -40,9 +40,19 @@ const projectName = computed(() => {
 
 <template>
     <a class="project no-external-icon" :href="project.url" target="_blank">
-        <div class="image-wrapper" :style="'--image-count: ' + (project.image ? 1 : project.images ? project.images.length : 0).toString()">
+        <div
+            class="image-wrapper"
+            :style="'--image-count: ' + (project.image ? 1 : project.images ? project.images.length : 0).toString()"
+        >
             <img class="image" v-if="project.image" :src="project.image" alt="Project preview" />
-            <img class="image" v-else v-for="image in project.images" v-bind:key="image" :src="image" alt="Project preview" />
+            <img
+                class="image"
+                v-else
+                v-for="image in project.images"
+                v-bind:key="image"
+                :src="image"
+                alt="Project preview"
+            />
         </div>
         <div class="vertical-stack">
             <div class="name">{{ projectName }}</div>
@@ -114,9 +124,8 @@ const projectName = computed(() => {
 
     padding: 20px;
 
-    /* select an image-wrapper which has at least two children */ 
-    .image-wrapper:has(:not(img:first-child:last-child)):not(:empty)
-    {
+    /* select an image-wrapper which has at least two children */
+    .image-wrapper:has(:not(img:first-child:last-child)):not(:empty) {
         display: flex;
         flex-direction: row;
         overflow: hidden;

@@ -2,11 +2,11 @@ import * as localizedStrings from "./locales"
 
 import { createI18n } from "vue-i18n"
 
+import { type Plugin as VuePlugin, type App as VueApp } from "vue"
+
 export const LOCALES = ["nl", "en"] as const
 
 export type Locale = (typeof LOCALES)[number]
-
-export type Localizer = { locale: Locale; install: (app: any) => void }
 
 /**
  * A type that represents a value that is localized in multiple languages.
@@ -16,10 +16,21 @@ export type Localizer = { locale: Locale; install: (app: any) => void }
  */
 export type Localized<V = any> = { [K in Locale]: V }
 
+/**
+ * A list of the domains for each locale the app supports.
+ * @warn Do not use this in href attributes, as it won't work during development. For redirects, use the `changeLanguage` function.
+ */
 export const domainsByLocale: Localized<`https://${string}`> = {
     en: "https://jonathanbout.com",
     nl: "https://jonathanbout.nl"
 }
+
+const localizerPlugin = {
+    install(app: VueApp) {
+        app.provide("locale", currentLocale)
+        app.use(i18n)
+    }
+} as VuePlugin
 
 /**
  * Change the language of the site by setting the locale in local storage and reloading the page. This may also redirect to the other domain if the locale is changed.
@@ -51,16 +62,16 @@ export function changeLanguage(newLanguage: Locale) {
 
 /**
  * Create a Vue plugin that enables localization and provides a method to change the locale from within the app.
- * @returns a Vue localizer plugin
  */
-export function createLocalizer(): Localizer {
+export function createLocalizer(): VuePlugin {
     /*
      * Determine the locale to use. In order of priority:
-     * 1. If the query parameter changeLocale is set, change the locale to the locale for the current domain
-     * 2. If the locale is set in local storage, use that
-     * 3. If the browser language is set to Dutch, use the Dutch locale
-     * 4. If the browser language is set to English, use the English locale
-     * 5. If none of the above, use the locale for the current domain (.com is English, .nl is Dutch)
+     * 1. If the visitor is a crawler or a bot, use the locale for the current domain
+     * 2. If the query parameter changeLocale is set, change the locale to the locale for the current domain
+     * 3. If the locale is set in local storage, use that
+     * 4. If the browser language is set to Dutch, use the Dutch locale
+     * 5. If the browser language is set to English, use the English locale
+     * 6. If none of the above, use the locale for the current domain (.com is English, .nl is Dutch)
      */
 
     let locale: Locale = "en"
@@ -78,17 +89,12 @@ export function createLocalizer(): Localizer {
             /bot|googleother|google-extended|mediapartners|apis-google|google-safety|bingpreview|microsoftpreview|crawler|spider|robot|crawling|inspectiontool/i
         )
     ) {
-        i18n.global.locale.value = locale
+        currentLocale.value = locale
 
-        return {
-            locale,
-            install: (app: any) => {
-                app.provide("locale")
-                app.use(i18n)
-            }
-        }
+        return localizerPlugin
     }
 
+    // if the query parameter changeLocale is set, change the locale to the locale for the current domain
     const query = new URLSearchParams(window.location.search)
 
     if (query.get("changeLocale")) {
@@ -97,6 +103,7 @@ export function createLocalizer(): Localizer {
 
         window.location.search = query.toString()
     } else {
+        // if the locale is set in local storage, use that
         let preferredLocale = window.localStorage.getItem("locale")
 
         if (!LOCALES.includes(preferredLocale as Locale)) {
@@ -119,25 +126,19 @@ export function createLocalizer(): Localizer {
         }
     }
 
-    i18n.global.locale.value = locale
+    currentLocale.value = locale
 
     /**
      * return a Vue-plugin compatible object, with the locale and the install method.
      * The install method will be called by Vue when the plugin is used,
      * and initializes the i18n plugin with the correct locale and messages.
      */
-    return {
-        locale,
-        install: (app: any) => {
-            app.provide("locale", locale)
-            app.use(i18n)
-        }
-    } as Localizer
+    return localizerPlugin
 }
 
 export const i18n = createI18n({
     locale: "en",
-    fallbackLocale: "common",
+    fallbackLocale: ["common", "en"],
     messages: localizedStrings,
     legacy: false,
     fallbackWarn: import.meta.env.DEV,
