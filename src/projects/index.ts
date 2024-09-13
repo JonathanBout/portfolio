@@ -224,7 +224,7 @@ const projects: Project[] = [
             start: new Date(2023, 3),
             end: new Date(2023, 6)
         },
-        image: "/images/projects/rara.png",
+        image: "/images/projects/rara.png"
     })
 ]
 
