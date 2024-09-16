@@ -39,7 +39,7 @@ const projectName = computed(() => {
 </script>
 
 <template>
-    <a class="project no-external-icon" :href="project.url" target="_blank">
+    <component :is="project.url ? 'a' : 'div'" class="project no-external-icon" :href="project.url" target="_blank">
         <div
             class="image-wrapper"
             :style="'--image-count: ' + (project.image ? 1 : project.images ? project.images.length : 0).toString()"
@@ -92,7 +92,7 @@ const projectName = computed(() => {
                 {{ timeframeText }}
             </div>
         </div>
-    </a>
+    </component>
 </template>
 <style lang="less" scoped>
 .project {
@@ -187,11 +187,13 @@ const projectName = computed(() => {
         padding-top: 10px;
     }
 
-    &:hover {
+    text-decoration: initial;
+    cursor: default;
+    &[href]:hover {
         outline: 1px solid var(--color-primary-button);
         filter: brightness(1.1);
-        text-decoration: initial;
         transform: scale(1.01);
+        cursor: pointer;
     }
 }
 
