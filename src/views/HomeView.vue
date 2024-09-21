@@ -38,6 +38,15 @@ const randomString = (length: number) => {
     return result
 }
 
+const fillRandom = (text: string) => {
+    for (let i = 0; i < text.length; i++) {
+        if (text[i] !== " ") {
+            text = text.slice(0, i) + randomString(1) + text.slice(i + 1)
+        }
+    }
+    return text
+}
+
 const timeouts: number[] = []
 
 onMounted(() => {
@@ -50,16 +59,18 @@ onMounted(() => {
     }
 
     // animate the heading
-    for (let i = 0; i <= text.length * 10; i++) {
+    for (let i = 0; i <= text.length * 5; i++) {
         const id = setTimeout(
             () => {
-                const slice = text.slice(0, i / 10)
-                const left = randomString(text.length - i / 10).replace(/(.)/g, highlight)
+                const slice = text.slice(0, i / 5)
+                // add a random highlight to random characters to fill the rest of the text
+                // add a <wbr> after each character to allow for word breaks
+                const left = fillRandom(text.slice(i / 5)).replace(/([^ ])/g, (a, b) => highlight(a, b))
                 heading.value!.innerHTML = slice + left
                 // remove from timeouts array
                 timeouts.splice(timeouts.indexOf(id), 1)
             },
-            i * 5 + 100
+            i * 7.5 + 250
         )
         timeouts.push(id)
     }
@@ -187,6 +198,8 @@ function getSkilliconUrl(skill: string) {
 h1 {
     text-align: start;
     font-family: Code;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .page-root {
@@ -322,14 +335,15 @@ h2 {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        gap: 1em;
+        gap: 3em;
         margin-top: 1em;
 
         label {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.5em;
+            width: 3em;
+            height: fit-content;
 
             img {
                 width: 3em;

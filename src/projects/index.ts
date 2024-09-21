@@ -126,13 +126,13 @@ const tags = {
     csharp: new Tag({
         name: "C#",
         color: "#68217A",
-        url: "https://docs.microsoft.com/en-us/dotnet/csharp/",
+        url: "https://dot.net/csharp",
         iconUrl: "/images/logos/csharp.svg"
     }),
     aspnetcore: new Tag({
         name: "ASP.NET Core",
         color: "#512BD4",
-        url: "https://dotnet.microsoft.com/apps/aspnet",
+        url: "https://asp.net",
         iconUrl: "/images/logos/dotnet.svg"
     }),
     websockets: new Tag({

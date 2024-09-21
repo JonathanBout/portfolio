@@ -16,7 +16,10 @@
 }
 
 .version {
+    margin-top: 5em;
     position: static;
+    font-size: 0.6em;
+    font-style: italic;
 }
 
 .location-marker {
@@ -95,7 +98,7 @@ header {
     right: 10px;
     margin: auto;
     max-width: 400px;
-    min-height: 50%;
+    //min-height: 50%;
     border-radius: calc(var(--border-radius) - 10px);
 
     &.closed {
@@ -111,6 +114,10 @@ header {
 
     .small {
         margin-inline: 5px;
+
+        &:has([class^="bi"]) {
+            font-size: 1.4em;
+        }
     }
 }
 
