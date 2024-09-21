@@ -67,6 +67,14 @@ function setDocumentTitle(to: RouteLocationNormalized) {
         ;(element as any)[value] = title
     }
 
+    const elementsToSetDomain = document.querySelectorAll("[data-set-domain]")
+
+    for (const element of elementsToSetDomain) {
+        const value = element.getAttribute("data-set-domain") ?? "href"
+
+        ;(element as any)[value] = location.hostname
+    }
+
     document.title = title
 }
 

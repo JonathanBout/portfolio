@@ -5,7 +5,7 @@ import autoprefixer from "autoprefixer"
 
 import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
-import vueDevTools from 'vite-plugin-vue-devtools'
+import vueDevTools from "vite-plugin-vue-devtools"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,16 +19,19 @@ export default defineConfig({
     },
     server: {
         watch: {
+            // to make the project work on WSL2
             usePolling: true
         }
     },
     css: {
         preprocessorOptions: {
             less: {
-                 additionalData: `@import "@/assets/variables.less";`,
+                // import global less variables
+                additionalData: `@import "@/assets/variables.less";`
             }
         },
         postcss: {
+            // autoprefixer to add vendor prefixes
             plugins: [autoprefixer]
         }
     }

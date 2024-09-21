@@ -269,3 +269,9 @@ form {
         min-width: fit-content;
     }
 }
+
+[inert],
+[inert] *,
+*:has([inert]) {
+    overflow: hidden !important;
+}
