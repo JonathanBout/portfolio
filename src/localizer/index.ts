@@ -1,4 +1,4 @@
-import * as localizedStrings from "./locales"
+import localizedStrings from "./locales"
 
 import { createI18n } from "vue-i18n"
 
