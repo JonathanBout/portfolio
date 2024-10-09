@@ -1,5 +1,19 @@
 import { CSSColor, contrastingColor } from "@/util/color"
 
+// empty, as it is on the same domain
+const productionUrl = ""
+
+function getPath(route: `/${string}` = "/") {
+    let url = import.meta.env.PROD ? productionUrl : ((import.meta.env.VITE_BACKEND_URL as string) || "https://jonathanbout.com")
+
+    if (url.endsWith("/")) {
+        url = url.slice(0, -1)
+    }
+
+    return url + route
+}
+
+
 export class TopLanguage {
     name: string = ""
     color: CSSColor = new CSSColor()
@@ -60,7 +74,7 @@ export async function getStats() {
         let data = storedData ? JSON.parse(storedData) : null
 
         if (!data) {
-            const response = await fetch("https://github-stats.jonathanbout.com/api/json?exclude_langs=shaderlab,hlsl")
+            const response = await fetch(getPath("/api/top-languages?exclude_langs=shaderlab,hlsl"))
             data = await response.json()
             sessionStorage.setItem("stats", JSON.stringify(data))
         }

@@ -5,7 +5,7 @@ import BurgerMenuIconComponent from "../BurgerMenuIconComponent.vue"
 import { useI18n } from "vue-i18n"
 
 const emit = defineEmits<{
-    (e: "menuOpenChanged", value: boolean): void
+    (e: "menuOpenChanged", value: boolean): void,
 }>()
 
 let headerOpen = ref(false)
