@@ -7,7 +7,7 @@ import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 import vueDevTools from "vite-plugin-vue-devtools"
 
-// https://vitejs.dev/config/
+
 export default defineConfig({
     plugins: [vue(), localizerPlugin(), gitrevPlugin(), vueDevTools()],
     resolve: {
@@ -21,7 +21,8 @@ export default defineConfig({
         watch: {
             // to make the project work on WSL2
             usePolling: true
-        }
+        },
+        port: 3999
     },
     css: {
         preprocessorOptions: {

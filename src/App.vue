@@ -12,7 +12,7 @@ function getIsInert() {
 </script>
 
 <template>
-    <Header @menu-open-changed="(value) => (menuIsOpen = value)" />
+    <Header @menu-open-changed="(value : boolean) => (menuIsOpen = value)" />
     <main :inert="getIsInert()">
         <RouterView />
     </main>
