@@ -37,12 +37,12 @@ export const shortMonths: Localized<string[]> = {
     nl: ["jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"]
 }
 
-export const days: Localized<string[]? = {
+export const days: Localized<string[]> = {
     en: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     nl: ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"]
 }
 
-export const shortDays: Localized = {
+export const shortDays: Localized<string[]> = {
     en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
     nl: ["zo", "ma", "di", "wo", "do", "vr", "za"]
 }
