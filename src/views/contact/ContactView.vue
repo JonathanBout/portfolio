@@ -138,24 +138,38 @@ function resetForm() {
     <div class="page-root">
         <h1>{{ $t("contact.title") }}</h1>
         <template v-if="phase === 0 || phase === 3">
-            <div v-if="phase === 3" class="error">{{ $t("contact.error") }}</div>
-            <p v-html="$t('contact.description', infoData)"></p>
-            <form @submit.prevent="submitForm" @reset="resetForm" novalidate>
+            <div v-if="phase === 3" class="error">
+                {{ $t("contact.error") }}
+            </div>
+            <!-- eslint-disable-next-line vue/no-v-html -->
+            <p v-html="$t('contact.description', infoData)" />
+            <form novalidate @submit.prevent="submitForm" @reset="resetForm">
                 <div class="form-body">
                     <label for="name">
                         <span>
                             {{ $t("contact.name") }}
                         </span>
-                        <input required type="text" name="name" minlength="2" v-model="input.name" />
+                        <input
+                            v-model="input.name"
+                            required
+                            type="text"
+                            name="name"
+                            minlength="2"
+                        >
                         <span class="error no-load-animation" :class="error.name ? 'visible' : 'hidden'">
                             {{ $t("contact.name-error") }}
                         </span>
                     </label>
-                    <label for="email"
-                        ><span>
-                            {{ $t("contact.email") }}
-                        </span>
-                        <input required type="text" name="email" pattern="^.+@.+$" v-model="input.email" />
+                    <label for="email"><span>
+                                           {{ $t("contact.email") }}
+                                       </span>
+                        <input
+                            v-model="input.email"
+                            required
+                            type="text"
+                            name="email"
+                            pattern="^.+@.+$"
+                        >
                         <span class="error no-load-animation" :class="error.email ? 'visible' : 'hidden'">
                             {{ $t("contact.email-error") }}
                         </span>
@@ -164,7 +178,7 @@ function resetForm() {
                         <span>
                             {{ $t("contact.message") }}
                         </span>
-                        <text-area-input required v-model="input.message" :max-characters="4096" :min-characters="10" />
+                        <text-area-input v-model="input.message" required :max-characters="4096" :min-characters="10" />
                         <span class="error no-load-animation" :class="error.message ? 'visible' : 'hidden'">
                             {{ $t("contact.message-error") }}
                         </span>
@@ -175,20 +189,20 @@ function resetForm() {
                             hive! Don't forget to include it in your message! 🐝
                         </span>
                         <input
+                            v-model="input.honey"
                             type="text"
                             name="the-yummy-stuff"
                             tabindex="-1"
                             autocomplete="off"
-                            v-model="input.honey"
-                        />
+                        >
                     </label>
                 </div>
                 <div class="buttons">
-                    <button type="reset" id="reset-button" class="danger">
-                        {{ $t("contact.clear") }} <i class="bi bi-trash"></i>
+                    <button id="reset-button" type="reset" class="danger">
+                        {{ $t("contact.clear") }} <i class="bi bi-trash" />
                     </button>
-                    <button type="submit" id="submit-button" class="primary">
-                        {{ $t("contact.submit") }} <i class="bi bi-send"></i>
+                    <button id="submit-button" type="submit" class="primary">
+                        {{ $t("contact.submit") }} <i class="bi bi-send" />
                     </button>
                 </div>
             </form>
@@ -203,15 +217,19 @@ function resetForm() {
             </p>
             <div class="other-buttons">
                 <router-link to="/" class="button">
-                    <i class="bi bi-house-door-fill"></i> {{ $t("contact.back") }}
+                    <i class="bi bi-house-door-fill" /> {{ $t("contact.back") }}
                 </router-link>
             </div>
         </template>
         <template v-else-if="phase === 4">
             <p>{{ $t("contact.robot-challenge") }}</p>
             <div class="other-buttons">
-                <button @click="() => submitFormChallengeFailed()" class="primary">{{ $t("contact.back") }}</button>
-                <button @click="submitFormChallengeFailed" class="danger">{{ $t("contact.submit") }}</button>
+                <button class="primary" @click="() => submitFormChallengeFailed()">
+                    {{ $t("contact.back") }}
+                </button>
+                <button class="danger" @click="submitFormChallengeFailed">
+                    {{ $t("contact.submit") }}
+                </button>
             </div>
         </template>
     </div>

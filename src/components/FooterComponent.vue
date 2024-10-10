@@ -16,12 +16,12 @@ const iconsByLocale: Localized<string> = {
     <footer class="monospace" :inert="inert">
         <div class="language-display" translate="no">
             <ul>
-                <li v-for="locale in LOCALES" v-bind:key="locale">
+                <li v-for="locale in LOCALES" :key="locale">
                     <button
                         :class="'link no-external-icon' + (currentLocale === locale ? ' current' : '')"
                         @click="changeLanguage(locale)"
                     >
-                        <i :class="'fi fi-' + iconsByLocale[locale]"></i>
+                        <i :class="'fi fi-' + iconsByLocale[locale]" />
                         {{ $t("language." + locale) }}
                     </button>
                 </li>

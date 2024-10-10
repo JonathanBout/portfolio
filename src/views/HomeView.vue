@@ -12,7 +12,7 @@ setTimeout(() => {
     scrollTo(0, 0)
 }, 200)
 
-const highlight = (_: any, b: any) => `<span class="highlight hi${Math.round(Math.random() * 5) + 1}">${b}</span>`
+const highlight = (_: unknown, b: unknown) => `<span class="highlight hi${Math.round(Math.random() * 5) + 1}">${b}</span>`
 
 const theme = computed(() => (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"))
 
@@ -77,7 +77,10 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-    resetTimeout && clearTimeout(resetTimeout)
+    if (resetTimeout) {
+        clearTimeout(resetTimeout)
+    }
+
     timeouts.forEach((id) => clearTimeout(id))
 })
 
@@ -112,7 +115,9 @@ function jump() {
     if (clickCount.value > 10 || resetTimeout) {
         imageUrl.value = "/images/ugh.png"
 
-        resetTimeout && clearTimeout(resetTimeout)
+        if (resetTimeout) {
+            clearTimeout(resetTimeout)
+        }
 
         resetTimeout = setTimeout(() => {
             imageUrl.value = originalUrl
@@ -140,55 +145,58 @@ function getSkilliconUrl(skill: string) {
             <div class="me-image" draggable="false">
                 <img
                     rel="prefetch"
-                    @click="jump"
                     :src="imageUrl"
                     alt="Jonathan Bout"
-                    v-on:load="showActualImage"
                     style="display: none"
-                />
-                <img src="/images/placeholder.svg" />
+                    @click="jump"
+                    @load="showActualImage"
+                >
+                <img src="/images/placeholder.svg">
             </div>
             <div class="me-info">
                 <span class="location-marker">
-                    <i class="bi bi-geo-alt"></i>
+                    <i class="bi bi-geo-alt" />
                     {{ $t("home.country") }}
-                    <span class="fi fi-nl"></span>
+                    <span class="fi fi-nl" />
                 </span>
-                <h1 ref="heading" :aria-label="$t('home.greeting')"></h1>
-                <p class="intro" v-html="intro"></p>
+                <h1 ref="heading" :aria-label="$t('home.greeting')" />
+                <!-- eslint-disable-next-line vue/no-v-html -->
+                <p class="intro" v-html="intro" />
             </div>
         </div>
         <div class="quick-overview">
             <h2>{{ $t("home.quick-overview") }}</h2>
             <div class="icons">
                 <label>
-                    <img alt="C#" :src="getSkilliconUrl(`cs`)" />
+                    <img alt="C#" :src="getSkilliconUrl(`cs`)">
                     <span>C#</span>
                 </label>
                 <label>
-                    <img alt="Python" :src="getSkilliconUrl(`py`)" />
+                    <img alt="Python" :src="getSkilliconUrl(`py`)">
                     <span>Python</span>
                 </label>
                 <label>
-                    <img alt="TypeScript" :src="getSkilliconUrl(`ts`)" />
+                    <img alt="TypeScript" :src="getSkilliconUrl(`ts`)">
                     <span>Typescript</span>
                 </label>
                 <label>
-                    <img alt="Vue" :src="getSkilliconUrl(`vue`)" />
+                    <img alt="Vue" :src="getSkilliconUrl(`vue`)">
                     <span>Vue</span>
                 </label>
                 <label>
-                    <img alt="HTML" :src="getSkilliconUrl(`html`)" />
+                    <img alt="HTML" :src="getSkilliconUrl(`html`)">
                     <span>HTML</span>
                 </label>
                 <label>
-                    <img alt="CSS" :src="getSkilliconUrl(`css`)" />
+                    <img alt="CSS" :src="getSkilliconUrl(`css`)">
                     <span>CSS</span>
                 </label>
             </div>
         </div>
         <div class="top-langs">
-            <h2 class="top-langs-text">{{ $t("home.top-langs-title") }}</h2>
+            <h2 class="top-langs-text">
+                {{ $t("home.top-langs-title") }}
+            </h2>
             <GitHubStatsComponent />
         </div>
     </div>

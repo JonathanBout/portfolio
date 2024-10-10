@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import tagsData, { Tag } from "@/projects"
 
-const props = defineProps({
-    tag: String
-})
+const props = defineProps<{tag:string}>()
 
-const foundTag = (tagsData.tags as any)[props.tag || ""] as Tag
+const foundTag = (tagsData.tags as [])[props.tag || ""] as Tag
 
 let style: string | undefined = undefined
 
@@ -38,7 +36,7 @@ function getIconUrl() {
             :src="getIconUrl()"
             onerror="this.style.display = 'none';"
             alt="icon"
-        />
+        >
         <span>
             {{ foundTag?.name ?? tag }}
         </span>

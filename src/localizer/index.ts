@@ -14,7 +14,7 @@ export type Locale = (typeof LOCALES)[number]
  * It uses the `Locale` type to ensure that all locales are present.
  * @template V the type of the localized value
  */
-export type Localized<V = any> = { [K in Locale]: V }
+export type Localized<V = unknown> = { [K in Locale]: V }
 
 /**
  * A list of the domains for each locale the app supports.

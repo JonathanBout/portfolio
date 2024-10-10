@@ -46,12 +46,13 @@ function getTotalSizeFriendly(size: number) {
 <template>
     <div class="github-stats" translate="no">
         <template v-if="stats.topLanguages.length > 0">
-            <div v-html="$t('projects.github-stats.top-languages.description')"></div>
+            <!-- eslint-disable-next-line vue/no-v-html -->
+            <div v-html="$t('projects.github-stats.top-languages.description')" />
             <div class="percentage-bar" :style="getTotalSizeCSS()">
                 <div
-                    :style="getCSS(stat)"
                     v-for="stat in stats.topLanguages"
                     :key="stat.name"
+                    :style="getCSS(stat)"
                     :data-lang-name="stat.name"
                     :data-lang-percentage="getPercentageString(stat)"
                     :data-total-lang-size="getTotalSizeFriendly(stat.size)"

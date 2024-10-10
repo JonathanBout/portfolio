@@ -12,7 +12,11 @@ function getParagraphs(paragraphs: string): string[] {
         <h1>
             {{ title }}
         </h1>
-        <div class="state">{{ $t("privacy.lastUpdated") }}: {{ lastUpdate }}</div>
-        <p v-for="paragraph in transformedParagraphs" :key="paragraph">{{ paragraph }}</p>
+        <div class="state">
+            {{ $t("privacy.lastUpdated") }}: {{ lastUpdate }}
+        </div>
+        <p v-for="paragraph in transformedParagraphs" :key="paragraph">
+            {{ paragraph }}
+        </p>
     </div>
 </template>

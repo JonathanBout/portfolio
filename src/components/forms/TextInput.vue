@@ -36,7 +36,7 @@ const isValid = ref(true)
 <template>
     <label>
         <span>{{ props.label }}</span>
-        <input :type="type" v-model="model" @input="validateInput" />
+        <input v-model="model" :type="type" @input="validateInput">
         <span class="error" :class="validateInput() ? 'hidden' : 'visible'">{{ props.error }}</span>
     </label>
 </template>

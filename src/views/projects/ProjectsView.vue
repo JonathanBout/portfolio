@@ -4,8 +4,10 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
 </script>
 <template>
     <div class="page-root">
-        <p class="intro">{{ $t("projects.intro") }}</p>
-        <ProjectComponent :project="project" v-for="project in projectsData.projects" :key="project.id" />
+        <p class="intro">
+            {{ $t("projects.intro") }}
+        </p>
+        <ProjectComponent v-for="project in projectsData.projects" :key="project.id" :project="project" />
 
         <div class="see-more">
             <a href="https://github.com/jonathanbout?tab=repositories">{{ $t("projects.see-more") }}</a>
