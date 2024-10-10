@@ -22,7 +22,9 @@ export default defineConfig({
             // to make the project work on WSL2
             usePolling: true
         },
-        port: 3999
+        port: 3999,
+        strictPort: true,
+        
     },
     css: {
         preprocessorOptions: {

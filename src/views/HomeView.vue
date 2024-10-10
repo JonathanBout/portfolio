@@ -21,7 +21,7 @@ intro = intro.replace(/%(.*?)%/gi, highlight)
 const clickCount = ref(0)
 const lastClick = ref(Date.now())
 
-const originalUrl = "https://gravatar.com/avatar/be19bd79a37e5f322b7a1898a1147127?size=512"
+const originalUrl = "https://gravatar.com/avatar/be19bd79a37e5f322b7a1898a1147127?size=255"
 const imageUrl = ref(originalUrl)
 
 let resetTimeout: number | null = null
