@@ -30,7 +30,7 @@ function getPath(route: Route = "/", query: QueryParameters) {
 
 export default {
     async get(route: Route, query: QueryParameters = {}) {
-        const fullUrl = new URL(getPath(route, query))
+        const fullUrl = getPath(route, query)
 
         return await fetch(fullUrl)
     },
