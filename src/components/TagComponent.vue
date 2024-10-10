@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import tagsData, { Tag } from "@/projects"
 
-const props = defineProps<{tag:string}>()
+const props = defineProps<{ tag: string }>()
 
-const foundTag = (tagsData.tags as [])[props.tag || ""] as Tag
+const foundTag = (tagsData.tags as { [key: string]: Tag })[props.tag || ""]
 
 let style: string | undefined = undefined
 

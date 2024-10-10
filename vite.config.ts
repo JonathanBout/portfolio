@@ -7,12 +7,10 @@ import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 import vueDevTools from "vite-plugin-vue-devtools"
 
-
 export default defineConfig({
     plugins: [vue(), localizerPlugin(), gitrevPlugin(), vueDevTools()],
     resolve: {
         alias: {
-            //@ts-ignore
             "@": fileURLToPath(new URL("./src", import.meta.url))
         },
         dedupe: ["vue"]
@@ -24,7 +22,6 @@ export default defineConfig({
         },
         port: 3999,
         strictPort: true,
-        
     },
     css: {
         preprocessorOptions: {

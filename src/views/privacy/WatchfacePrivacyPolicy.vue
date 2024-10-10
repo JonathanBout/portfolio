@@ -1,5 +1,5 @@
 <template>
-    <div class="page-root">
+    <div class="page-root custom-animation">
         <h2>
             {{ $t("privacy.message") }}
         </h2>
@@ -8,6 +8,12 @@
 </template>
 
 <style scoped lang="less">
+.page-root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 h2 {
     text-align: center;
     margin: 1ch;
@@ -15,6 +21,7 @@ h2 {
 
 img {
     max-width: 100%;
-    border-radius: 100dvw;
+
+    border-radius: 100%;
 }
 </style>
