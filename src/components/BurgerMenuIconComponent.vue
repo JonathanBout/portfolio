@@ -10,9 +10,9 @@ defineProps<{
         :style="'--animation-duration: ' + (animationDuration ?? '.3s')"
         :class="'toggle-root' + (open ? ' open' : '')"
     >
-        <div class="bar a"></div>
-        <div class="bar b"></div>
-        <div class="bar c"></div>
+        <div class="bar a" />
+        <div class="bar b" />
+        <div class="bar c" />
     </div>
 </template>
 <style lang="less" scoped>

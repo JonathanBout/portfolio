@@ -5,7 +5,7 @@ import BurgerMenuIconComponent from "../BurgerMenuIconComponent.vue"
 import { useI18n } from "vue-i18n"
 
 const emit = defineEmits<{
-    (e: "menuOpenChanged", value: boolean): void,
+    (e: "menuOpenChanged", value: boolean): void
 }>()
 
 let headerOpen = ref(false)
@@ -70,15 +70,17 @@ function transformPathName(index: number, part: string) {
 
 <template>
     <div class="menu-wrapper" :style="'--animation-duration: ' + animationDuration">
-        <div :class="'header-backdrop' + (headerOpen ? '' : ' closed')" @click="close_menu"></div>
+        <div :class="'header-backdrop' + (headerOpen ? '' : ' closed')" @click="close_menu" />
         <button aria-label="menu" class="header-toggle" @click="toggle_menu">
             <BurgerMenuIconComponent :animation-duration="animationDuration" :open="headerOpen" />
-            <div class="header-toggle-backdrop"></div>
+            <div class="header-toggle-backdrop" />
         </button>
-        <div class="location-marker" v-if="fullPath() != '/'">
-            <router-link v-for="(part, index) in fullPathParts()" :to="{ path: basePath(index) }" v-bind:key="part">{{
-                transformPathName(index, part)
-            }}</router-link>
+        <div v-if="fullPath() != '/'" class="location-marker">
+            <router-link v-for="(part, index) in fullPathParts()" :key="part" :to="{ path: basePath(index) }">
+                {{
+                    transformPathName(index, part)
+                }}
+            </router-link>
         </div>
         <header :class="'monospace' + (headerOpen ? '' : ' closed')">
             <router-link to="/" active-class="active" class="site-title">
@@ -91,16 +93,16 @@ function transformPathName(index: number, part: string) {
                 <span>{{ $t("contact.title") }}</span>
             </router-link>
             <a href="https://github.com/JonathanBout" :aria-label="$t('header.github')" class="no-external-icon small">
-                <span><i class="bi bi-github"></i></span>
+                <span><i class="bi bi-github" /></span>
             </a>
             <a
                 href="https://linkedin.com/in/jonathanbout"
                 :aria-label="$t('header.linkedin')"
                 class="no-external-icon small"
             >
-                <span><i class="bi bi-linkedin"></i></span>
+                <span><i class="bi bi-linkedin" /></span>
             </a>
-            <div class="flex-filler"></div>
+            <div class="flex-filler" />
             <div class="version">
                 <a :href="'https://github.com/JonathanBout/portfolio/commit/' + versionHash">{{
                     $t("version") + " " + versionHash

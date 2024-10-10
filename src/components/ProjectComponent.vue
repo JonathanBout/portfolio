@@ -34,7 +34,7 @@ const projectName = computed(() => {
         return props.project.name
     }
 
-    return (props.project.name as any)[lang.value]
+    return (props.project.name as [])[lang.value]
 })
 </script>
 
@@ -44,19 +44,21 @@ const projectName = computed(() => {
             class="image-wrapper"
             :style="'--image-count: ' + (project.image ? 1 : project.images ? project.images.length : 0).toString()"
         >
-            <img class="image" v-if="project.image" :src="project.image" alt="Project preview" />
+            <img v-if="project.image" class="image" :src="project.image" alt="Project preview">
             <img
-                class="image"
-                v-else
                 v-for="image in project.images"
-                v-bind:key="image"
+                v-else
+                :key="image"
+                class="image"
                 :src="image"
                 alt="Project preview"
-            />
+            >
         </div>
         <div class="vertical-stack">
-            <div class="name">{{ projectName }}</div>
-            <div class="description" v-if="project.description">
+            <div class="name">
+                {{ projectName }}
+            </div>
+            <div v-if="project.description" class="description">
                 {{ (project.description as any)[lang] }}
             </div>
             <ul class="links">
@@ -66,7 +68,7 @@ const projectName = computed(() => {
                         :aria-label="$t('projects.view-on-gh', { name: projectName })"
                         target="_blank"
                         class="bi bi-github big no-external-icon"
-                    ></a>
+                    />
                 </li>
                 <li v-if="project.demo">
                     <a
@@ -74,7 +76,7 @@ const projectName = computed(() => {
                         :aria-label="$t('projects.view-demo', { name: projectName })"
                         target="_blank"
                         class="bi bi-box-arrow-up-right big no-external-icon"
-                    ></a>
+                    />
                 </li>
                 <li v-if="project.playStore">
                     <a
@@ -82,13 +84,13 @@ const projectName = computed(() => {
                         :aria-label="$t('projects.view-on-play-store', { name: projectName })"
                         target="_blank"
                         class="bi bi-google-play big no-external-icon"
-                    ></a>
+                    />
                 </li>
-                <li v-for="tag in project.tags" class="tag" v-bind:key="tag">
+                <li v-for="tag in project.tags" :key="tag" class="tag">
                     <TagComponent :tag="tag" />
                 </li>
             </ul>
-            <div class="timeframe" v-if="project.timeframe">
+            <div v-if="project.timeframe" class="timeframe">
                 {{ timeframeText }}
             </div>
         </div>

@@ -1,19 +1,5 @@
 import { CSSColor, contrastingColor } from "@/util/color"
-
-// empty, as it is on the same domain
-const productionUrl = ""
-
-function getPath(route: `/${string}` = "/") {
-    let url = import.meta.env.PROD ? productionUrl : ((import.meta.env.VITE_BACKEND_URL as string) || "https://jonathanbout.com")
-
-    if (url.endsWith("/")) {
-        url = url.slice(0, -1)
-    }
-
-    return url + route
-}
-
-
+import backend from "@/backend"
 export class TopLanguage {
     name: string = ""
     color: CSSColor = new CSSColor()
@@ -24,7 +10,7 @@ export class TopLanguage {
         return contrastingColor(this.color)
     }
 
-    constructor(props: { [key: string]: any }) {
+    constructor(props: { [key: string]: unknown }) {
         Object.assign(this, props)
     }
 }
@@ -63,36 +49,34 @@ export class TopLanguages implements Iterable<TopLanguage> {
 
 export class Stats {
     topLanguages: TopLanguages = new TopLanguages([])
-    error: any = null
+    error: unknown = null
 }
 
 export async function getStats() {
     const stats = new Stats()
     try {
-        const storedData = sessionStorage.getItem("stats")
+        const response = await backend.get("/api/top-languages", { exclude_langs: "HLSL,ShaderLab" })
 
-        let data = storedData ? JSON.parse(storedData) : null
+        const data = (await response.json()) as { [key: string]: unknown }[]
 
-        if (!data) {
-            const response = await fetch(getPath("/api/top-languages?exclude_langs=shaderlab,hlsl"))
-            data = await response.json()
-            sessionStorage.setItem("stats", JSON.stringify(data))
-        }
-
-        for (const valueorig of Object.values(data)) {
-            const value = valueorig as any
-            const lang = new TopLanguage(value as any)
-            lang.color = CSSColor.fromString(value.color)
+        // fill the received data into the stats object
+        for (const value of Object.values(data)) {
+            const lang = new TopLanguage(value)
+            // set the color separately, as it is a CSSColor object
+            lang.color = CSSColor.fromString(value["color"] as string)
             stats.topLanguages.push(lang)
         }
 
+        // filter out languages that are less than 0.5% of the total size
         const totalSize = stats.topLanguages.totalSize()
         stats.topLanguages.topLanguages = stats.topLanguages.topLanguages.filter(
             (lang) => lang.size / totalSize >= 0.005
         )
 
+        // sort the languages by size
         stats.topLanguages.topLanguages = stats.topLanguages.topLanguages.sort((a, b) => b.size - a.size)
     } catch (err) {
+        // if anything goes wrong, set the error property
         stats.error = err
     }
 

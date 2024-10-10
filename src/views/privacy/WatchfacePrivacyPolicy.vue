@@ -3,7 +3,7 @@
         <h2>
             {{ $t("privacy.message") }}
         </h2>
-        <img src="/images/projects/programmer-watchface.png" />
+        <img src="/images/projects/programmer-watchface.png">
     </div>
 </template>
 
