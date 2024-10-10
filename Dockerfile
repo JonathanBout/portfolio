@@ -26,7 +26,8 @@ COPY --from=build-stage /app/dist ./
 
 # remove the default Nginx configuration file and copy our own
 RUN rm -rf /etc/nginx/conf.d/default.conf 
-COPY ./nginx /etc/nginx/conf.d
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx /etc/nginx
 
 
 # Expose the ports 80 and 81 to the host machine and run the Nginx server
