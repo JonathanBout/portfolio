@@ -12,7 +12,8 @@ setTimeout(() => {
     scrollTo(0, 0)
 }, 200)
 
-const highlight = (_: unknown, b: unknown) => `<span class="highlight hi${Math.round(Math.random() * 5) + 1}">${b}</span>`
+const highlight = (_: unknown, b: unknown) =>
+    `<span class="highlight hi${Math.round(Math.random() * 5) + 1}">${b}</span>`
 
 const theme = computed(() => (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"))
 

@@ -5,10 +5,12 @@ export type Body = { [key: string]: unknown }
 
 const productionUrl = ""
 
+function configuredBaseUrl() {
+    return import.meta.env.PROD ? productionUrl : (import.meta.env.VITE_BACKEND_URL as string) || productionUrl
+}
+
 function getPath(route: Route = "/", query: QueryParameters) {
-    let url = import.meta.env.PROD
-        ? productionUrl
-        : (import.meta.env.VITE_BACKEND_URL as string) || "https://jonathanbout.com"
+    let url = configuredBaseUrl()
 
     if (url.endsWith("/")) {
         url = url.slice(0, -1)
@@ -27,19 +29,27 @@ function getPath(route: Route = "/", query: QueryParameters) {
     return fullUrl
 }
 
+async function fetch(route: Route, query: QueryParameters, options: RequestInit = {}) {
+    const fullUrl = getPath(route, query)
+
+    const response = await window.fetch(fullUrl, options)
+
+    return response
+}
 
 export default {
     async get(route: Route, query: QueryParameters = {}) {
-        const fullUrl = getPath(route, query)
-
-        return await fetch(fullUrl)
-    },
-    async post(route: Route, body: Body, query: QueryParameters = {}) {
-        const fullUrl = new URL(getPath(route, query))
-
-        return await fetch(fullUrl, {
-            method: "POST",
-            body: JSON.stringify(body)
+        return await fetch(route, query, {
+            method: "GET"
         })
     },
+    async post(route: Route, body: Body, query: QueryParameters = {}) {
+        return await fetch(route, query, {
+            method: "POST",
+            body: JSON.stringify(body),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+    }
 }

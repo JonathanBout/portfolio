@@ -34,7 +34,7 @@ const projectName = computed(() => {
         return props.project.name
     }
 
-    return (props.project.name as [])[lang.value]
+    return (props.project.name as unknown as { [K: string]: string })[lang.value]
 })
 </script>
 
@@ -225,36 +225,6 @@ const projectName = computed(() => {
 
     .tag {
         display: flex;
-    }
-}
-
-.preview {
-    --inset: 10%;
-    .preview-backdrop {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 999;
-    }
-
-    button {
-        position: fixed;
-        top: calc(var(--inset) / 4);
-        right: calc(var(--inset) / 4);
-        z-index: 1000;
-    }
-
-    iframe {
-        position: fixed;
-        width: calc(100% - var(--inset) * 2);
-        height: calc(100% - var(--inset) * 2);
-        top: var(--inset);
-        left: var(--inset);
-        z-index: 1000;
-        box-shadow: 0 0 10px 10px #000;
     }
 }
 

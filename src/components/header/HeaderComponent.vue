@@ -77,9 +77,7 @@ function transformPathName(index: number, part: string) {
         </button>
         <div v-if="fullPath() != '/'" class="location-marker">
             <router-link v-for="(part, index) in fullPathParts()" :key="part" :to="{ path: basePath(index) }">
-                {{
-                    transformPathName(index, part)
-                }}
+                {{ transformPathName(index, part) }}
             </router-link>
         </div>
         <header :class="'monospace' + (headerOpen ? '' : ' closed')">
