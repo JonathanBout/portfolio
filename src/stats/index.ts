@@ -55,9 +55,13 @@ export class Stats {
 export async function getStats() {
     const stats = new Stats()
     try {
+        console.debug("fetching stats")
+
         const response = await backend.get("/api/top-languages", { exclude_langs: "HLSL,ShaderLab" })
 
         const data = (await response.json()) as { [key: string]: unknown }[]
+
+        console.debug("received stats", data)
 
         // fill the received data into the stats object
         for (const value of Object.values(data)) {
@@ -76,8 +80,9 @@ export async function getStats() {
         // sort the languages by size
         stats.topLanguages.topLanguages = stats.topLanguages.topLanguages.sort((a, b) => b.size - a.size)
     } catch (err) {
-        // if anything goes wrong, set the error property
+        // if anything goes wrong, set the error property and log the error
         stats.error = err
+        console.error(err)
     }
 
     return stats

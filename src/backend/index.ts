@@ -1,8 +1,9 @@
 // empty, as it is on the same domain
-const productionUrl = ""
 export type Route = `/${string}`
 export type QueryParameters = { [key: string]: string }
 export type Body = { [key: string]: unknown }
+
+const productionUrl = ""
 
 function getPath(route: Route = "/", query: QueryParameters) {
     let url = import.meta.env.PROD
@@ -21,7 +22,9 @@ function getPath(route: Route = "/", query: QueryParameters) {
 
     queryString = queryString.slice(0, -1)
 
-    return url + route + queryString
+    const fullUrl = url + route + queryString
+    console.debug(`got path ${fullUrl}`)
+    return fullUrl
 }
 
 
