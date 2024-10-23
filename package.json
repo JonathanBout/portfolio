@@ -38,7 +38,7 @@
         "less-loader": "^12.2.0",
         "prettier": "^3.3.3",
         "typescript": "~5.6.3",
-        "vite": "^5.4.9",
+        "vite": "^5.4.10",
         "vite-plugin-vue-devtools": "^7.5.2",
         "vue-tsc": "^2.1.6"
     }
