@@ -28,7 +28,7 @@
         "vue-router": "^4.4.5"
     },
     "devDependencies": {
-        "@babel/types": "^7.25.9",
+        "@babel/types": "^7.26.0",
         "@tsconfig/node18": "^18.2.4",
         "@types/node": "^22.8.1",
         "@vitejs/plugin-vue": "^5.1.4",
