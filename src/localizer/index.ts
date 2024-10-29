@@ -83,10 +83,10 @@ export function createLocalizer(): VuePlugin {
         }
     }
 
-    // if crawler is visiting the site, we don't want to change the locale or do any redirects
+    // if a crawler is visiting the site or we are runnning integration tests, we don't want to change the locale or do any redirects
     if (
         navigator.userAgent.match(
-            /bot|googleother|google-extended|mediapartners|apis-google|google-safety|bingpreview|microsoftpreview|crawler|spider|robot|crawling|inspectiontool/i
+            /bot|googleother|google-extended|mediapartners|apis-google|google-safety|bingpreview|microsoftpreview|crawler|spider|robot|crawling|inspectiontool|puppeteer-integration-tester/i
         )
     ) {
         currentLocale.value = locale

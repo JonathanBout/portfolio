@@ -6,8 +6,15 @@ WORKDIR /app
 # Copy the working directory in the container
 COPY package*.json ./
 
+# Remove the puppeteer and jest dependencies from the package.json file,
+# as they are not needed in the production environment and are very large in size
+# (puppeteer downloads a full version of Chromium and jest is a testing library)
 # Install the project dependencies
-RUN npm ci && npm cache clean --force
+RUN sed -i '/\"jest\":/d' package.json \
+    && sed -i '/\"puppeteer\":/d' package.json \
+    && sed -i '/\"jest-puppeteer\":/d' package.json \
+    && npm ci \
+    && npm cache clean --force
 
 # Copy the rest of the project files to the container
 COPY . .
