@@ -1,10 +1,19 @@
 services:
-    server:
+    frontend:
         build:
             context: .
         environment:
-            NODE_ENV: production
-            IN_CONTAINER: true
+            - NODE_ENV=production
+            - IN_CONTAINER=true
         ports:
             - 50000:80 # .com
             - 50001:81 # .nl
+    backend:
+        image: ghcr.io/jonathanbout/portfolio-backend:release
+        env_file: backend.compose.env
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Production
+            - ASPNETCORE_URLS=http://+:5000
+            - CORS_ALLOWED_ORIGINS=http://localhost:50000,http://localhost:50001
+        ports:
+            - 32769:5000

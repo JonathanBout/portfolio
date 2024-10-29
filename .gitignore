@@ -29,3 +29,4 @@ coverage
 
 *.timestamp*.mjs
 .env
+*.env
