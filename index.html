@@ -31,11 +31,19 @@
         <noscript>
             <link rel="stylesheet" href="/no-js.css" />
         </noscript>
-        
+
         <div itemscope itemtype="https://schema.org/WebSite">
             <link itemprop="url" data-set-domain href="https://jonathanbout.com" />
             <meta itemprop="name" content="Jonathan Bout" />
         </div>
+
+        <script>
+            if (!window.app) {
+                window.app = {}
+            }
+
+            window.app.locale = '[[locale]]'
+        </script>
     </head>
     <body>
         <div id="app"></div>
@@ -50,9 +58,9 @@
         </noscript>
         <script id="remove-noscript">
             // as we can run code here, remove all noscript elements
-            document.querySelectorAll('noscript').forEach((el) => el.remove());
+            document.querySelectorAll("noscript").forEach((el) => el.remove())
             // also remove the script tag that removes the noscript elements
-            document.getElementById('remove-noscript').remove();
+            document.getElementById("remove-noscript").remove()
         </script>
     </body>
 </html>

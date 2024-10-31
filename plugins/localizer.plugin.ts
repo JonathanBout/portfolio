@@ -77,8 +77,6 @@ export default function localizerPlugin(): Plugin {
                     newHtml =
                         "<!-- This page is search engine optimized for the '" + locale + "' locale -->\n" + newHtml
 
-                    newHtml = newHtml.replace("<head>", `<head><script>window.app.locale="${locale}"</script>`)
-
                     const htmlFile: EmittedAsset = {
                         type: "asset",
                         source: newHtml,
