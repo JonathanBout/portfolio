@@ -8,8 +8,6 @@ const productionUrl = ""
 function configuredBaseUrl() {
     const url = import.meta.env.VITE_BACKEND_URL || productionUrl
 
-    console.debug(`got base url ${url}`)
-
     return url
 }
 

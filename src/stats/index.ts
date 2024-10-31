@@ -55,8 +55,6 @@ export class Stats {
 export async function getStats() {
     const stats = new Stats()
     try {
-        console.debug("fetching stats")
-
         const response = await server.get("/api/top-languages", { exclude_langs: "HLSL,ShaderLab" })
 
         const data = (await response.json()) as { [key: string]: unknown }[]
