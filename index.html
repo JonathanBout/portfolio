@@ -48,5 +48,11 @@
                 >[[localize:errors.enable-javascript-link]]</a
             >
         </noscript>
+        <script id="remove-noscript">
+            // as we can run code here, remove all noscript elements
+            document.querySelectorAll('noscript').forEach((el) => el.remove());
+            // also remove the script tag that removes the noscript elements
+            document.getElementById('remove-noscript').remove();
+        </script>
     </body>
 </html>
