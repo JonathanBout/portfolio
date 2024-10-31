@@ -6,7 +6,11 @@ export type Body = { [key: string]: unknown }
 const productionUrl = ""
 
 function configuredBaseUrl() {
-    return import.meta.env.PROD ? productionUrl : (import.meta.env.VITE_BACKEND_URL as string) || productionUrl
+    const url = import.meta.env.VITE_BACKEND_URL || productionUrl
+
+    console.debug(`got base url ${url}`)
+
+    return url
 }
 
 function getPath(route: Route = "/", query: QueryParameters) {

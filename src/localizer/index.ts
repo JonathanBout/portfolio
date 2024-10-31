@@ -74,7 +74,7 @@ export function createLocalizer(): VuePlugin {
      * 6. If none of the above, use the locale for the current domain (.com is English, .nl is Dutch)
      */
 
-    let locale: Locale = "en"
+    let locale: Locale = window.app.locale
 
     for (const loc of LOCALES) {
         if (window.location.origin.toLowerCase() === domainsByLocale[loc].toLowerCase()) {

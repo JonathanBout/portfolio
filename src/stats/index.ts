@@ -1,5 +1,5 @@
 import { CSSColor, contrastingColor } from "@/util/color"
-import backend from "@/backend"
+import server from "@/server"
 export class TopLanguage {
     name: string = ""
     color: CSSColor = new CSSColor()
@@ -57,7 +57,7 @@ export async function getStats() {
     try {
         console.debug("fetching stats")
 
-        const response = await backend.get("/api/top-languages", { exclude_langs: "HLSL,ShaderLab" })
+        const response = await server.get("/api/top-languages", { exclude_langs: "HLSL,ShaderLab" })
 
         const data = (await response.json()) as { [key: string]: unknown }[]
 

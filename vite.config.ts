@@ -21,7 +21,11 @@ export default defineConfig({
             usePolling: true
         },
         port: 3999,
-        strictPort: true,
+        strictPort: true
+    },
+    preview: {
+        port: 3999,
+        strictPort: true
     },
     css: {
         preprocessorOptions: {

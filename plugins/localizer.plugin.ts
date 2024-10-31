@@ -9,18 +9,20 @@ function getFiles(bundle: OutputBundle): { [key: string]: (OutputAsset | OutputB
         const { fileName } = file
         const extension = extname(fileName).substring(1)
 
-        result[extension] = (result[extension] || []).concat(file as any)
+        result[extension] = (result[extension] || []).concat(file as OutputAsset)
     }
 
     return result
 }
 
-function doReplace(oldHtml: string, key: string, value: any) {
+type LocaleData = string | { [key: string]: LocaleData }
+
+function doReplace(oldHtml: string, key: string, value: LocaleData): string {
     if (typeof value === "string") {
         // match [[localize:key]] but not \[[localize:key]]
         return oldHtml.replace(new RegExp(`(?<!\\\\)\\[\\[localize:${key}\\]\\]`, "g"), value)
     } else {
-        for (const [innerKey, innerValue] of Object.entries(value)) {
+        for (const [innerKey, innerValue] of Object.entries(value || {})) {
             let fullKey = innerKey
             if (key !== "") {
                 fullKey = key + "." + innerKey
@@ -60,10 +62,10 @@ export default function localizerPlugin(): Plugin {
                 const allLocales = Object.keys(json).filter((locale) => locale !== "common")
 
                 for (const locale of allLocales) {
-                    const newFileName = `index.${locale}.html`
+                    const newFileName = `${locale}/index.html`
                     let newHtml = html
 
-                    const pairs = Object.entries(json[locale]).concat(commonKeys)
+                    const pairs = Object.entries(json[locale]).concat(commonKeys) as [string, LocaleData][]
 
                     for (const [key, value] of pairs) {
                         newHtml = doReplace(newHtml, key, value)
@@ -74,6 +76,8 @@ export default function localizerPlugin(): Plugin {
 
                     newHtml =
                         "<!-- This page is search engine optimized for the '" + locale + "' locale -->\n" + newHtml
+
+                    newHtml = newHtml.replace("<head>", `<head><script>window.app.locale="${locale}"</script>`)
 
                     const htmlFile: EmittedAsset = {
                         type: "asset",
