@@ -14,7 +14,7 @@
         "compose-up": "docker compose up --build"
     },
     "dependencies": {
-        "@typescript-eslint/parser": "^8.12.2",
+        "@typescript-eslint/parser": "^8.13.0",
         "bootstrap-icons": "^1.11.3",
         "eslint-plugin-vue": "^9.30.0",
         "flag-icons": "^7.2.3",
