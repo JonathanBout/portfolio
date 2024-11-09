@@ -7,21 +7,21 @@ export type Body = { [key: string]: unknown }
 
 export type RequestHook = (request: AxiosRequestConfig) => AxiosRequestConfig
 
-const productionUrl = ""
+const productionUrl = "https://jonathanbout.com"
 const hooks: RequestHook[] = []
 
 function configuredBaseUrl() {
-    const url = import.meta.env.VITE_BACKEND_URL || productionUrl
+    let url = import.meta.env.VITE_BACKEND_URL || productionUrl
+
+    if (url.endsWith("/")) {
+        url = url.slice(0, -1)
+    }
 
     return url
 }
 
 function getPath(route: Route = "/", query: QueryParameters = {}) {
     let url = configuredBaseUrl()
-
-    if (url.endsWith("/")) {
-        url = url.slice(0, -1)
-    }
 
     let queryString = "?"
 
