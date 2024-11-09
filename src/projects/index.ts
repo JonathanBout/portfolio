@@ -154,6 +154,12 @@ const projects: Project[] = [
         playStore: "https://play.google.com/store/apps/details?id=com.jonathanbout.watchface.programmer",
         tags: ["watchface", "wfs", "wearOS"],
         image: "/images/projects/programmer-watchface.webp",
+        images: [
+            "/images/projects/watchface/Abyss.webp",
+            "/images/projects/watchface/Dark-plus.webp",
+            "/images/projects/watchface/Kimbie.webp",
+            "/images/projects/watchface/Monokai.webp",
+        ],
         description: {
             en: "A watchface for Wear OS that shows the current time, date, battery level and step count in a JSON format with Visual Studio Code theme colors.",
             nl: "Een wijzerplaat voor Wear OS die de huidige tijd, datum, batterijpercentage en stappenteller weergeeft als JSON met Visual Studio Code themakleuren."

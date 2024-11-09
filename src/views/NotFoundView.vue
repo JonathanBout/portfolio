@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router"
 
-const path = useRoute().path
+const route = useRoute()
+
 </script>
 
 <template>
@@ -9,7 +10,7 @@ const path = useRoute().path
         <h1 class="monospace">
             404
         </h1>
-        <h2>{{ $t("errorPage.pageNotFound", { path: decodeURI(path) }) }}</h2>
+        <h2>{{ $t("errorPage.pageNotFound", { path: decodeURI(route.path) }) }}</h2>
         <div class="separated">
             <span>
                 <a href="/">{{ $t("errorPage.back") }}</a>

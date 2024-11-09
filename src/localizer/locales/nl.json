@@ -27,7 +27,8 @@
     },
     "footer": {
         "view-on-gh": "Open op GitHub",
-        "apod-wrapper": "NASA APOD wrapper"
+        "apod-wrapper": "NASA APOD wrapper",
+        "dashboard": "Dashboard Openen"
     },
     "underConstruction": "Hier wordt nog aan gewerkt!",
     "privacy": {
@@ -55,7 +56,9 @@
     "pathName": {
         "projects": "projecten",
         "privacy": "privacy",
-        "privacy/programmer-watchface": "developer-wijzerplaat"
+        "privacy/programmer-watchface": "developer-wijzerplaat",
+        "dash": "dashboard",
+        "user/settings": "settingsaa"
     },
     "imageCreditNotice": "Alle rechten op de afbeeldingen die op deze site worden gebruikt, behoren toe aan hun respectievelijke eigenaren.",
     "contact": {
