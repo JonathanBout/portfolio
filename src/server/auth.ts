@@ -19,10 +19,7 @@ axios.interceptors.response.use(
             (!config.url ||
                 (!config.url.includes("/refresh") && !config.url.includes("/login") && !config.url.includes("/logout")))
         ) {
-            console.warn("refreshing access token for url", config.url)
-
             if (await refreshAccessToken()) {
-                console.log("retrying request")
                 return server.fetch(err.config)
             }
         }
@@ -60,7 +57,7 @@ async function requestAccessToken(email: string) {
 
     auth.accessToken.value = response.data.accessToken
 
-    console.log("received access token")
+    console.debug("received access token")
 
     return true
 }
