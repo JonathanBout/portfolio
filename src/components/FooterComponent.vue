@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { LOCALES, type Localized, changeLanguage, currentLocale } from "@/localizer"
+import { RouterLink } from "vue-router";
 const creditsYear = new Date().getFullYear()
 
 defineProps<{
@@ -33,6 +34,11 @@ const iconsByLocale: Localized<string> = {
                 <a href="https://github.com/jonathanbout/portfolio">
                     {{ $t("footer.view-on-gh") }}
                 </a>
+            </span>
+            <span>
+                <router-link to="/dash">
+                    {{ $t("footer.dashboard") }}
+                </router-link>
             </span>
         </div>
         <i class="credits-notice">

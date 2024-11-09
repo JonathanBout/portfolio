@@ -1,6 +1,7 @@
 import { createRouter as createRouterInternal, createWebHistory, type RouteLocationNormalized } from "vue-router"
 import HomeView from "../views/HomeView.vue"
 import { domainsByLocale, type Locale, i18n } from "@/localizer"
+import dashboardRoutes from "@/views/dashboard/routes"
 
 const router = createRouterInternal({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +41,9 @@ const router = createRouterInternal({
             meta: {
                 title: "contact.title"
             }
+        },
+        {
+            ...dashboardRoutes
         },
         {
             path: "/:fullPath(.*)",

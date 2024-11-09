@@ -117,7 +117,6 @@ async function submitFormChallengePassed(didCheck: boolean = true) {
     const result = await response.json()
 
     if (result.success) {
-        console.log(result)
         phase.value = 2
     } else {
         console.error(result)
