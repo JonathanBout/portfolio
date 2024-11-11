@@ -2,14 +2,11 @@
 import { useRoute } from "vue-router"
 
 const route = useRoute()
-
 </script>
 
 <template>
     <div class="page-root">
-        <h1 class="monospace">
-            404
-        </h1>
+        <h1 class="monospace">404</h1>
         <h2>{{ $t("errorPage.pageNotFound", { path: decodeURI(route.path) }) }}</h2>
         <div class="separated">
             <span>

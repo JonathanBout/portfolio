@@ -151,8 +151,8 @@ function getSkilliconUrl(skill: string) {
                     style="display: none"
                     @click="jump"
                     @load="showActualImage"
-                >
-                <img src="/images/placeholder.svg">
+                />
+                <img src="/images/placeholder.svg" />
             </div>
             <div class="me-info">
                 <span class="location-marker">
@@ -166,39 +166,79 @@ function getSkilliconUrl(skill: string) {
             </div>
         </div>
         <div class="quick-overview">
-            <h2>{{ $t("home.quick-overview") }}</h2>
+            <h2>{{ $t("home.quick-overview.expertise") }}</h2>
             <div class="icons">
                 <label>
-                    <img alt="C#" :src="getSkilliconUrl(`cs`)">
+                    <img alt="C#" :src="getSkilliconUrl(`cs`)" />
                     <span>C#</span>
                 </label>
                 <label>
-                    <img alt="Python" :src="getSkilliconUrl(`py`)">
+                    <img alt="Python" :src="getSkilliconUrl(`py`)" />
                     <span>Python</span>
                 </label>
                 <label>
-                    <img alt="TypeScript" :src="getSkilliconUrl(`ts`)">
+                    <img alt="TypeScript" :src="getSkilliconUrl(`ts`)" />
                     <span>Typescript</span>
                 </label>
                 <label>
-                    <img alt="Vue" :src="getSkilliconUrl(`vue`)">
+                    <img alt="Vue" :src="getSkilliconUrl(`vue`)" />
                     <span>Vue</span>
                 </label>
                 <label>
-                    <img alt="HTML" :src="getSkilliconUrl(`html`)">
+                    <img alt="HTML" :src="getSkilliconUrl(`html`)" />
                     <span>HTML</span>
                 </label>
                 <label>
-                    <img alt="CSS" :src="getSkilliconUrl(`css`)">
+                    <img alt="CSS" :src="getSkilliconUrl(`css`)" />
                     <span>CSS</span>
                 </label>
+                <label>
+                    <img alt="React" :src="getSkilliconUrl(`react`)" />
+                    <span>React</span>
+                </label>
             </div>
-        </div>
-        <div class="top-langs">
-            <h2 class="top-langs-text">
-                {{ $t("home.top-langs-title") }}
+
+            <h2>{{ $t("home.quick-overview.toolchain-and-software") }}</h2>
+            <div class="icons">
+                <label>
+                    <img alt="Visual Studio Code" :src="getSkilliconUrl(`vscode`)" />
+                    <span>VS&nbsp;Code</span>
+                </label>
+                <label>
+                    <img alt="Visual Studio" :src="getSkilliconUrl(`visualstudio`)" />
+                    <span>Visual&nbsp;Studio</span>
+                </label>
+                <label>
+                    <img alt="Docker" :src="getSkilliconUrl(`docker`)" />
+                    <span>Docker</span>
+                </label>
+                <label>
+                    <img alt="Git" :src="getSkilliconUrl(`git`)" />
+                    <span>Git</span>
+                </label>
+                <label>
+                    <img alt="GitHub" :src="getSkilliconUrl(`github`)" />
+                    <span>GitHub</span>
+                </label>
+                <label>
+                    <img alt="Nginx reverse proxy" :src="getSkilliconUrl(`nginx`)" />
+                    <span>Nginx</span>
+                </label>
+                <label>
+                    <img alt="Debian linux distro" :src="getSkilliconUrl(`debian`)" />
+                    <span>Debian</span>
+                </label>
+                <label>
+                    <img alt="Ubuntu linux distro" :src="getSkilliconUrl(`ubuntu`)" />
+                    <span>Ubuntu</span>
+                </label>
+            </div>
+            <h2>
+                {{ $t("home.quick-overview.top-langs") }}
             </h2>
-            <GitHubStatsComponent />
+            <div class="top-langs">
+                <GitHubStatsComponent />
+            </div>
         </div>
     </div>
 </template>
@@ -361,21 +401,21 @@ h2 {
                 transition: transform 0.3s;
 
                 &:hover {
-                    transform: scale(1.3);
+                    z-index: 100;
+                    transform: scale(2);
                 }
             }
         }
     }
-}
+    .top-langs {
+        width: 100%;
+        text-align: center;
 
-.top-langs {
-    width: 100%;
-    text-align: center;
+        animation: slide-y 0.6s ease-out;
+    }
 
-    animation: slide-y 0.6s ease-out;
-
-    .top-langs-text {
-        margin-top: 1em;
+    h2:not(:first-child) {
+        margin-top: 2em;
     }
 }
 

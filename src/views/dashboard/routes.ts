@@ -1,14 +1,13 @@
-import { type RouterOptions } from "vue-router";
+import { type RouterOptions } from "vue-router"
 
 export default {
     path: "/dash",
     name: "Dashboard Home",
-    children: 
-    [
+    children: [
         {
             path: "/dash",
             name: "Dashboard",
-            component: () => import("./DashboardView.vue"),
+            component: () => import("./DashboardView.vue")
         },
         {
             path: "/dash/auth/login",

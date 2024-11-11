@@ -42,9 +42,7 @@ updateCounter()
         <div :class="valid ? '' : 'invalid'">
             {{ characterCount }}
 
-            <template v-if="minCharacters && characterCount < minCharacters">
-                / {{ minCharacters }}
-            </template>
+            <template v-if="minCharacters && characterCount < minCharacters"> / {{ minCharacters }} </template>
 
             <template v-if="maxCharacters && !(minCharacters && characterCount < minCharacters)">
                 / {{ maxCharacters }}
@@ -56,14 +54,16 @@ updateCounter()
 <style scoped lang="less">
 .text-area-better {
     textarea {
+        position: relative;
         width: 100%;
-        height: 100%;
     }
 
     div {
         text-align: right;
         font-size: 0.8em;
         color: #666;
+        position: absolute;
+        right: 0;
     }
 
     @media (prefers-color-scheme: dark) {

@@ -36,8 +36,7 @@ function logout() {
                 </nav>
             </aside>
             <div>
-                <div>
-                </div>
+                <div></div>
                 <h1>&#128679; Dashboard &#128679;</h1>
                 <slot />
             </div>
@@ -55,7 +54,8 @@ function logout() {
     scrollbar-gutter: stable;
 }
 
-aside, nav {
+aside,
+nav {
     display: contents;
     width: 100%;
 

@@ -12,8 +12,11 @@
         "greeting": "Hoi, ik ben Jonathan!",
         "intro": "Ik studeer momenteel %Informatica% aan Hogeschool Rotterdam maar heb al %meer dan 4 jaar ervaring% in software ontwikkeling, voornamelijk in %C#% en %TypeScript%. Voor school heb ik ook veel met %Python% gewerkt.",
         "country": "Nederland",
-        "quick-overview": "Mijn ervaring",
-        "top-langs-title": "Meest gebruikte talen"
+        "quick-overview": {
+            "expertise": "Mijn Ervaring",
+            "toolchain-and-software": "Toolchain & Overige Software",
+            "top-langs": "Meest gebruikte talen"
+        }
     },
     "language": {
         "name": "Nederlands",
@@ -57,8 +60,7 @@
         "projects": "projecten",
         "privacy": "privacy",
         "privacy/programmer-watchface": "developer-wijzerplaat",
-        "dash": "dashboard",
-        "user/settings": "settingsaa"
+        "dash": "dashboard"
     },
     "imageCreditNotice": "Alle rechten op de afbeeldingen die op deze site worden gebruikt, behoren toe aan hun respectievelijke eigenaren.",
     "contact": {
@@ -77,5 +79,19 @@
         "clear": "Leegmaken",
         "back": "Terug",
         "robot-challenge": "Sorry, maar je invoer lijk op die van een robot. Als dat waar is, druk op \"Verstuur\". Druk anders op \"Terug\" om het formulier te versturen."
+    },
+    "dashboard": {
+        "title": "Dashboard",
+        "login": {
+            "title": "Login",
+            "description": "Log in om toegang te krijgen tot het dashboard.",
+            "username": "E-mailadres",
+            "password": "Wachtwoord",
+            "submit": "Laat me erin!",
+            "error": "Ongeldige gebruikersnaam of wachtwoord.",
+            "loading": "Aan het inloggen...",
+            "password-error": "Vul je wachtwoord in",
+            "name-error": "Vul een geldig e-mailadres in"
+        }
     }
 }

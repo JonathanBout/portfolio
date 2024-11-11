@@ -11,13 +11,12 @@ const props = defineProps<{
 
 const image = ref<HTMLImageElement>()
 
-server.getBlob(props.src)
-    .then((blob) => {
-        if (!image.value) {
-            return
-        }
-        image.value.src = blob
-    })
+server.getBlob(props.src).then((blob) => {
+    if (!image.value) {
+        return
+    }
+    image.value.src = blob
+})
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { LOCALES, type Localized, changeLanguage, currentLocale } from "@/localizer"
-import { RouterLink } from "vue-router";
+import { RouterLink } from "vue-router"
 const creditsYear = new Date().getFullYear()
 
 defineProps<{
@@ -22,8 +22,10 @@ const iconsByLocale: Localized<string> = {
                         :class="'link no-external-icon' + (currentLocale === locale ? ' current' : '')"
                         @click="changeLanguage(locale)"
                     >
-                        <i :class="'fi fi-' + iconsByLocale[locale]" />
-                        {{ $t("language." + locale) }}
+                        <img class="flag" :src="`/images/flags/${iconsByLocale[locale]}.svg`" />
+                        <span>
+                            {{ $t("language." + locale) }}
+                        </span>
                     </button>
                 </li>
             </ul>
@@ -57,6 +59,10 @@ const iconsByLocale: Localized<string> = {
     @media (pointer: coarse) {
         line-height: 48px;
     }
+}
+
+.flag {
+    width: 1.5em;
 }
 
 .links {
@@ -118,6 +124,9 @@ const iconsByLocale: Localized<string> = {
         cursor: pointer;
         font-size: 0.9em;
         margin-inline: 5px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5em;
     }
 
     padding-bottom: 1em;
