@@ -42,9 +42,7 @@ updateCounter()
         <div :class="valid ? '' : 'invalid'">
             {{ characterCount }}
 
-            <template v-if="minCharacters && characterCount < minCharacters">
-                / {{ minCharacters }}
-            </template>
+            <template v-if="minCharacters && characterCount < minCharacters"> / {{ minCharacters }} </template>
 
             <template v-if="maxCharacters && !(minCharacters && characterCount < minCharacters)">
                 / {{ maxCharacters }}

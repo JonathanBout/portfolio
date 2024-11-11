@@ -158,7 +158,7 @@ const projects: Project[] = [
             "/images/projects/watchface/Abyss.webp",
             "/images/projects/watchface/Dark-plus.webp",
             "/images/projects/watchface/Kimbie.webp",
-            "/images/projects/watchface/Monokai.webp",
+            "/images/projects/watchface/Monokai.webp"
         ],
         description: {
             en: "A watchface for Wear OS that shows the current time, date, battery level and step count in a JSON format with Visual Studio Code theme colors.",

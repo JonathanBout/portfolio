@@ -17,7 +17,7 @@ function beginLogin() {
     state.value.success = false
     state.value.loading = true
 
-    if (!input.value.username || !input.value.username.match(/^[^@]*@.*[^.]$/)) {	
+    if (!input.value.username || !input.value.username.match(/^[^@]*@.*[^.]$/)) {
         state.value.loading = false
         state.value.usernameError = true
     }
@@ -76,7 +76,7 @@ function beginLogin() {
                         {{ $t("dashboard.login.password-error") }}
                     </span>
                 </label>
-                <p v-if="state.error" class="error no-load-animation">{{ $t('dashboard.login.error') }}</p>
+                <p v-if="state.error" class="error no-load-animation">{{ $t("dashboard.login.error") }}</p>
             </div>
             <button type="submit" :disabled="state.loading">
                 {{ state.loading ? $t("dashboard.login.loading") : $t("dashboard.login.submit") }}

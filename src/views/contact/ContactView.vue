@@ -148,7 +148,14 @@ function resetForm() {
                         <span>
                             {{ $t("contact.name") }}
                         </span>
-                        <input v-model="input.name" required type="text" name="name" minlength="2" autocomplete="name" />
+                        <input
+                            v-model="input.name"
+                            required
+                            type="text"
+                            name="name"
+                            minlength="2"
+                            autocomplete="name"
+                        />
                         <span class="error" :class="error.name ? 'visible' : 'hidden'">
                             {{ $t("contact.name-error") }}
                         </span>

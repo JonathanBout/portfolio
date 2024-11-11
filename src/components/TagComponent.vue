@@ -36,7 +36,7 @@ function getIconUrl() {
             :src="getIconUrl()"
             onerror="this.style.display = 'none';"
             alt="icon"
-        >
+        />
         <span>
             {{ foundTag?.name ?? tag }}
         </span>

@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import type { Project } from '@/projects';
+import type { Project } from "@/projects"
 
 defineProps<{
     project: Project
 }>()
-
-
 </script>
 
 <template>
@@ -19,34 +17,34 @@ defineProps<{
 </template>
 
 <style lang="less" scoped>
-    .image-wrapper {
-        overflow: hidden !important;
+.image-wrapper {
+    overflow: hidden !important;
+}
+
+/* select an image-wrapper which has at least two children */
+.image-wrapper:has(:not(img:first-child:last-child)):not(:empty) {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    width: fit-content;
+    align-items: center;
+
+    & > img {
+        animation: step infinite steps(calc(var(--image-count)));
+        animation-duration: calc(var(--image-count) * 4s);
+
+        @media (prefers-reduced-motion: reduce) {
+            animation-duration: 6s;
+        }
     }
 
-        /* select an image-wrapper which has at least two children */
-        .image-wrapper:has(:not(img:first-child:last-child)):not(:empty) {
-            display: flex;
-            flex-direction: row;
-            overflow: hidden;
-            width: fit-content;
-            align-items: center;
-    
-            & > img {
-                animation: step infinite steps(calc(var(--image-count)));
-                animation-duration: calc(var(--image-count) * 4s);
-    
-                @media (prefers-reduced-motion: reduce) {
-                    animation-duration: 6s;
-                }
-            }
-    
-            @keyframes step {
-                0% {
-                    transform: translateX(0);
-                }
-                100% {
-                    transform: translateX(calc(-100% * var(--image-count)));
-                }
-            }
+    @keyframes step {
+        0% {
+            transform: translateX(0);
         }
+        100% {
+            transform: translateX(calc(-100% * var(--image-count)));
+        }
+    }
+}
 </style>
