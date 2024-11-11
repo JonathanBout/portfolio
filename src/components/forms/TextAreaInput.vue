@@ -56,14 +56,16 @@ updateCounter()
 <style scoped lang="less">
 .text-area-better {
     textarea {
+        position: relative;
         width: 100%;
-        height: 100%;
     }
 
     div {
         text-align: right;
         font-size: 0.8em;
         color: #666;
+        position: absolute;
+        right: 0;
     }
 
     @media (prefers-color-scheme: dark) {

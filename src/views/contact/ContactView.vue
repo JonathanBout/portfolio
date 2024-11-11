@@ -65,7 +65,7 @@ function validate(): boolean {
         valid = false
     }
 
-    if (!input.value.email || !input.value.email.match(/.+@.+/) || input.value.email.length < 3) {
+    if (!input.value.email || !input.value.email.match(/^[^@]*@.*[^.]$/) || input.value.email.length < 3) {
         error.value.email = true
         valid = false
     }
@@ -141,35 +141,24 @@ function resetForm() {
                 {{ $t("contact.error") }}
             </div>
             <!-- eslint-disable-next-line vue/no-v-html -->
-            <p v-html="$t('contact.description', infoData)" />
+            <p class="form-description" v-html="$t('contact.description', infoData)" />
             <form novalidate @submit.prevent="submitForm" @reset="resetForm">
                 <div class="form-body">
                     <label for="name">
                         <span>
                             {{ $t("contact.name") }}
                         </span>
-                        <input
-                            v-model="input.name"
-                            required
-                            type="text"
-                            name="name"
-                            minlength="2"
-                        >
-                        <span class="error no-load-animation" :class="error.name ? 'visible' : 'hidden'">
+                        <input v-model="input.name" required type="text" name="name" minlength="2" autocomplete="name" />
+                        <span class="error" :class="error.name ? 'visible' : 'hidden'">
                             {{ $t("contact.name-error") }}
                         </span>
                     </label>
-                    <label for="email"><span>
-                                           {{ $t("contact.email") }}
-                                       </span>
-                        <input
-                            v-model="input.email"
-                            required
-                            type="text"
-                            name="email"
-                            pattern="^.+@.+$"
-                        >
-                        <span class="error no-load-animation" :class="error.email ? 'visible' : 'hidden'">
+                    <label for="email"
+                        ><span>
+                            {{ $t("contact.email") }}
+                        </span>
+                        <input v-model="input.email" required type="text" name="email" pattern="^[^@]*@.*[^.]$" />
+                        <span class="error" :class="error.email ? 'visible' : 'hidden'">
                             {{ $t("contact.email-error") }}
                         </span>
                     </label>
@@ -178,7 +167,7 @@ function resetForm() {
                             {{ $t("contact.message") }}
                         </span>
                         <text-area-input v-model="input.message" required :max-characters="4096" :min-characters="10" />
-                        <span class="error no-load-animation" :class="error.message ? 'visible' : 'hidden'">
+                        <span class="error" :class="error.message ? 'visible' : 'hidden'">
                             {{ $t("contact.message-error") }}
                         </span>
                     </label>
@@ -193,7 +182,7 @@ function resetForm() {
                             name="the-yummy-stuff"
                             tabindex="-1"
                             autocomplete="off"
-                        >
+                        />
                     </label>
                 </div>
                 <div class="buttons">
@@ -241,111 +230,6 @@ h1 {
 
 p {
     text-align: center;
-}
-
-form {
-    margin-top: 1.5em;
-    display: flex;
-    flex-direction: column;
-
-    width: 100%;
-
-    align-items: center;
-
-    container-type: inline-size;
-
-    .form-body {
-        border: 1px solid @border-color;
-        border-radius: 1em;
-        padding: 2em;
-        width: 100%;
-        height: 100%;
-
-        margin-bottom: 0.5em;
-    }
-}
-label {
-    &:not(:last-of-type) {
-        margin-bottom: 1rem;
-    }
-    display: grid;
-
-    width: 100%;
-
-    grid-template-columns: 1fr 3fr;
-}
-
-input,
-:deep(textarea) {
-    padding: 0.5rem;
-    border: 1px solid @border-color;
-    border-radius: 0.25rem;
-    background-color: var(--color-background);
-}
-
-:deep(textarea) {
-    resize: vertical;
-    min-height: 25vh;
-    overflow-y: auto;
-}
-
-button {
-    grid-column: span 2;
-    padding: 0.5rem;
-    margin-bottom: 2rem;
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-
-    i {
-        margin-inline-start: 0.4ch;
-    }
-}
-
-.error {
-    grid-column: span 2;
-    margin-top: 4px;
-    color: var(--color-error);
-
-    transition:
-        scale 0.2s,
-        opacity 1s;
-
-    transform-origin: left center;
-
-    &.visible {
-        scale: 1 1;
-    }
-
-    &.hidden {
-        scale: 0 0;
-        opacity: 0;
-    }
-}
-
-.buttons {
-    display: flex;
-    justify-content: space-evenly;
-    gap: 1ch;
-}
-
-.yummy-stuff {
-    position: fixed;
-    top: -1px;
-    left: -1px;
-    height: 1px;
-    width: 1px;
-    color: transparent;
-    overflow: hidden;
-    background-color: transparent;
-}
-
-@media (width < @breakpoint) {
-    label {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-        grid-auto-flow: column;
-    }
 }
 
 .other-buttons {

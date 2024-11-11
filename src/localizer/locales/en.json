@@ -12,8 +12,11 @@
         "greeting": "Hi, I'm Jonathan!",
         "intro": "I'm currently studying %Computer Science% at Hogeschool Rotterdam but already have %4+ years of experience% in software development, primarily %C#% and %TypeScript%. For school projects I have also worked a lot with %Python%.",
         "country": "The Netherlands",
-        "quick-overview": "My expertise",
-        "top-langs-title": "Top languages"
+        "quick-overview": {
+            "expertise": "Expertise",
+            "toolchain-and-software": "Toolchain & Other Software",
+            "top-langs": "Top languages"
+        }
     },
     "language": {
         "name": "English",
@@ -75,6 +78,20 @@
         "error": "Something went wrong. Please try again.",
         "clear": "Clear",
         "back": "Back",
-        "robot-challenge": "Sorry, but your input seems to be from a robot. If that's true, press \"Send\". Otherwise, press \"Back\" to send the form."
+        "robot-challenge": "Sorry, but your input seems to be from a robot. If that's not the case, press \"Back\" to send the form."
+    },
+    "dashboard": {
+        "title": "Dashboard",
+        "login": {
+            "title": "Login",
+            "description": "Please log in to access the dashboard.",
+            "username": "Email address",
+            "password": "Password",
+            "submit": "Let me in!",
+            "error": "Invalid email or password.",
+            "loading": "Logging in...",
+            "password-error": "Please enter your password.",
+            "name-error": "Please enter a valid email address."
+        }
     }
 }
