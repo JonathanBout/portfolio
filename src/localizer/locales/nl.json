@@ -31,7 +31,8 @@
     "footer": {
         "view-on-gh": "Open op GitHub",
         "apod-wrapper": "NASA APOD wrapper",
-        "dashboard": "Dashboard Openen"
+        "dashboard": "Dashboard Openen",
+        "system-status": "Server status"
     },
     "underConstruction": "Hier wordt nog aan gewerkt!",
     "privacy": {
@@ -92,6 +93,15 @@
             "loading": "Aan het inloggen...",
             "password-error": "Vul je wachtwoord in",
             "name-error": "Vul een geldig e-mailadres in"
+        }
+    },
+    "server": {
+        "health": {
+            "loading": "laden...",
+            "healthy": "alle systemen zijn operationeel :D",
+            "degraded": "sommige systemen hebben problemen :/",
+            "unhealthy": "slecht D:",
+            "error": "Ik weet het niet, dus niet zo goed waarschijnlijk D:"
         }
     }
 }

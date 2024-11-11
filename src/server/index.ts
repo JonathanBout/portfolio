@@ -78,5 +78,15 @@ export default {
         })
 
         return URL.createObjectURL(result.data)
+    },
+    async getHealth(simple = false) {
+        const result = await fetch({
+            method: "GET",
+            url: getPath("/api/_health", { simple })
+        })
+
+        console.debug("health", result.data)
+
+        return result 
     }
 }

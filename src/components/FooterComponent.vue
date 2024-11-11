@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { LOCALES, type Localized, changeLanguage, currentLocale } from "@/localizer"
 import { RouterLink } from "vue-router"
+import server from "@/server";
+import { ref } from "vue";
+
 const creditsYear = new Date().getFullYear()
 
 defineProps<{
@@ -11,6 +14,15 @@ const iconsByLocale: Localized<string> = {
     en: "gb",
     nl: "nl"
 }
+
+const health = ref("loading")
+
+server.getHealth(true).then((r) => {
+    health.value = r.data
+}).catch(() => {
+    health.value = "error"
+})
+
 </script>
 
 <template>
@@ -46,6 +58,9 @@ const iconsByLocale: Localized<string> = {
         <i class="credits-notice">
             {{ $t("imageCreditNotice") }}
         </i>
+        <div class="system-status">
+            <a href="https://status.jonathanbout.dev">{{ $t("footer.system-status") }}: {{ $t('server.health.' + health) }}</a>
+        </div>
     </footer>
 </template>
 
@@ -63,6 +78,7 @@ const iconsByLocale: Localized<string> = {
 
 .flag {
     width: 1.5em;
+    border-radius: 20%;
 }
 
 .links {
@@ -155,6 +171,13 @@ footer {
 }
 
 .credits-notice {
+    font-size: 0.8em;
+    display: block;
+    text-align: center;
+    color: #999;
+}
+
+.system-status {
     font-size: 0.8em;
     display: block;
     text-align: center;
