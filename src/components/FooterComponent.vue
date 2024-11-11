@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { LOCALES, type Localized, changeLanguage, currentLocale } from "@/localizer"
 import { RouterLink } from "vue-router"
-import server from "@/server";
-import { ref } from "vue";
+import server from "@/server"
+import { ref } from "vue"
 
 const creditsYear = new Date().getFullYear()
 
@@ -17,12 +17,14 @@ const iconsByLocale: Localized<string> = {
 
 const health = ref("loading")
 
-server.getHealth(true).then((r) => {
-    health.value = r.data
-}).catch(() => {
-    health.value = "error"
-})
-
+server
+    .getHealth(true)
+    .then((r) => {
+        health.value = r.data
+    })
+    .catch(() => {
+        health.value = "error"
+    })
 </script>
 
 <template>
@@ -59,7 +61,9 @@ server.getHealth(true).then((r) => {
             {{ $t("imageCreditNotice") }}
         </i>
         <div class="system-status">
-            <a href="https://status.jonathanbout.dev">{{ $t("footer.system-status") }}: {{ $t('server.health.' + health) }}</a>
+            <a href="https://status.jonathanbout.dev"
+                >{{ $t("footer.system-status") }}: {{ $t("server.health." + health) }}</a
+            >
         </div>
     </footer>
 </template>

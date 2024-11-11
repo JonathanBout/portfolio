@@ -87,6 +87,6 @@ export default {
 
         console.debug("health", result.data)
 
-        return result 
+        return result
     }
 }
