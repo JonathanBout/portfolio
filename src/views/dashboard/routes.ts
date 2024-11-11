@@ -7,7 +7,17 @@ export default {
         {
             path: "/dash",
             name: "Dashboard",
-            component: () => import("./DashboardView.vue")
+            component: () => import("./DashboardLayout.vue"),
+            children: [
+                {
+                    path: "",
+                    component: () => import("./DashboardView.vue")
+                },
+                {
+                    path: "cache",
+                    component: () => import("./CacheView.vue")
+                }
+            ]
         },
         {
             path: "/dash/auth/login",

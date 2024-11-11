@@ -69,6 +69,12 @@ export default {
             url: getPath(route, query)
         })
     },
+    async delete(route: Route, query: QueryParameters = {}) {
+        return await fetch({
+            method: "DELETE",
+            url: getPath(route, query)
+        })
+    },
     getPath,
     async getBlob(route: Route, query: QueryParameters = {}) {
         const result = await fetch({

@@ -5,3 +5,5 @@
 This repository contains the code for my portfolio site. Feel free to have a look! If you see any issues or room for improvement, don't hesistate to create an issue!
 
 Because of some future plans with this I have also set up a backend for this at [https://github.com/JonathanBout/Portfolio.Backend](https://github.com/JonathanBout/Portfolio.Backend). Currently, it mostly serves as a gateway to the GitHub GraphQL API, the Gravatar API and the [skillicons.dev](https://skillicons.dev) API, to be able to be able to customize caching and get some nice statistics.
+
+Whenever I create an issue, it's usually because I'm looking for some input as I am not _that_ creative. If you know a solution, please reply to the issue with a comment, or open a PR!
