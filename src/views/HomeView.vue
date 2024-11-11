@@ -2,6 +2,7 @@
 import GitHubStatsComponent from "@/components/GitHubStatsComponent.vue"
 import { computed, onMounted, onUnmounted, ref } from "vue"
 import { useI18n } from "vue-i18n"
+import server from "@/server";
 
 const { t } = useI18n()
 
@@ -22,7 +23,7 @@ intro = intro.replace(/%(.*?)%/gi, highlight)
 const clickCount = ref(0)
 const lastClick = ref(Date.now())
 
-const originalUrl = "https://gravatar.com/avatar/be19bd79a37e5f322b7a1898a1147127?size=255"
+const originalUrl = server.getPath("/api/users/jonathan-bout/image", { size: 200 });
 const imageUrl = ref(originalUrl)
 
 let resetTimeout: number | null = null
@@ -136,7 +137,7 @@ function showActualImage() {
 }
 
 function getSkilliconUrl(skill: string) {
-    return `https://skillicons.dev/icons?i=${skill}&theme=${theme.value}`
+    return server.getPath(`/api/skill-icons/${skill}`, { theme: theme.value })
 }
 </script>
 
