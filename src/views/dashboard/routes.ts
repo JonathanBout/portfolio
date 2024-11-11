@@ -25,4 +25,4 @@ export default {
             component: () => import("./authentication/LoginView.vue")
         }
     ]
-} as RouterOptions["routes"][0]
+} as RouterOptions["routes"][number]
