@@ -31,7 +31,8 @@
     "footer": {
         "view-on-gh": "View on GitHub",
         "apod-wrapper": "NASA APOD wrapper",
-        "dashboard": "Open Dashboard"
+        "dashboard": "Open Dashboard",
+        "system-status": "Server status"
     },
     "underConstruction": "This page is under construction!",
     "privacy": {
@@ -92,6 +93,15 @@
             "loading": "Logging in...",
             "password-error": "Please enter your password.",
             "name-error": "Please enter a valid email address."
+        }
+    },
+    "server": {
+        "health": {
+            "loading": "loading...",
+            "healthy": "all systems operational :D",
+            "degraded": "some systems are experiencing issues :/",
+            "unhealthy": "not good D:",
+            "error": "I don't know, so it's probably not good D:"
         }
     }
 }
