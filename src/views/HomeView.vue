@@ -2,7 +2,7 @@
 import GitHubStatsComponent from "@/components/GitHubStatsComponent.vue"
 import { computed, onMounted, onUnmounted, ref } from "vue"
 import { useI18n } from "vue-i18n"
-import server from "@/server";
+import server from "@/server"
 
 const { t } = useI18n()
 
@@ -23,7 +23,7 @@ intro = intro.replace(/%(.*?)%/gi, highlight)
 const clickCount = ref(0)
 const lastClick = ref(Date.now())
 
-const originalUrl = server.getPath("/api/users/jonathan-bout/image", { size: 200 });
+const originalUrl = server.getPath("/api/users/jonathan-bout/image", { size: 200 })
 const imageUrl = ref(originalUrl)
 
 let resetTimeout: number | null = null

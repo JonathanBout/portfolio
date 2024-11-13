@@ -7,7 +7,17 @@ export default {
         {
             path: "/dash",
             name: "Dashboard",
-            component: () => import("./DashboardView.vue")
+            component: () => import("./DashboardLayout.vue"),
+            children: [
+                {
+                    path: "",
+                    component: () => import("./DashboardView.vue")
+                },
+                {
+                    path: "cache",
+                    component: () => import("./CacheView.vue")
+                }
+            ]
         },
         {
             path: "/dash/auth/login",
@@ -15,4 +25,4 @@ export default {
             component: () => import("./authentication/LoginView.vue")
         }
     ]
-} as RouterOptions["routes"][0]
+} as RouterOptions["routes"][number]
