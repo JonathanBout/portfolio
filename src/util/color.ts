@@ -9,6 +9,12 @@ export class CSSColor implements CSSColorType {
         return `rgba(${this.values.join(", ")}, ${this.alpha})`
     }
 
+    constructor(params? : {[K in keyof CSSColorType]?: CSSColorType[K]}) {
+        if (params) {
+            Object.assign(this, params)
+        }
+    }
+
     static fromString(color: string): CSSColor {
         const parsed = parseCSSColor(color)
         const res = new CSSColor()
