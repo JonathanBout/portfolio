@@ -70,8 +70,8 @@ export function formatDate(
     const month = date.getMonth()
     const year = date.getFullYear()
 
-    const monthName = months[lang][month]
-    const dayName = days[lang][day]
+    const monthName = months[lang][month % months[lang].length]
+    const dayName = days[lang][(day + 2) % days[lang].length]
 
     let result = ""
 
@@ -80,6 +80,10 @@ export function formatDate(
             if (includeDayName && includeDayNumber) result += `${dayName}, `
             result += `${monthName} `
             if (includeDayNumber) result += `${day} `
+        } else if (includeDayName) {
+            result += `${dayName} `
+        } else if (includeDayNumber) {
+            result += `${day} `
         }
 
         if (includeYear) result += `${year}`
@@ -91,10 +95,17 @@ export function formatDate(
             }
 
             result += `${monthName} `
+        } else if (includeDayName) {
+            result += `${dayName} `
+        } else if (includeDayNumber) {
+            result += `${day} `
         }
 
         if (includeYear) result += `${year}`
     }
 
     return result
+        .replace(/\s+$/, "")
+        .replace(/\s{2,}/g, " ")
+        .replace(/,$/, "")
 }
