@@ -12,14 +12,16 @@ env:
       
       
 jobs:
-  Publish:
+  run-tests:
+    name: Run Tests
+    uses: ./.github/workflows/node.js.yml@${{ env.BRANCH_NAME }}
+  publish:
     runs-on: buildjet-2vcpu-ubuntu-2204-arm
+    needs: [run-tests]
     permissions:
       contents: read
       packages: write
     steps:
-      - name: Run Tests
-        uses: jonathanbout/portfolio/.github/workflows/node.js.yml@${{ env.BRANCH_NAME }}
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Login to GHCR
