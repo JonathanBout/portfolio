@@ -14,7 +14,7 @@ env:
 jobs:
   run-tests:
     name: Run Tests
-    uses: ./.github/workflows/node.js.yml@${{ env.BRANCH_NAME }}
+    uses: ./.github/workflows/node.js.yml
   publish:
     runs-on: buildjet-2vcpu-ubuntu-2204-arm
     needs: [run-tests]
