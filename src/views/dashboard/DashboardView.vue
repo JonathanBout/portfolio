@@ -1,5 +1,8 @@
+<script setup lang="ts">
+import { RouterLink } from 'vue-router';
+</script>
 <template>
     <h1>Dashboard</h1>
     <p>Welcome to the dashboard!</p>
-    <a href="/dash/cache">Cache</a>
+    <router-link to="/dash/cache">Cache</router-link>
 </template>
