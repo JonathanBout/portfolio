@@ -18,7 +18,7 @@
         "@typescript-eslint/parser": "^8.16.0",
         "axios": "^1.7.7",
         "bootstrap-icons": "^1.11.3",
-        "eslint-plugin-vue": "^9.31.0",
+        "eslint-plugin-vue": "^9.32.0",
         "npm-run-all": "^4.1.5",
         "parse-css-color": "^0.2.1",
         "read-last-lines": "^1.8.0",
