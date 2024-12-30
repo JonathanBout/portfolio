@@ -16,8 +16,19 @@ const { t, locale: lang } = useI18n()
 const timeframeText = computed(() => {
     const { start, end } = props.project.timeframe ?? {}
 
-    const startString = formatDate(start, lang.value as Locale, false, false)
-    const endString = end == "present" ? t("projects.present") : formatDate(end, lang.value as Locale, false, false)
+    let includeYear = true
+
+    if (typeof end != "string" && end && start) {
+        includeYear = start.getFullYear() != end.getFullYear()
+    }
+
+    const startString = formatDate(start, lang.value as Locale, false, false, true, includeYear)
+    const endString =
+        end == "present"
+            ? t("projects.present")
+            : end == "maintenance"
+              ? t("projects.maintenance") + "*"
+              : formatDate(end, lang.value as Locale, false, false, true, true)
 
     if (start && end && end != "present") {
         return startString + " - " + endString
@@ -40,7 +51,13 @@ const projectName = computed(() => {
 </script>
 
 <template>
-    <component :is="project.url ? 'a' : 'div'" class="project no-external-icon" :href="project.url" target="_blank">
+    <component
+        :is="project.url ? 'a' : 'div'"
+        class="project no-external-icon"
+        :href="project.url"
+        target="_blank"
+        :id="project.id"
+    >
         <ProjectImageComponent :project="project" />
         <div class="vertical-stack">
             <div class="name">

@@ -1,4 +1,4 @@
-@import "variables.less";
+@import "globals.less";
 
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
@@ -236,7 +236,7 @@ h1 {
 .page-root:not(.custom-animation) {
     animation: scale-in 0.5s;
 
-    :not(.no-load-animation):not(.load-animation *) {
+    :not(.custom-animation):not(.custom-animation *) {
         animation: slide-in 0.5s ease-in-out;
     }
 
@@ -253,17 +253,6 @@ h1 {
         }
     }
 
-    @keyframes slide-in {
-        from {
-            transform: translateY(50dvh);
-            overflow: visible;
-        }
-
-        to {
-            transform: translateY(0);
-            overflow: visible;
-        }
-    }
 }
 
 .form-description {
