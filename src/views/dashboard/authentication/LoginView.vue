@@ -76,7 +76,7 @@ function beginLogin() {
                         {{ $t("dashboard.login.password-error") }}
                     </span>
                 </label>
-                <p v-if="state.error" class="error no-load-animation">{{ $t("dashboard.login.error") }}</p>
+                <p v-if="state.error" class="error custom-animation">{{ $t("dashboard.login.error") }}</p>
             </div>
             <button type="submit" :disabled="state.loading">
                 {{ state.loading ? $t("dashboard.login.loading") : $t("dashboard.login.submit") }}

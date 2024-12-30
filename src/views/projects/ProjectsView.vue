@@ -7,11 +7,14 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
         <p class="intro">
             {{ $t("projects.intro") }}
         </p>
-        <ProjectComponent v-for="project in projectsData.projects" :key="project.id" :project="project" />
+        <div class="projects-list custom-animation">
+            <ProjectComponent v-for="project in projectsData.projects" :key="project.id" :project="project" />
+        </div>
 
         <div class="see-more">
             <a href="https://github.com/jonathanbout?tab=repositories">{{ $t("projects.see-more") }}</a>
         </div>
+        <p class="maintenance-note">* {{ $t("projects.maintenance-note") }}</p>
     </div>
 </template>
 <style lang="less" scoped>
@@ -44,6 +47,38 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
 .page-root {
     & > :not(:last-child) {
         margin-bottom: 2em;
+    }
+
+    .projects-list {
+        animation: slide-in .1s linear reverse;
+    }
+
+    .projects-list > * {
+        @supports (animation-timeline: view()) {
+            animation: slight-scale linear both;
+            transform-origin: top left;
+            animation-timeline: view();
+            animation-range: 0vh 25vh;
+
+            @media (width < @breakpoint) {
+                transform-origin: top center;
+            }
+        }
+
+        & + * {
+            margin-top: 20px;
+        }
+    }
+}
+
+.maintenance-note {
+    font-size: 0.8em;
+    text-align: center;
+}
+
+@keyframes slight-scale {
+    from {
+        transform: scale(0.5);
     }
 }
 </style>

@@ -54,7 +54,9 @@
                 "title": "Meest gebruikte talen",
                 "description": "De talen die ik het meest gebruikt heb in projecten, in bytes. Alle data komt direct van GitHub."
             }
-        }
+        },
+        "maintenance": "nu, onderhoud",
+        "maintenance-note": "Onderhoudsfase: dit project wordt niet meer actief ontwikkeld, maar ik houd het nog steeds up-to-date met de nieuwste dependencyversies en beveiligingsupdates."
     },
     "version": "versie",
     "pathName": {

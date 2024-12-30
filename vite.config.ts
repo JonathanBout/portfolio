@@ -31,8 +31,8 @@ export default defineConfig({
     css: {
         preprocessorOptions: {
             less: {
-                // import global less variables
-                additionalData: `@import "@/assets/variables.less";`
+                // import global less things
+                additionalData: `@import "@/assets/globals.less";`
             }
         },
         postcss: {

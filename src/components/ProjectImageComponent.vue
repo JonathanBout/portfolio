@@ -8,17 +8,21 @@ defineProps<{
 
 <template>
     <div
+        v-if="project.image || (project.images && project.images.length > 0)"
         class="image-wrapper"
         :style="'--image-count: ' + (project.image ? 1 : project.images ? project.images.length : 0).toString()"
     >
-        <img v-if="project.image" class="image" :src="project.image" alt="Project preview" />
-        <img v-for="image in project.images" v-else :key="image" class="image" :src="image" alt="Project preview" />
-    </div>
+    <img v-if="project.image" class="image" :src="project.image" alt="Project preview" />
+    <img v-for="image in project.images" v-else :key="image" class="image" :src="image" alt="Project preview" />
+</div>
 </template>
 
 <style lang="less" scoped>
 .image-wrapper {
     overflow: hidden !important;
+    min-width: 100px;
+
+    width: fit-content;
 }
 
 /* select an image-wrapper which has at least two children */

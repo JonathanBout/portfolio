@@ -1,17 +1,19 @@
 import type { Localized } from "@/localizer"
 import { CSSColor, contrastingColor } from "@/util/color"
 
+type GitHubString = `https://github.com/${string}/${string}`
+
 export class Project {
     name: string | Localized<string> = ""
     id: string = ""
-    github?: string = undefined
+    github?: GitHubString = undefined
     playStore?: string = undefined
     demo?: string = undefined
     description?: Localized<string>
     image?: string = undefined
     images?: string[] = []
     tags: TagName[] = []
-    timeframe?: { start: Date; end?: Date | "present" } = undefined
+    timeframe?: { start: Date; end?: Date | "present" | "maintenance" } = undefined
 
     constructor(args: { [K in keyof Project]?: Project[K] }) {
         Object.assign(this, args)
@@ -138,6 +140,16 @@ const tags = {
     websockets: new Tag({
         name: "Websockets",
         color: "#E95420"
+    }),
+    xunit: new Tag({
+        name: "xUnit",
+        color: "#68217a",
+        url: "https://xunit.net"
+    }),
+    nunit: new Tag({
+        name: "NUnit",
+        color: "#005B0B",
+        url: "https://nunit.org"
     })
 }
 
@@ -166,7 +178,7 @@ const projects: Project[] = [
         },
         timeframe: {
             start: new Date(2024, 2),
-            end: "present"
+            end: "maintenance"
         }
     }),
     new Project({
@@ -197,7 +209,7 @@ const projects: Project[] = [
         tags: ["vue", "nasaApi"],
         timeframe: {
             start: new Date(2024, 2),
-            end: "present"
+            end: "maintenance"
         }
     }),
     new Project({
@@ -231,6 +243,22 @@ const projects: Project[] = [
             end: new Date(2023, 6)
         },
         image: "/images/projects/rara.webp"
+    }),
+    new Project({
+        name: "SimpleCDN",
+        demo: "https://static.jonathanbout.dev",
+        id: "cdn-server",
+        image: "/images/projects/simple-cdn.png",
+        tags: ["aspnetcore", "docker", "xunit", "nunit"],
+        description: {
+            en: "A simple Content Delivery Network (CDN) server that serves static files. It's built with ASP.NET Core and Docker. By using an in-memory cache, files that are requested often are available faster. To reduce the chance of bugs and to make it easier to maintain, I've written unit and integration tests for the most important parts of the code.",
+            nl: "Een eenvoudig Content Delivery Network (CDN) server die statische bestanden serveert, gebouwd met ASP.NET Core en Docker. Door een in-memory cache te gebruiken, zijn bestanden die vaak worden opgevraagd sneller beschikbaar. Om de kans op bugs te verkleinen en het onderhoud te vergemakkelijken, heb ik unit- en integratietests geschreven voor de belangrijkste delen van de code."
+        },
+        github: "https://github.com/jonathanbout/simple-cdn",
+        timeframe: {
+            start: new Date(2024, 10),
+            end: "present"
+        }
     })
 ]
 

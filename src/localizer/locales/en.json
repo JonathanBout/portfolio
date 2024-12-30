@@ -54,7 +54,9 @@
                 "title": "Top languages",
                 "description": "The languages I use most in my projects, in bytes. All this data comes directly from GitHub."
             }
-        }
+        },
+        "maintenance": "present, maintenance",
+        "maintenance-note": "Maintenance phase: this project is no longer actively developed, but I still keep it up to date with the latest dependency versions and security updates."
     },
     "version": "version",
     "pathName": {
