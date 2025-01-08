@@ -36,7 +36,7 @@ server
                         :class="'link no-external-icon' + (currentLocale === locale ? ' current' : '')"
                         @click="changeLanguage(locale)"
                     >
-                        <img class="flag" :src="`/images/flags/${iconsByLocale[locale]}.svg`" />
+                        <img class="flag" :alt="`${iconsByLocale} flag`" :src="`/images/flags/${iconsByLocale[locale]}.svg`" />
                         <span>
                             {{ $t("language." + locale) }}
                         </span>
