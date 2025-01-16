@@ -16,7 +16,7 @@ jobs:
     name: Run Tests
     uses: ./.github/workflows/node.js.yml
   publish:
-    runs-on: buildjet-2vcpu-ubuntu-2204-arm
+    runs-on: ubuntu-24.04-arm
     needs: [run-tests]
     permissions:
       contents: read
