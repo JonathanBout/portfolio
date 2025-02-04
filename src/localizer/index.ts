@@ -2,7 +2,7 @@ import localizedStrings from "./locales"
 
 import { createI18n } from "vue-i18n"
 
-import { type Plugin as VuePlugin, type App as VueApp, type ComputedRef, type WritableComputedRef } from "vue"
+import { type Plugin as VuePlugin, type App as VueApp, type WritableComputedRef } from "vue"
 
 export const LOCALES = ["nl", "en"] as const
 
@@ -29,12 +29,12 @@ export const domainsByLocale: Localized<`https://${string}`> = {
     nl: "https://jonathanbout.nl"
 }
 
-const localizerPlugin = {
+const localizerPlugin : VuePlugin = {
     install(app: VueApp) {
         app.provide("locale", currentLocale)
         app.use(i18n)
     }
-} as VuePlugin
+}
 
 /**
  * Change the language of the site by setting the locale in local storage and reloading the page. This may also redirect to the other domain if the locale is changed.
@@ -75,7 +75,7 @@ export function createLocalizer(): VuePlugin {
      * 3. If the locale is set in local storage, use that
      * 4. If the browser language is set to Dutch, use the Dutch locale
      * 5. If the browser language is set to English, use the English locale
-     * 6. If none of the above, use the locale for the current domain (.com is English, .nl is Dutch)
+     * 6. If none of the above, use the locale for the current domain (English for .com, Dutch for .nl)
      */
 
     let locale: Locale = window.app.locale
@@ -145,6 +145,7 @@ export const i18n = createI18n({
     fallbackLocale: ["common", "en"],
     messages: localizedStrings,
     legacy: false,
+    // only warn in development mode
     fallbackWarn: import.meta.env.DEV,
     missingWarn: import.meta.env.DEV
 })

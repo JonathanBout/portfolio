@@ -34,15 +34,23 @@ export class Project {
     image?: string = undefined
     images?: string[] = []
     tags: TagName[] = []
+    /**
+     * The timeframe in which the project was active. If `end` is not specified, the project was only worked on during `start`.
+     * If `end` is `"present"`, the project is still active. If `end` is `"maintenance"`, the project is no longer actively worked on, but still maintained.
+     */
     timeframe?: { start: Date; end?: Date | "present" | "maintenance" } = undefined
-    url?: string = undefined
+    /**
+     * The links to the project, for example to the GitHub repository or the Play Store page.
+     * The first link will be returned by the `url` getter.
+     */
     iconLinks?: IconLink[] = undefined
+
+    get url() {
+        return this.iconLinks?.[0]?.url ?? undefined
+    }
 
     constructor(args: { [K in keyof Project]?: Project[K] }) {
         Object.assign(this, args)
-        if (!this.url) {
-            this.url = this.iconLinks?.[0]?.url ?? undefined
-        }
     }
 }
 
