@@ -2,7 +2,7 @@ import localizedStrings from "./locales"
 
 import { createI18n } from "vue-i18n"
 
-import { type Plugin as VuePlugin, type App as VueApp } from "vue"
+import { type Plugin as VuePlugin, type App as VueApp, type ComputedRef, type WritableComputedRef } from "vue"
 
 export const LOCALES = ["nl", "en"] as const
 
@@ -15,6 +15,10 @@ export type Locale = (typeof LOCALES)[number]
  * @template V the type of the localized value
  */
 export type Localized<V = unknown> = { [K in Locale]: V }
+
+export function localize<T>(localized: Localized<T>): T {
+    return localized[currentLocale.value]
+}
 
 /**
  * A list of the domains for each locale the app supports.
@@ -145,4 +149,4 @@ export const i18n = createI18n({
     missingWarn: import.meta.env.DEV
 })
 
-export const currentLocale = i18n.global.locale
+export const currentLocale = i18n.global.locale as WritableComputedRef<Locale>

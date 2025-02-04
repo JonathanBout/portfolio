@@ -2,15 +2,14 @@ import { type RouterOptions } from "vue-router"
 
 export default {
     path: "/dash",
-    name: "Dashboard Home",
     children: [
         {
             path: "/dash",
-            name: "Dashboard",
             component: () => import("./DashboardLayout.vue"),
             children: [
                 {
                     path: "",
+                    name: "Dashboard Home",
                     component: () => import("./DashboardView.vue")
                 },
                 {

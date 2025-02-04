@@ -1,26 +1,48 @@
 import type { Localized } from "@/localizer"
 import { CSSColor, contrastingColor } from "@/util/color"
 
-type GitHubString = `https://github.com/${string}/${string}`
+type IconLink = { bootstrapIcon: string; url: string; ariaLabel: string }
+
+function githubLink(repo: `${string}/${string}`): IconLink {
+    return { bootstrapIcon: "github", url: `https://github.com/${repo}`, ariaLabel: "projects.view-on-gh" }
+}
+
+function playStoreLink(appId: string): IconLink {
+    return {
+        bootstrapIcon: "google-play",
+        url: `https://play.google.com/store/apps/details?id=${appId}`,
+        ariaLabel: "projects.view-on-playstore"
+    }
+}
+
+function nugetLink(packageId: string): IconLink {
+    return {
+        bootstrapIcon: "boxes",
+        url: `https://www.nuget.org/packages/${packageId}`,
+        ariaLabel: "projects.view-on-nuget"
+    }
+}
+
+function demoLink(url: string): IconLink {
+    return { bootstrapIcon: "link", url, ariaLabel: "projects.view-demo" }
+}
 
 export class Project {
     name: string | Localized<string> = ""
     id: string = ""
-    github?: GitHubString = undefined
-    playStore?: string = undefined
-    demo?: string = undefined
     description?: Localized<string>
     image?: string = undefined
     images?: string[] = []
     tags: TagName[] = []
     timeframe?: { start: Date; end?: Date | "present" | "maintenance" } = undefined
+    url?: string = undefined
+    iconLinks?: IconLink[] = undefined
 
     constructor(args: { [K in keyof Project]?: Project[K] }) {
         Object.assign(this, args)
-    }
-
-    get url() {
-        return this.demo ?? this.playStore ?? this.github
+        if (!this.url) {
+            this.url = this.iconLinks?.[0]?.url ?? undefined
+        }
     }
 }
 
@@ -139,7 +161,7 @@ const tags = {
     }),
     websockets: new Tag({
         name: "Websockets",
-        color: "#E95420"
+        color: "#b84821"
     }),
     xunit: new Tag({
         name: "xUnit",
@@ -161,11 +183,12 @@ const projects: Project[] = [
             en: "Programmer Watchface",
             nl: "Developer-wijzerplaat"
         },
+        iconLinks: [
+            playStoreLink("com.jonathanbout.watchface.programmer"),
+            githubLink("jonathanbout/programmer-watchface")
+        ],
         id: "programmer-watchface",
-        github: "https://github.com/jonathanbout/programmer-watchface",
-        playStore: "https://play.google.com/store/apps/details?id=com.jonathanbout.watchface.programmer",
         tags: ["watchface", "wfs", "wearOS"],
-        image: "/images/projects/programmer-watchface.webp",
         images: [
             "/images/projects/watchface/Abyss.webp",
             "/images/projects/watchface/Dark-plus.webp",
@@ -184,7 +207,7 @@ const projects: Project[] = [
     new Project({
         name: "Webserver",
         id: "webserver",
-        demo: "https://server01.jonathanbout.dev",
+        iconLinks: [demoLink("https://server01.jonathanbout.dev")],
         image: "/images/projects/server.webp",
         tags: ["docker", "apache", "nginx", "debian", "linux", "mySQL", "postgres"],
         description: {
@@ -199,8 +222,7 @@ const projects: Project[] = [
     new Project({
         name: "NASA APOD Wrapper",
         id: "apod-wrapper",
-        github: "https://github.com/jonathanbout/apod-web",
-        demo: "https://apod.jonathanbout.com",
+        iconLinks: [demoLink("https://apod.jonathanbout.com"), githubLink("jonathanbout/apod-web")],
         image: "/images/projects/apod.webp",
         description: {
             en: "A simple web app that fetches the Astronomy Picture of the Day from NASA's API and displays it in a clean, responsive layout.",
@@ -215,8 +237,7 @@ const projects: Project[] = [
     new Project({
         name: "Portfolio",
         id: "portfolio",
-        github: "https://github.com/jonathanbout/portfolio",
-        demo: "/",
+        iconLinks: [githubLink("jonathanbout/portfolio"), demoLink("/")],
         description: {
             en: "This website! My personal portfolio website, built with Vue.js. To support a broader audience, it's available in both English and Dutch using i18n and two domains.",
             nl: "Deze website! Mijn persoonlijke portfolio website, gebouwd met Vue.js. Om een breder publiek te ondersteunen, is deze beschikbaar in zowel het Engels als het Nederlands met behulp van i18n en twee domeinen."
@@ -246,15 +267,19 @@ const projects: Project[] = [
     }),
     new Project({
         name: "SimpleCDN",
-        demo: "https://static.jonathanbout.dev",
+
+        iconLinks: [
+            nugetLink("SimpleCDN"),
+            githubLink("jonathanbout/simplecdn"),
+            demoLink("https://static.jonathanbout.dev")
+        ],
         id: "cdn-server",
         image: "/images/projects/simple-cdn.png",
         tags: ["aspnetcore", "docker", "xunit", "nunit"],
         description: {
             en: "A simple Content Delivery Network (CDN) server that serves static files. It's built with ASP.NET Core and Docker. By using an in-memory cache, files that are requested often are available faster. To reduce the chance of bugs and to make it easier to maintain, I've written unit and integration tests for the most important parts of the code.",
-            nl: "Een eenvoudig Content Delivery Network (CDN) server die statische bestanden serveert, gebouwd met ASP.NET Core en Docker. Door een in-memory cache te gebruiken, zijn bestanden die vaak worden opgevraagd sneller beschikbaar. Om de kans op bugs te verkleinen en het onderhoud te vergemakkelijken, heb ik unit- en integratietests geschreven voor de belangrijkste delen van de code."
+            nl: "Een eenvoudig Content Delivery Network (CDN) server die statische bestanden levert, gebouwd met ASP.NET Core en Docker. Door een in-memory cache te gebruiken, zijn bestanden die vaak worden opgevraagd sneller beschikbaar. Om de kans op bugs te verkleinen en het onderhoud te vergemakkelijken, heb ik unit- en integratietests geschreven voor de belangrijkste delen van de code."
         },
-        github: "https://github.com/jonathanbout/simple-cdn",
         timeframe: {
             start: new Date(2024, 10),
             end: "present"

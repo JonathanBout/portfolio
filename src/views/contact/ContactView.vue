@@ -42,7 +42,7 @@ function loadFromLocalStorage() {
     }
 }
 
-async function submitForm() {
+async function submitForm() : Promise<Boolean> {
     if (input.value.honey) {
         phase.value = 4
         return true
@@ -51,10 +51,17 @@ async function submitForm() {
     return await submitFormChallengePassed(false)
 }
 
+/**
+ * Does not submit the form and resets the phase to 0.
+ */
 async function submitFormChallengeFailed() {
     phase.value = 0
 }
 
+/**
+ * Validates the form and returns whether it's valid or not.
+ * @returns Whether the form is valid or not.
+ */
 function validate(): boolean {
     error.value = { name: false, email: false, message: false }
 
@@ -78,7 +85,13 @@ function validate(): boolean {
     return valid
 }
 
-async function submitFormChallengePassed(didCheck: boolean = true) {
+/**
+ * Submits the form to the Web3Forms API.
+ * @param didCheck Whether the form was checked for being a bot or not. If so, the user passed the challenge,
+ * but we will still include a warning in the e-mail about the message probably being sent by a bot.
+ * @returns Whether the form was submitted successfully or not.
+ */
+async function submitFormChallengePassed(didCheck: boolean = true): Promise<boolean> {
     if (!validate()) {
         phase.value = 0
         return false
@@ -86,7 +99,7 @@ async function submitFormChallengePassed(didCheck: boolean = true) {
 
     if (didCheck) {
         input.value.message = `!! This message was probably sent by a bot !!
-        If this seems to be correct, forward this e-mail to support@web3forms.com and tell this system detected it. They'll take care of it. 🤖
+        If this seems to be the case, forward this e-mail to support@web3forms.com and tell this system detected it. They'll take care of it. 🤖
         
         Honey:
         ${input.value.honey}
@@ -178,7 +191,7 @@ function resetForm() {
                             {{ $t("contact.message-error") }}
                         </span>
                     </label>
-                    <label for="the-yummy-honey" class="yummy-stuff no-load-animation" aria-hidden="true">
+                    <label for="the-yummy-honey" class="yummy-stuff custom-animation" aria-hidden="true">
                         <span>
                             Do you want some yummy honey, little bot? 🍯 I have it right here for you, fresh from the
                             hive! Don't forget to include it in your message! 🐝
@@ -219,7 +232,7 @@ function resetForm() {
         <template v-else-if="phase === 4">
             <p>{{ $t("contact.robot-challenge") }}</p>
             <div class="other-buttons">
-                <button class="primary" @click="() => submitFormChallengeFailed()">
+                <button class="primary" @click="() => submitFormChallengePassed()">
                     {{ $t("contact.back") }}
                 </button>
                 <button class="danger" @click="submitFormChallengeFailed">

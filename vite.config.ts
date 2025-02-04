@@ -14,11 +14,11 @@ export default defineConfig({
         alias: {
             "@": fileURLToPath(new URL("./src", import.meta.url))
         },
-        dedupe: ["vue"]
+        dedupe: ["vue"],
     },
     server: {
         watch: {
-            // to make the project work on WSL2
+            // to make hot reload work on WSL2
             usePolling: true
         },
         port: 3999,

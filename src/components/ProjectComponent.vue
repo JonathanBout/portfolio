@@ -5,13 +5,13 @@ import TagComponent from "@/components/TagComponent.vue"
 import ProjectImageComponent from "@/components/ProjectImageComponent.vue"
 import { useI18n } from "vue-i18n"
 import { formatDate } from "@/localizer/dates"
-import type { Locale } from "@/localizer"
+import { localize, currentLocale } from "@/localizer"
 
 const props = defineProps<{
     project: Project
 }>()
 
-const { t, locale: lang } = useI18n()
+const { t } = useI18n()
 
 const timeframeText = computed(() => {
     const { start, end } = props.project.timeframe ?? {}
@@ -22,13 +22,11 @@ const timeframeText = computed(() => {
         includeYear = start.getFullYear() != end.getFullYear()
     }
 
-    const startString = formatDate(start, lang.value as Locale, false, false, true, includeYear)
+    const startString = formatDate(start, currentLocale.value, false, false, true, includeYear)
     const endString =
-        end == "present"
+        end == "present" || end == "maintenance"
             ? t("projects.present")
-            : end == "maintenance"
-              ? t("projects.maintenance") + "*"
-              : formatDate(end, lang.value as Locale, false, false, true, true)
+            : formatDate(end, currentLocale.value, false, false, true, true)
 
     if (start && end && end != "present") {
         return startString + " - " + endString
@@ -41,12 +39,14 @@ const timeframeText = computed(() => {
     return ""
 })
 
+const isMaintenance = computed(() => props.project.timeframe?.end == "maintenance")
+
 const projectName = computed(() => {
     if (typeof props.project.name === "string") {
         return props.project.name
     }
 
-    return (props.project.name as unknown as { [K: string]: string })[lang.value]
+    return localize(props.project.name)
 })
 </script>
 
@@ -64,31 +64,17 @@ const projectName = computed(() => {
                 {{ projectName }}
             </div>
             <div v-if="project.description" class="description">
-                {{ (project.description as any)[lang] }}
+                {{ localize(project.description) }}
             </div>
             <ul class="links">
-                <li v-if="project.github">
+                <li v-for="iconLink in [...(project.iconLinks ?? [])].sort((a, b) => a.bootstrapIcon.localeCompare(b.bootstrapIcon))" :key="iconLink.bootstrapIcon">
                     <a
-                        :href="project.github"
-                        :aria-label="$t('projects.view-on-gh', { name: projectName })"
+                        :title="$t(iconLink.ariaLabel, { name: projectName })"
+                        :href="iconLink.url"
+                        :aria-label="$t(iconLink.ariaLabel, { name: projectName })"
                         target="_blank"
-                        class="bi bi-github big no-external-icon"
-                    />
-                </li>
-                <li v-if="project.demo">
-                    <a
-                        :href="project.demo"
-                        :aria-label="$t('projects.view-demo', { name: projectName })"
-                        target="_blank"
-                        class="bi bi-box-arrow-up-right big no-external-icon"
-                    />
-                </li>
-                <li v-if="project.playStore">
-                    <a
-                        :href="project.playStore"
-                        :aria-label="$t('projects.view-on-play-store', { name: projectName })"
-                        target="_blank"
-                        class="bi bi-google-play big no-external-icon"
+                        class="bi"
+                        :class="'bi bi-' + iconLink.bootstrapIcon + ' big no-external-icon'"
                     />
                 </li>
                 <li v-for="tag in project.tags" :key="tag" class="tag">
@@ -97,6 +83,9 @@ const projectName = computed(() => {
             </ul>
             <div v-if="project.timeframe" class="timeframe">
                 {{ timeframeText }}
+                <template v-if="isMaintenance">
+                    (<abbr :title="$t('projects.maintenance-note')"> {{ $t("projects.maintenance") }} </abbr>)
+                </template>
             </div>
         </div>
     </component>

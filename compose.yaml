@@ -15,5 +15,12 @@ services:
             - ASPNETCORE_ENVIRONMENT=Production
             - ASPNETCORE_URLS=http://+:5000
             - CORS_ALLOWED_ORIGINS=http://localhost:50000,http://localhost:50001
+            - ConnectionStrings__Postgres=Host=db;Port=5432;Database=portfolio;Username=postgres;Password=postgres
         ports:
-            - 32769:5000
+            - 3998:5000
+    db:
+        image: postgres
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=portfolio

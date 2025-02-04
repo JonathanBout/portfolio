@@ -45,7 +45,8 @@
         "see-more": "Bekijk meer van mijn projecten op GitHub!",
         "view-on-gh": "Bekijk het project '{name}' op GitHub",
         "view-demo": "Bekijk de live demo van project '{name}'",
-        "view-on-play-store": "Bekijk de app op de Google Play Store",
+        "view-on-playstore": "Bekijk '{name}' op de Google Play Store",
+        "view-on-nuget": "Bekijk het '{name}' pakket op NuGet",
         "github-stats": {
             "text": "GitHub Statistieken",
             "error": "Er ging wat mis.",
@@ -55,8 +56,8 @@
                 "description": "De talen die ik het meest gebruikt heb in projecten, in bytes. Alle data komt direct van GitHub."
             }
         },
-        "maintenance": "nu, onderhoud",
-        "maintenance-note": "Onderhoudsfase: dit project wordt niet meer actief ontwikkeld, maar ik houd het nog steeds up-to-date met de nieuwste dependencyversies en beveiligingsupdates."
+        "maintenance": "onderhoud",
+        "maintenance-note": "Dit project wordt niet meer actief ontwikkeld, maar ik houd het nog steeds up-to-date met de nieuwste dependencyversies en beveiligingsupdates."
     },
     "version": "versie",
     "pathName": {

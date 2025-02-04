@@ -12,9 +12,9 @@ defineProps<{
         class="image-wrapper"
         :style="'--image-count: ' + (project.image ? 1 : project.images ? project.images.length : 0).toString()"
     >
-    <img v-if="project.image" class="image" :src="project.image" alt="Project preview" />
-    <img v-for="image in project.images" v-else :key="image" class="image" :src="image" alt="Project preview" />
-</div>
+        <img v-if="project.image" class="image" :src="project.image" alt="Project preview" />
+        <img v-for="image in project.images" v-else-if="project.images" :key="image" class="image" :src="image" alt="Project preview" />
+    </div>
 </template>
 
 <style lang="less" scoped>
@@ -31,14 +31,16 @@ defineProps<{
     flex-direction: row;
     overflow: hidden;
     width: fit-content;
-    align-items: center;
+    align-items: start;
+    justify-content: start;
 
     & > img {
-        animation: step infinite steps(calc(var(--image-count)));
-        animation-duration: calc(var(--image-count) * 4s);
+        animation: step infinite steps(var(--image-count));
+        animation-duration: calc(var(--image-count) * 1s);
 
+        /* slow down the animation if the user prefers reduced motion */
         @media (prefers-reduced-motion: reduce) {
-            animation-duration: 6s;
+            animation-duration: calc(var(--image-count) * 6s);
         }
     }
 

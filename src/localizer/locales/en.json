@@ -45,7 +45,8 @@
         "see-more": "See more on my GitHub!",
         "view-on-gh": "View project '{name}' on GitHub",
         "view-demo": "View a live demo of project '{name}'",
-        "view-on-play-store": "View the app on the Google Play Store",
+        "view-on-playstore": "View the '{name}' app on the Google Play Store",
+        "view-on-nuget": "View the '{name}' package on NuGet",
         "github-stats": {
             "text": "GitHub Statistics",
             "error": "Something went wrong.",
@@ -55,8 +56,8 @@
                 "description": "The languages I use most in my projects, in bytes. All this data comes directly from GitHub."
             }
         },
-        "maintenance": "present, maintenance",
-        "maintenance-note": "Maintenance phase: this project is no longer actively developed, but I still keep it up to date with the latest dependency versions and security updates."
+        "maintenance": "maintenance",
+        "maintenance-note": "This project is no longer actively developed, but I still keep it up to date with the latest dependency versions and security updates."
     },
     "version": "version",
     "pathName": {
