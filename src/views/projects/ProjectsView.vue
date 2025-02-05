@@ -14,7 +14,6 @@ import ProjectComponent from "@/components/ProjectComponent.vue"
         <div class="see-more">
             <a href="https://github.com/jonathanbout?tab=repositories">{{ $t("projects.see-more") }}</a>
         </div>
-        <p class="maintenance-note">* {{ $t("projects.maintenance-note") }}</p>
     </div>
 </template>
 <style lang="less" scoped>
