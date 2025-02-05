@@ -3,7 +3,10 @@ name: Publish to GHCR
 on:
   push:
     branches:
-      - release
+      - "release"
+      - "versions/*"
+    tags:
+      - "v*.*.*"
     paths-ignore:
       - '**.md'
 
