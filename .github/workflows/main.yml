@@ -51,6 +51,9 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}},enable=${{ !startsWith(github.ref, 'refs/tags/v0.') }}
             type=semver,pattern={{major}}.{{minor}}
+          # disable automatic latest tag
+          flavor: |
+            latest=false
       - name: Setup buildx
         uses: docker/setup-buildx-action@v3
       - name: Build and push Docker image
