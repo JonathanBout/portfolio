@@ -25,7 +25,7 @@
         "typescript-eslint": "^8.23.0",
         "vue": "^3.5.13",
         "vue-eslint-parser": "^9.4.3",
-        "vue-i18n": "^11.1.0",
+        "vue-i18n": "^11.1.1",
         "vue-router": "^4.4.5"
     },
     "devDependencies": {
