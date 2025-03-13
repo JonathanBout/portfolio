@@ -1,15 +1,14 @@
 import { fileURLToPath, URL } from "node:url"
 import localizerPlugin from "./plugins/localizer.plugin.js"
-import gitrevPlugin from "./plugins/gitrev.plugin.js"
+import gitInfoPlugin from "./plugins/git-status.plugin.js"
 import autoprefixer from "autoprefixer"
 
 import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 import vueDevTools from "vite-plugin-vue-devtools"
-import mkcert from 'vite-plugin-mkcert'
 
 export default defineConfig({
-    plugins: [vue(), localizerPlugin(), gitrevPlugin(), vueDevTools(), mkcert()],
+    plugins: [vue(), localizerPlugin(), gitInfoPlugin(), vueDevTools()],
     resolve: {
         alias: {
             "@": fileURLToPath(new URL("./src", import.meta.url))
