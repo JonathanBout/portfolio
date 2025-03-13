@@ -1,7 +1,6 @@
 import { Plugin } from "rollup"
 import lastLines from "read-last-lines"
 import fs from "fs"
-import { StripTypeScriptTypesOptions } from "module"
 
 export default function gitInfoPlugin(): Plugin {
     const moduleId = "virtual:git-info"
