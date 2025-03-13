@@ -1,3 +1,10 @@
+FROM alpine/git:2.47.2 AS git-data-stage
+WORKDIR /git
+COPY ./.git ./.git
+RUN mkdir /git-status &&\
+    git describe --all > /git-status/branch-name &&\
+    git rev-parse HEAD > /git-status/commit
+
 # Use the node image from official Docker Hub
 FROM node:lts-bookworm-slim AS build-stage
 # set the working directory
@@ -6,6 +13,7 @@ WORKDIR /app
 # Copy the working directory in the container
 COPY package*.json ./
 
+COPY --from=git-data-stage /git-status/ /app/git-status/
 # Install the project dependencies
 RUN npm install
 

@@ -3,6 +3,7 @@ import { inject, ref, watch } from "vue"
 import { RouterLink, useRoute, useRouter } from "vue-router"
 import BurgerMenuIconComponent from "../BurgerMenuIconComponent.vue"
 import { useI18n } from "vue-i18n"
+import { branch } from "virtual:git-info"
 
 const emit = defineEmits<{
     (e: "menuOpenChanged", value: boolean): void
@@ -14,8 +15,6 @@ const router = useRouter()
 const route = useRoute()
 const { t: translate, te: translationExists } = useI18n()
 const animationDuration = ".2s"
-
-const versionHash = inject<string>("gitRev") ?? "unknown"
 
 watch(router.currentRoute, () => {
     close_menu()
@@ -102,8 +101,8 @@ function transformPathName(index: number, part: string) {
             </a>
             <div class="flex-filler" />
             <div class="version">
-                <a :href="'https://github.com/JonathanBout/portfolio/commit/' + versionHash">{{
-                    $t("version") + " " + versionHash
+                <a :href="'https://github.com/JonathanBout/portfolio/tree/' + branch">{{
+                    branch
                 }}</a>
             </div>
         </header>
