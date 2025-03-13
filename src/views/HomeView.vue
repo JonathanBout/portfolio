@@ -174,16 +174,16 @@ function getSkilliconUrl(skill: string) {
                     <span>C#</span>
                 </label>
                 <label>
-                    <img alt="Python" :src="getSkilliconUrl(`py`)" />
-                    <span>Python</span>
-                </label>
-                <label>
                     <img alt="TypeScript" :src="getSkilliconUrl(`ts`)" />
                     <span>Typescript</span>
                 </label>
                 <label>
                     <img alt="Vue" :src="getSkilliconUrl(`vue`)" />
                     <span>Vue</span>
+                </label>
+                <label>
+                    <img alt="Python" :src="getSkilliconUrl(`py`)" />
+                    <span>Python</span>
                 </label>
                 <label>
                     <img alt="HTML" :src="getSkilliconUrl(`html`)" />
@@ -196,6 +196,10 @@ function getSkilliconUrl(skill: string) {
                 <label>
                     <img alt="React" :src="getSkilliconUrl(`react`)" />
                     <span>React</span>
+                </label>
+                <label>
+                    <img alt="Golang" :src="getSkilliconUrl(`golang`)" />
+                    <span>Golang</span>
                 </label>
             </div>
 
