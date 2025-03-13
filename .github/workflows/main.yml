@@ -6,6 +6,7 @@ on:
     branches:
       - "release"
       - "versions/*"
+      - "main"
     tags:
       - "v*.*.*"
     paths-ignore:
