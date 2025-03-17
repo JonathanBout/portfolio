@@ -32,7 +32,7 @@
         "@babel/types": "^7.26.9",
         "@tsconfig/node18": "^18.2.4",
         "@types/node": "^22.13.1",
-        "@vitejs/plugin-vue": "^5.2.0",
+        "@vitejs/plugin-vue": "^5.2.2",
         "@vue/tsconfig": "^0.7.0",
         "autoprefixer": "^10.4.20",
         "eslint-config-prettier": "^10.1.1",
