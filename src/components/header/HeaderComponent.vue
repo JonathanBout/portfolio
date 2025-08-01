@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, ref, watch } from "vue"
+import { computed, inject, ref, watch } from "vue"
 import { RouterLink, useRoute, useRouter } from "vue-router"
 import BurgerMenuIconComponent from "../BurgerMenuIconComponent.vue"
 import { useI18n } from "vue-i18n"
@@ -9,7 +9,26 @@ const emit = defineEmits<{
     (e: "menuOpenChanged", value: boolean): void
 }>()
 
+const themes = ["system", "light", "dark"] as const
+
+let theme = ref<typeof themes[number]>((localStorage.getItem("theme") as "light" | "dark" | null) || "system")
+
+const browserPreferredTheme = ref(
+    window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+)
+
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+    browserPreferredTheme.value = e.matches ? "dark" : "light"
+})
+
 let headerOpen = ref(false)
+
+const htmlTheme = computed(() => {
+    if (theme.value === "system") {
+        return browserPreferredTheme.value
+    }
+    return theme.value
+})
 
 const router = useRouter()
 const route = useRoute()
@@ -64,6 +83,27 @@ function transformPathName(index: number, part: string) {
 
     return part
 }
+
+function updateTheme(newTheme: typeof themes[number]) {
+    // If the browser supports view transitions, use them for a smoother theme change
+    if (document.startViewTransition) {
+        document.startViewTransition(() => _innerUpdateTheme(newTheme))
+    } else {
+        _innerUpdateTheme(newTheme)
+    }
+}
+
+function _innerUpdateTheme(newTheme: typeof themes[number]) {
+
+    if (newTheme === "system") {
+        localStorage.removeItem("theme")
+    } else {
+        localStorage.setItem("theme", newTheme)
+    }
+
+    theme.value = newTheme
+}
+
 //#endregion
 </script>
 
@@ -100,10 +140,16 @@ function transformPathName(index: number, part: string) {
                 <span><i class="bi bi-linkedin" /></span>
             </a>
             <div class="flex-filler" />
+            <div class="theme-toggle">
+                <div id="current-theme" hidden :data-theme="htmlTheme" />
+                <select :value="theme" @change="(e) => updateTheme((e.target as HTMLSelectElement).value as typeof themes[number])" class="theme-select">
+                    <option v-for="themeOption in themes" :key="themeOption" :value="themeOption">
+                        {{ $t(`header.theme.${themeOption}`) }}
+                    </option>
+                </select>
+            </div>
             <div class="version">
-                <a :href="'https://github.com/JonathanBout/portfolio/tree/' + branch">{{
-                    branch
-                }}</a>
+                <a :href="'https://github.com/JonathanBout/portfolio/tree/' + branch">{{ branch }}</a>
             </div>
         </header>
     </div>

@@ -18,23 +18,21 @@
     color-scheme: dark;
 }
 
-@media (prefers-color-scheme: light) {
-    :root {
-        --color-background: var(--background-light);
-        --color-secondary-background: var(--secondary-background-light);
-        --color-text: var(--text-light);
-        --color-secondary-text: var(--secondary-text-light);
-        --color-link: var(--link-light);
-        --color-default-button: var(--default-button-light);
-        --color-default-button-text: var(--default-button-light-text);
-        --color-primary-button: var(--primary-button-light);
-        --color-primary-button-text: var(--primary-button-light-text);
-        --color-danger-button: var(--danger-button-light);
-        --color-danger-button-text: var(--danger-button-light-text);
-        --color-error: var(--error-light);
-        --color-success: var(--success-light);
-        color-scheme: light;
-    }
+:root:has(#current-theme[data-theme="light"]) {
+    --color-background: var(--background-light);
+    --color-secondary-background: var(--secondary-background-light);
+    --color-text: var(--text-light);
+    --color-secondary-text: var(--secondary-text-light);
+    --color-link: var(--link-light);
+    --color-default-button: var(--default-button-light);
+    --color-default-button-text: var(--default-button-light-text);
+    --color-primary-button: var(--primary-button-light);
+    --color-primary-button-text: var(--primary-button-light-text);
+    --color-danger-button: var(--danger-button-light);
+    --color-danger-button-text: var(--danger-button-light-text);
+    --color-error: var(--error-light);
+    --color-success: var(--success-light);
+    color-scheme: light;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -252,7 +250,6 @@ h1 {
             overflow: visible;
         }
     }
-
 }
 
 .form-description {
