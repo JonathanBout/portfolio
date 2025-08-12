@@ -28,7 +28,7 @@ jobs:
       packages: write
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Login to GHCR
         env: 
           REGISTRY: ghcr.io
