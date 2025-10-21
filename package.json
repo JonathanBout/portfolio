@@ -40,7 +40,7 @@
         "less-loader": "^12.3.0",
         "prettier": "^3.5.3",
         "typescript": "~5.9.3",
-        "vite": "^7.1.5",
+        "vite": "^7.1.11",
         "vite-plugin-mkcert": "^1.17.9",
         "vite-plugin-vue-devtools": "^8.0.2",
         "vitest": "^3.2.4",
