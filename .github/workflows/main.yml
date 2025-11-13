@@ -21,7 +21,7 @@ jobs:
     name: Run Tests
     uses: ./.github/workflows/node.js.yml
   publish:
-    runs-on: ubuntu-24.04-arm
+    runs-on: buildjet-2vcpu-ubuntu-2204
     needs: [run-tests]
     permissions:
       contents: read
@@ -68,3 +68,4 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
