@@ -43,7 +43,7 @@
         "vite": "^7.3.2",
         "vite-plugin-mkcert": "^1.17.9",
         "vite-plugin-vue-devtools": "^8.1.2",
-        "vitest": "^4.1.6",
+        "vitest": "^4.1.9",
         "vue-tsc": "^3.2.8"
     }
 }
