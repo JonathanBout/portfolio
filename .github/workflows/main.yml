@@ -21,7 +21,7 @@ jobs:
     name: Run Tests
     uses: ./.github/workflows/node.js.yml
   publish:
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-24.04
     needs: [run-tests]
     permissions:
       contents: read
@@ -55,6 +55,8 @@ jobs:
           # disable automatic latest tag
           flavor: |
             latest=false
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v4
       - name: Setup buildx
         uses: docker/setup-buildx-action@v4
       - name: Build and push Docker image
@@ -64,7 +66,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           file: Dockerfile
-          platforms: linux/arm64/v8
+          platforms: linux/arm64,linux/amd64
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
